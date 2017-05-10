@@ -1,0 +1,19 @@
+{
+  "index.html": {
+    "resources": [
+      "/js/mui.imageViewer.js",
+      "js/mui.min.js",
+      "css/app.css",
+      "/css/mui.min.css",
+      "/js/arttmpl.js",
+      "js/mui.imageViewer.js",
+      "js/arttmpl.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/mui.imageviewer.css",
+      "images/icon.png",
+      "images/cool.png",
+      "images/T.png"
+    ]
+  }
+}
