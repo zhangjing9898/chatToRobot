@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/app.css" />
+		<style type="text/css">
+			.clear-storage{
+				width: 80%;
+				height: 48px;
+				margin-left: 10%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<span class="mui-pull-left mui-icon mui-icon-arrowleft mui-action-back"></span>
+			<h1 class="mui-title">个人信息</h1>
+		</header>
+		<div class="mui-content">
+		</div>
+		<script id='myInfo-template' type="text/template">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell" id="head-img">
+					<p class="mui-pull-left head-name">头像</p>
+					<p class="mui-pull-right head-img">
+						<img src="<%=(end_headImg_src)%>"  id="head-img-src"/>
+					</p>
+				</li>
+				<li class="mui-table-view-cell" id="change-name">
+					<p class="mui-pull-left">
+						昵称
+					</p>
+					<p class="mui-pull-right">
+						<%=(mine_nickname)%>
+					</p>
+				</li>
+				<li class="mui-table-view-cell">
+					<p class="mui-pull-left">
+						robot号
+					</p>
+					<p class="mui-pull-right">
+						123456789
+					</p>
+				</li>
+				<li class="mui-table-view-cell">
+					<p class="mui-pull-left">
+						我的个性签名
+					</p>
+					<p class="mui-pull-right">
+						一起来跟我聊天吧~
+					</p>
+				</li>
+			</ul>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<p class="mui-pull-left">
+						性别
+					</p>
+					<p class="mui-pull-right">
+						女
+					</p>
+				</li>
+				<li class="mui-table-view-cell" id="mine-address">
+					<p class="mui-pull-left">
+						我的城市
+					</p>
+					<p class="mui-pull-right">
+						<%=(mine_address)%>
+					</p>
+				</li>
+			</ul>
+			<button class="mui-btn mui-btn-danger clear-storage" id="clear-storage">清除缓存</button>
+		</script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/arttmpl.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init();
+			var content=document.getElementsByClassName("mui-content")[0];
+			
+			mui.plusReady(function(){
+			
+				var end_headImg_src;
+				if( plus.storage.getItem('img_src') == null) {
+					end_headImg_src = "images/T.png";
+				} else {
+					end_headImg_src = plus.storage.getItem('img_src');
+				}
+				var mine_address;
+				mine_address=plus.storage.getItem("city_name");
+				var mine_nickname;
+				mine_nickname=plus.storage.getItem("mine_nickname");
+				content.innerHTML = template('myInfo-template', {
+					"end_headImg_src":end_headImg_src,
+					"mine_address":mine_address,
+					"mine_nickname":mine_nickname
+			});
+			
+			/*clear-storage*/
+				var clear_storage=document.getElementById("clear-storage");
+				clear_storage.addEventListener('tap', function() {
+					plus.storage.clear();		
+					mui.toast("清除成功!");
+				});
+			var head_img=document.getElementById("head-img");
+			var head_img_src=document.getElementById("head-img-src");
+			
+			var mine_address=document.getElementById("mine-address");
+			mine_address.addEventListener("tap",function(){
+				mui.openWindow({
+					url: 'choose-area.html',
+					id: 'choose-area.html'
+				})
+			});
+			var change_name=document.getElementById("change-name");
+			change_name.addEventListener("tap",function(){
+				mui.openWindow({
+					url:'change-name.html',
+					id:'change-name.html'
+				})
+			});
+			
+			head_img.addEventListener('tap', function(event) {
+				var btnArray = [{
+					title: "拍照"
+				}, {
+					title: "从相册选择"
+				}];
+				plus.nativeUI.actionSheet({
+					title: "选择照片",
+					cancel: "取消",
+					buttons: btnArray
+				}, function(e) {
+					var index = e.index;
+					switch(index) {
+						case 0:
+							break;
+						case 1:
+							var cmr = plus.camera.getCamera();
+							cmr.captureImage(function(path) {
+								path="file://" + plus.io.convertLocalFileSystemURL(path);
+								head_img_src.setAttribute("src",path);
+								plus.storage.setItem("img_src", path);
+							}, function(err) {});
+							break;
+						case 2:
+							plus.gallery.pick(function(path) {
+								head_img_src.setAttribute("src",path);
+								plus.storage.setItem("img_src", path);
+							}, function(err) {}, null);
+							break;
+					}
+				});
+			}, false);
+			});
+		</script>
+	</body>
+
+</html>

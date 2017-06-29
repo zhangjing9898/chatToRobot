@@ -1,0 +1,85 @@
+body {
+  font-family: "微软雅黑";
+}
+.mui-content .mine-info {
+  margin-bottom: 9px;
+  background-image: url(../images/background.gif);
+}
+.mui-content .mine-info .mui-table-view-cell {
+  padding: 26px 15px;
+}
+.mui-content .mine-info .mui-table-view-cell .head-img {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+}
+.mui-content .mine-info .mui-table-view-cell .already-conversation-info {
+  text-align: center;
+  font-size: 16px;
+  color: white;
+  margin-top: 10px;
+  font-family: "微软雅黑";
+}
+.mui-content .mine-info:first-child {
+  margin-top: 11px;
+}
+.mui-content .Doraemon-get-info .medal-div {
+  height: 47px;
+  width: 115px;
+  margin: 0 auto;
+}
+.mui-content .Doraemon-get-info .medal-div .Doraemon-head-img {
+  width: 43px;
+  border-radius: 50%;
+  float: left;
+}
+.mui-content .Doraemon-get-info .medal-div .info {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #795548;
+  font-family: 微软雅黑;
+  margin-left: 8px;
+  line-height: 40px;
+}
+.mui-content .medal-list #head1 {
+  background-color: rgba(206, 231, 237, 0.51);
+}
+.mui-content .medal-list #head2 {
+  background-color: rgba(159, 204, 199, 0.45);
+}
+.mui-content .medal-list #head3 {
+  background-color: rgba(198, 172, 175, 0.52);
+}
+.mui-content .medal-list #head4 {
+  background-color: rgba(151, 104, 182, 0.36);
+}
+.mui-content .medal-list #head5 {
+  background-color: rgba(214, 164, 95, 0.55);
+}
+.mui-content .medal-list #head6 {
+  background-color: rgba(231, 156, 127, 0.51);
+}
+.mui-content .medal-list #head7 {
+  background-color: rgba(72, 72, 72, 0.38);
+}
+.mui-content .medal-list #head8 {
+  background-color: rgba(39, 69, 71, 0.45);
+}
+.mui-content .medal-list #head9 {
+  background-color: rgba(47, 84, 40, 0.61);
+}
+.mui-content .medal-list .mui-table-view-cell .head-img-get-detail {
+  display: block;
+  widows: 150px;
+  margin-left: 20px;
+  height: 42px;
+  margin-top: 12px;
+}
+.mui-content .medal-list .mui-table-view-cell .conversation-info button {
+  margin-top: 15px;
+}
+.mui-content .medal-list .mui-table-view-cell .head-img {
+  border-radius: 50%;
+}

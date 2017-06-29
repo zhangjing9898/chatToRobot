@@ -1,19 +1,136 @@
 {
-  "index.html": {
-    "resources": [
-      "/js/mui.imageViewer.js",
-      "js/mui.min.js",
-      "css/app.css",
-      "/css/mui.min.css",
-      "/js/arttmpl.js",
-      "js/mui.imageViewer.js",
-      "js/arttmpl.js",
-      "fonts/mui.ttf",
-      "css/mui.min.css",
-      "css/mui.imageviewer.css",
-      "images/icon.png",
-      "images/cool.png",
-      "images/T.png"
-    ]
-  }
+	"index.html": {
+		"resources": [
+			"/js/mui.imageViewer.js",
+			"js/mui.min.js",
+			"css/app.css",
+			"/css/mui.min.css",
+			"/js/arttmpl.js",
+			"js/mui.imageViewer.js",
+			"js/arttmpl.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/mui.imageviewer.css",
+			"images/icon.png",
+			"images/cool.png",
+			"images/T.png",
+			"js/immersed.js",
+			"js/common.js",
+			"images/logo.png",
+			"images/people.jpg",
+			"images/head.jpg",
+			"images/had.png"
+		],
+		"refer": [
+			"profile.html",
+			"index-menu.html"
+		]
+	},
+	"profile.html": {
+		"resources": [
+			"images/T.png",
+			"js/mui.min.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/arttmpl.js"
+		],
+		"refer": [
+			"choose-area.html",
+			"change-name.html"
+		]
+	},
+	"index-menu.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/menu-pic.png"
+		],
+		"refer": [
+			"about.html",
+			"profile.html",
+			"range.html",
+			"medal.html",
+			"scene-spoken.html"
+		]
+	},
+	"about.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/menu-pic.png",
+			"css/app.css"
+		]
+	},
+	"range.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/T.png",
+			"js/arttmpl.js",
+			"images/head3.png",
+			"images/head9.png",
+			"images/medal.svg",
+			"images/head2.png",
+			"images/head7.png",
+			"images/head8.png",
+			"images/head1.png",
+			"images/head4.png",
+			"images/background.gif",
+			"css/range.css",
+			"images/head6.png",
+			"images/head5.png"
+		]
+	},
+	"medal.html": {
+		"resources": [
+			"css/medal.css",
+			"images/wall.svg",
+			"images/head9.png",
+			"images/head3.png",
+			"fonts/mui.ttf",
+			"images/T.png",
+			"images/head2.png",
+			"images/head7.png",
+			"images/head8.png",
+			"images/head1.png",
+			"js/mui.min.js",
+			"css/app.css",
+			"images/head4.png",
+			"css/mui.min.css",
+			"images/head6.png",
+			"images/head5.png"
+		]
+	},
+	"choose-area.html": {
+		"resources": [
+			"css/style.css",
+			"js/zepto.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/mui.min.js"
+		]
+	},
+	"change-name.html": {
+		"resources": [
+			"css/change-name.css",
+			"js/mui.min.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	},
+	"scene-spoken.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	}
 }

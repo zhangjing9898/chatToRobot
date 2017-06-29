@@ -5,65 +5,69 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
-		<link rel="stylesheet" type="text/css" href="css/app.css"/>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/app.css" />
 		<link rel="stylesheet" type="text/css" href="css/mui.imageviewer.css" />
 	</head>
-	
+
 	<!--单击右键触发 contextmenu 事件-->
+
 	<body contextmenu="return false;">
-		<header class="mui-bar mui-bar-nav">
-			<span class="mui-pull-left mui-icon mui-icon-arrowleft"></span>
-			<h1 class="mui-title">机器聊天室</h1>
-			<span class="mui-icon mui-icon-person-filled mui-pull-right"></span>
-		</header>
-		<pre id='h'></pre>
-		<script id='msg-template' type="text/template">
-			<% for(var i in record){ var item=record[i]; %>
-			<div class="msg-item <%= (item.sender=='self'?' msg-item-self':'') %>" msg-type='<%=(item.type)%>' msg-content='<%=(item.content)%>'>
-				<% if(item.sender=='self' ) { %>
-					<img src="images/T.png" class="msg-user"  width=""/>
-				<% } else { %>
-				<img class="msg-user-img" src="images/cool.png" alt="" />
-				<% } %>
-				<div class="msg-content">
-					<div class="msg-content-inner">
-						<% if(item.type=='text' ) { %>
-						<%=( item.content|| '&nbsp;&nbsp;') %>
-						<% } else if(item.type=='image' ) { %>
-						<img class="msg-content-image" src="<%=(item.content)%>" style="max-width: 100px;" />
-						<% } else if(item.type=='sound' ) { %>
-						<span class="mui-icon mui-icon-mic" style="font-size: 18px;font-weight: bold;"></span>
-						<span class="play-state">点击播放</span>
-						<% } %>
+			<header id="header" class="mui-bar mui-bar-nav">
+				<span class="mui-pull-left mui-icon mui-icon-bars" id="menu-button"></span>
+				<h1 class="mui-title">机器聊天室</h1>
+				<!--<div class="mui-switch mui-active mui-pull-left">
+					<div class="mui-switch-handle"></div>
+				</div>-->
+				<span class="mui-icon mui-icon-person-filled mui-pull-right" id="my-info"></span>
+			</header>
+			<pre id='h'></pre>
+			<script id='msg-template' type="text/template">
+				<% for(var i in record){ var item=record[i]; %>
+				<div class="msg-item <%= (item.sender=='self'?' msg-item-self':'') %>" msg-type='<%=(item.type)%>' msg-content='<%=(item.content)%>'>
+					<% if(item.sender=='self' ) { %>
+					<img src="<%=(end_headImg_src)%>" class="msg-user" width="" />
+					<% } else { %>
+					<img class="msg-user-img" src="images/had.png" alt="" />
+					<% } %>
+					<div class="msg-content">
+						<div class="msg-content-inner">
+							<% if(item.type=='text' ) { %>
+							<%=( item.content|| '&nbsp;&nbsp;') %>
+							<% } else if(item.type=='image' ) { %>
+							<img class="msg-content-image" src="<%=(item.content)%>" style="max-width: 100px;" />
+							<% } else if(item.type=='sound' ) { %>
+							<span class="mui-icon mui-icon-mic" style="font-size: 18px;font-weight: bold;"></span>
+							<span class="play-state">点击播放</span>
+							<% } %>
+						</div>
+						<div class="msg-content-arrow"></div>
 					</div>
-					<div class="msg-content-arrow"></div>
+					<div class="mui-item-clear"></div>
 				</div>
-				<div class="mui-item-clear"></div>
+				<% } %>
+			</script>
+			<div class="mui-content">
+				<div id='msg-list'>
+				</div>
 			</div>
-			<% } %>
-		</script>
-		<div class="mui-content">
-			<div id='msg-list'>
-			</div>
-		</div>
-		<footer>
-			<div class="footer-left">
-				<i id='msg-image' class="mui-icon mui-icon-camera" style="font-size: 28px;"></i>
-			</div>
-			<div class="footer-center">
-				<textarea id='msg-text' type="text" class='input-text'></textarea>
-				<button id='msg-sound' type="button" class='input-sound' style="display: none;">按住说话</button>
-			</div>
-			<label for="" class="footer-right">
+			<footer>
+				<div class="footer-left">
+					<i id='msg-image' class="mui-icon mui-icon-camera" style="font-size: 28px;"></i>
+				</div>
+				<div class="footer-center">
+					<textarea id='msg-text' type="text" class='input-text'></textarea>
+					<button id='msg-sound' type="button" class='input-sound' style="display: none;">按住说话</button>
+				</div>
+				<label for="" class="footer-right">
 				<i id='msg-type' class="mui-icon mui-icon-mic"></i>
 			</label>
-		</footer>
-		<div id='sound-alert' class="rprogress">
-			<div class="rschedule"></div>
-			<div class="r-sigh">!</div>
-			<div id="audio_tips" class="rsalert">手指上滑，取消发送</div>
-		</div>
+			</footer>
+			<div id='sound-alert' class="rprogress">
+				<div class="rschedule"></div>
+				<div class="r-sigh">!</div>
+				<div id="audio_tips" class="rsalert">手指上滑，取消发送</div>
+			</div>
 	</body>
 	<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/arttmpl.js" type="text/javascript" charset="utf-8"></script>
@@ -82,7 +86,133 @@
 			}
 		});
 		template.config('escape', false);
+
+		/*计数器*/
+		var count = 0;
 		mui.plusReady(function() {
+			var mainPage = plus.webview.currentWebview();
+			mainPage.addEventListener('maskClick', closeMenu);
+			//处理侧滑导航，为了避免和子页面初始化等竞争资源，延迟加载侧滑页面；
+			setTimeout(function() {
+				menu = mui.preload({
+					id: 'index-menu,',
+					url: 'index-menu.html',
+					styles: {
+						left: 0,
+						width: '70%',
+						zindex: -1
+					},
+					show: {
+						aniShow: 'none'
+					}
+				});
+			}, 200);
+
+			var isInTransition = false;
+			/**
+			 * 显示侧滑菜单
+			 */
+			function openMenu() {
+				if(isInTransition) {
+					return;
+				}
+				if(!showMenu) {
+					//侧滑菜单处于隐藏状态，则立即显示出来；
+					isInTransition = true;
+					menu.setStyle({
+						mask: 'rgba(0,0,0,0)'
+					}); //menu设置透明遮罩防止点击
+					menu.show('none', 0, function() {
+						//主窗体开始侧滑并显示遮罩
+						mainPage.setStyle({
+							mask: 'rgba(0,0,0,0.4)',
+							left: '70%',
+							transition: {
+								duration: 150
+							}
+						});
+						mui.later(function() {
+							isInTransition = false;
+							menu.setStyle({
+								mask: "none"
+							}); //移除menu的mask
+						}, 160);
+						showMenu = true;
+					});
+				}
+			};
+			/**
+			 * 关闭菜单
+			 */
+			function closeMenu() {
+				if(isInTransition) {
+					return;
+				}
+				if(showMenu) {
+					//关闭遮罩；
+					//主窗体开始侧滑；
+					isInTransition = true;
+					mainPage.setStyle({
+						mask: 'none',
+						left: '0',
+						transition: {
+							duration: 200
+						}
+					});
+					showMenu = false;
+					//等动画结束后，隐藏菜单webview，节省资源；
+					mui.later(function() {
+						isInTransition = false;
+						menu.hide();
+					}, 300);
+				}
+			};
+			var menu_button = document.getElementById("menu-button");
+			var showMenu = false;
+			//点击左上角侧滑图标，打开侧滑菜单；
+			menu_button.addEventListener('tap', function(e) {
+				if(showMenu) {
+					closeMenu();
+				} else {
+					openMenu();
+				}
+			});
+			//主界面向右滑动，若菜单未显示，则显示菜单；否则不做任何操作
+			window.addEventListener("swiperight", openMenu);
+			//主界面向左滑动，若菜单已显示，则关闭菜单；否则，不做任何操作；
+			window.addEventListener("swipeleft", closeMenu);
+			//侧滑菜单触发关闭菜单命令
+			window.addEventListener("menu:close", closeMenu);
+			window.addEventListener("menu:open", openMenu);
+			//重写mui.menu方法，Android版本menu按键按下可自动打开、关闭侧滑菜单；
+			mui.menu = function() {
+				if(showMenu) {
+					closeMenu();
+				} else {
+					openMenu();
+				}
+			}
+			//首页返回键处理
+			//1、若侧滑菜单显示，则关闭侧滑菜单
+			//2、否则，执行mui框架默认的关闭首页功能
+			var _back = mui.back;
+			mui.back = function() {
+				if(showMenu) {
+					closeMenu();
+				} else {
+					_back();
+				}
+			};
+
+			var my_info = document.getElementById("my-info");
+
+			my_info.addEventListener('tap', function() {
+				mui.openWindow({
+					url: 'profile.html',
+					id: 'profile.html'
+				});
+			});
+
 			plus.webview.currentWebview().setStyle({
 				softinputMode: "adjustResize"
 			});
@@ -106,8 +236,10 @@
 			var record = [{
 				sender: 'zs',
 				type: 'text',
-				content: '反馈消息测试....'
+				content: 'hello!'
 			}];
+			plus.storage.clear();
+			checkNetwork();
 			var ui = {
 				body: document.querySelector('body'),
 				footer: document.querySelector('footer'),
@@ -127,7 +259,8 @@
 			var footerPadding = ui.footer.offsetHeight - ui.boxMsgText.offsetHeight;
 			var msgItemTap = function(msgItem, event) {
 				var msgType = msgItem.getAttribute('msg-type');
-				var msgContent = msgItem.getAttribute('msg-content')
+				var msgContent = msgItem.getAttribute('msg-content');
+				console.log(msgContent);
 				if(msgType == 'sound') {
 					player = plus.audio.createPlayer(msgContent);
 					var playState = msgItem.querySelector('.play-state');
@@ -149,8 +282,16 @@
 					element: 'msg-list',
 					model: record
 				});*/
+				var end_headImg_src = null;
+				//				var end_headImg_src="images/T.png";
+				if(plus.storage.getItem('img_src') == null) {
+					end_headImg_src = "images/T.png";
+				} else {
+					end_headImg_src = plus.storage.getItem('img_src');
+				}
 				ui.areaMsgList.innerHTML = template('msg-template', {
-					"record": record
+					"record": record,
+					"end_headImg_src": end_headImg_src
 				});
 				var msgItems = ui.areaMsgList.querySelectorAll('.msg-item');
 				[].forEach.call(msgItems, function(item, index) {
@@ -161,28 +302,72 @@
 				imageViewer.findAllImage();
 				ui.areaMsgList.scrollTop = ui.areaMsgList.scrollHeight + ui.areaMsgList.offsetHeight;
 			};
+
 			bindMsgList();
+
 			window.addEventListener('resize', function() {
 				ui.areaMsgList.scrollTop = ui.areaMsgList.scrollHeight + ui.areaMsgList.offsetHeight;
 			}, false);
+
+			/*判断网络*/
+			function checkNetwork() {
+				var connectionStatus = plus.networkinfo.getCurrentType();
+				if(connectionStatus == 0 || connectionStatus == 1) {
+					mui.toast('亲,无法连接网络');
+				}
+				//						else if(connectionStatus == 3) {
+				//							mui.toast('使用wifi中');
+				//						}
+			}
+
 			var send = function(msg) {
 				record.push(msg);
 				bindMsgList();
-				toRobot(msg.content);
+				if(msg.contenToRobot == undefined) {
+					msg.contenToRobot = msg.content;
+					toRobot(msg.contenToRobot);
+				} else {
+					var reg = /^[a-zA-Z]/;
+					if(reg.test(msg.contenToRobot)) {
+						mui.toast("please use English!");
+					} else {
+						toRobot(msg.contenToRobot);
+					}
+				};
 			};
+			/*acfbca724ea1b5db96d2eef88ce677dc
+			 	e51ea27ee6984f7ca3eef3798acaf7da
+			 * */
 			var toRobot = function(info) {
+
 				var apiUrl = "http://www.tuling123.com/openapi/api";
 				mui.getJSON(apiUrl, {
-					"key": 'acfbca724ea1b5db96d2eef88ce677dc',
+					"key": 'e51ea27ee6984f7ca3eef3798acaf7da',
 					"info": info,
 					"userid": plus.device.uuid
 				}, function(data) {
-					record.push({
-						sender: 'zs',
-						type: 'text',
-						content: data.text
-					});
-					bindMsgList();
+
+					console.log(data.text);
+					var dataTest = data.text;
+					var c = null;
+					mui.getJSON(
+						'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + dataTest,
+						function(data) {
+							c = data.translation;
+							console.log("translation:" + c);
+							record.push({
+								sender: 'zs',
+								type: 'text',
+								content: c + ""
+							});
+							bindMsgList();
+							count++;
+							plus.storage.setItem("key_count", count + "");
+							if(count == "1") {
+								plus.storage.setItem("start", "true");
+							}
+						}
+					);
 				});
 			};
 
@@ -199,26 +384,40 @@
 					event.preventDefault();
 				}
 			});
-			//解决长按“发送”按钮，导致键盘关闭的问题；
-			ui.footerRight.addEventListener('touchmove', function(event) {
-				if(ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
-					msgTextFocus();
-					event.preventDefault();
-				}
-			});
 			ui.footerRight.addEventListener('release', function(event) {
 				if(ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
 					//showKeyboard();
+					checkNetwork();
 					ui.boxMsgText.focus();
 					setTimeout(function() {
 						ui.boxMsgText.focus();
 					}, 150);
 					//							event.detail.gesture.preventDefault();
-					send({
-						sender: 'self',
-						type: 'text',
-						content: ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '<br/>')
-					});
+					var contentValue = ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '<br/>');
+					var c = null;
+					mui.getJSON(
+						'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + contentValue,
+						function(data) {
+							if(data.errorCode == '30') {
+								send({
+									sender: 'self',
+									type: 'text',
+									content: contentValue,
+									contenToRobot: contentValue
+								});
+							} else {
+								console.log(JSON.stringify(data));
+								c = data.translation;
+								console.log("translation:" + c);
+								send({
+									sender: 'self',
+									type: 'text',
+									content: contentValue,
+									contenToRobot: c + ""
+								});
+							}
+						}
+					);
 					ui.boxMsgText.value = '';
 					mui.trigger(ui.boxMsgText, 'input', null);
 				} else if(ui.btnMsgType.classList.contains('mui-icon-mic')) {

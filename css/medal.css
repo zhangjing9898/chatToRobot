@@ -1,0 +1,29 @@
+.mui-content .mine-info {
+  padding: 12px 15px;
+}
+.mui-content .mine-info .mine-head-img {
+  width: 40px;
+  border-radius: 50%;
+  float: left;
+  margin-right: 10px;
+}
+.mui-content .mine-info .mine-name {
+  float: left;
+  font-size: 16px;
+  line-height: 40px;
+  font-family: 微软雅黑;
+}
+.mui-content .mine-info .wall-img {
+  width: 40px;
+  margin-left: 10px;
+}
+.mui-content .medal-wall .medal-wall-cell {
+  float: left;
+}
+.mui-content .medal-wall .medal-wall-cell .canvas {
+  display: block;
+  margin: 6% auto;
+  width: 100px;
+  height: 103px;
+  border-radius: 50%;
+}
