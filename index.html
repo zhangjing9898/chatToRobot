@@ -13,61 +13,61 @@
 	<!--单击右键触发 contextmenu 事件-->
 
 	<body contextmenu="return false;">
-			<header id="header" class="mui-bar mui-bar-nav">
-				<span class="mui-pull-left mui-icon mui-icon-bars" id="menu-button"></span>
-				<h1 class="mui-title">机器聊天室</h1>
-				<!--<div class="mui-switch mui-active mui-pull-left">
+		<header id="header" class="mui-bar mui-bar-nav">
+			<span class="mui-pull-left mui-icon mui-icon-bars" id="menu-button"></span>
+			<h1 class="mui-title">机器聊天室</h1>
+			<!--<div class="mui-switch mui-active mui-pull-left">
 					<div class="mui-switch-handle"></div>
 				</div>-->
-				<span class="mui-icon mui-icon-person-filled mui-pull-right" id="my-info"></span>
-			</header>
-			<pre id='h'></pre>
-			<script id='msg-template' type="text/template">
-				<% for(var i in record){ var item=record[i]; %>
-				<div class="msg-item <%= (item.sender=='self'?' msg-item-self':'') %>" msg-type='<%=(item.type)%>' msg-content='<%=(item.content)%>'>
-					<% if(item.sender=='self' ) { %>
-					<img src="<%=(end_headImg_src)%>" class="msg-user" width="" />
-					<% } else { %>
-					<img class="msg-user-img" src="images/had.png" alt="" />
-					<% } %>
-					<div class="msg-content">
-						<div class="msg-content-inner">
-							<% if(item.type=='text' ) { %>
-							<%=( item.content|| '&nbsp;&nbsp;') %>
-							<% } else if(item.type=='image' ) { %>
-							<img class="msg-content-image" src="<%=(item.content)%>" style="max-width: 100px;" />
-							<% } else if(item.type=='sound' ) { %>
-							<span class="mui-icon mui-icon-mic" style="font-size: 18px;font-weight: bold;"></span>
-							<span class="play-state">点击播放</span>
-							<% } %>
-						</div>
-						<div class="msg-content-arrow"></div>
-					</div>
-					<div class="mui-item-clear"></div>
-				</div>
+			<span class="mui-icon mui-icon-person-filled mui-pull-right" id="my-info"></span>
+		</header>
+		<pre id='h'></pre>
+		<script id='msg-template' type="text/template">
+			<% for(var i in record){ var item=record[i]; %>
+			<div class="msg-item <%= (item.sender=='self'?' msg-item-self':'') %>" msg-type='<%=(item.type)%>' msg-content='<%=(item.content)%>'>
+				<% if(item.sender=='self' ) { %>
+				<img src="<%=(end_headImg_src)%>" class="msg-user" width="" />
+				<% } else { %>
+				<img class="msg-user-img" src="images/had.png" alt="" />
 				<% } %>
-			</script>
-			<div class="mui-content">
-				<div id='msg-list'>
+				<div class="msg-content">
+					<div class="msg-content-inner">
+						<% if(item.type=='text' ) { %>
+						<%=( item.content|| '&nbsp;&nbsp;') %>
+						<% } else if(item.type=='image' ) { %>
+						<img class="msg-content-image" src="<%=(item.content)%>" style="max-width: 100px;" />
+						<% } else if(item.type=='sound' ) { %>
+						<span class="mui-icon mui-icon-mic" style="font-size: 18px;font-weight: bold;"></span>
+						<span class="play-state">点击播放</span>
+						<% } %>
+					</div>
+					<div class="msg-content-arrow"></div>
 				</div>
+				<div class="mui-item-clear"></div>
 			</div>
-			<footer>
-				<div class="footer-left">
-					<i id='msg-image' class="mui-icon mui-icon-camera" style="font-size: 28px;"></i>
-				</div>
-				<div class="footer-center">
-					<textarea id='msg-text' type="text" class='input-text'></textarea>
-					<button id='msg-sound' type="button" class='input-sound' style="display: none;">按住说话</button>
-				</div>
-				<label for="" class="footer-right">
+			<% } %>
+		</script>
+		<div class="mui-content">
+			<div id='msg-list'>
+			</div>
+		</div>
+		<footer>
+			<div class="footer-left">
+				<i id='msg-image' class="mui-icon mui-icon-camera" style="font-size: 28px;"></i>
+			</div>
+			<div class="footer-center">
+				<textarea id='msg-text' type="text" class='input-text'></textarea>
+				<button id='msg-sound' type="button" class='input-sound' style="display: none;">按住说话</button>
+			</div>
+			<label for="" class="footer-right">
 				<i id='msg-type' class="mui-icon mui-icon-mic"></i>
 			</label>
-			</footer>
-			<div id='sound-alert' class="rprogress">
-				<div class="rschedule"></div>
-				<div class="r-sigh">!</div>
-				<div id="audio_tips" class="rsalert">手指上滑，取消发送</div>
-			</div>
+		</footer>
+		<div id='sound-alert' class="rprogress">
+			<div class="rschedule"></div>
+			<div class="r-sigh">!</div>
+			<div id="audio_tips" class="rsalert">手指上滑，取消发送</div>
+		</div>
 	</body>
 	<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/arttmpl.js" type="text/javascript" charset="utf-8"></script>
@@ -236,7 +236,7 @@
 			var record = [{
 				sender: 'zs',
 				type: 'text',
-				content: 'hello!'
+				content: 'hello!Would you like to chat with me?'
 			}];
 			plus.storage.clear();
 			checkNetwork();
@@ -261,6 +261,7 @@
 				var msgType = msgItem.getAttribute('msg-type');
 				var msgContent = msgItem.getAttribute('msg-content');
 				console.log(msgContent);
+				translation(msgContent);
 				if(msgType == 'sound') {
 					player = plus.audio.createPlayer(msgContent);
 					var playState = msgItem.querySelector('.play-state');
@@ -323,12 +324,15 @@
 			var send = function(msg) {
 				record.push(msg);
 				bindMsgList();
+				var _self = this;
+				console.log("send()中的:"+msg.contenToRobot);
 				if(msg.contenToRobot == undefined) {
 					msg.contenToRobot = msg.content;
 					toRobot(msg.contenToRobot);
 				} else {
 					var reg = /^[a-zA-Z]/;
 					if(reg.test(msg.contenToRobot)) {
+						
 						mui.toast("please use English!");
 					} else {
 						toRobot(msg.contenToRobot);
@@ -339,14 +343,12 @@
 			 	e51ea27ee6984f7ca3eef3798acaf7da
 			 * */
 			var toRobot = function(info) {
-
 				var apiUrl = "http://www.tuling123.com/openapi/api";
 				mui.getJSON(apiUrl, {
 					"key": 'e51ea27ee6984f7ca3eef3798acaf7da',
 					"info": info,
 					"userid": plus.device.uuid
 				}, function(data) {
-
 					console.log(data.text);
 					var dataTest = data.text;
 					var c = null;
@@ -370,6 +372,17 @@
 					);
 				});
 			};
+
+			var translation=function(info){
+				mui.getJSON(
+					'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + info,
+					function(data) {
+//						mui.toast("翻译这传来的info:"+info);
+//						console.log("点击后的翻译:"+JSON.stringify(data));
+						mui.toast("翻译:"+data.translation);
+					}
+				);
+			}
 
 			function msgTextFocus() {
 				ui.boxMsgText.focus();
@@ -477,6 +490,7 @@
 					}
 				});
 			}, false);
+
 			var setSoundAlertVisable = function(show) {
 				if(show) {
 					ui.boxSoundAlert.style.display = 'block';
@@ -588,6 +602,11 @@
 				if(!focus) {
 					ui.boxMsgText.blur();
 				}
+			})
+
+			//长按
+			mui("#msg-list").on('longtap', 'msg-content', function(e) {
+				mui.toast("121212121!!!");
 			})
 		});
 	</script>
