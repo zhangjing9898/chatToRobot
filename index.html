@@ -19,7 +19,7 @@
 			<!--<div class="mui-switch mui-active mui-pull-left">
 					<div class="mui-switch-handle"></div>
 				</div>-->
-			<span class="mui-icon mui-icon-person-filled mui-pull-right" id="my-info"></span>
+			<span class="mui-icon mui-icon-search mui-pull-right" id="word-search"></span>
 		</header>
 		<pre id='h'></pre>
 		<script id='msg-template' type="text/template">
@@ -204,12 +204,12 @@
 				}
 			};
 
-			var my_info = document.getElementById("my-info");
+			var my_info = document.getElementById("word-search");
 
 			my_info.addEventListener('tap', function() {
 				mui.openWindow({
-					url: 'profile.html',
-					id: 'profile.html'
+					url: 'word-search.html',
+					id: 'word-search.html'
 				});
 			});
 
