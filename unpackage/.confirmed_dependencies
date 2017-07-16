@@ -23,7 +23,8 @@
 		],
 		"refer": [
 			"profile.html",
-			"index-menu.html"
+			"index-menu.html",
+			"word-search.html"
 		]
 	},
 	"profile.html": {
@@ -52,7 +53,8 @@
 			"profile.html",
 			"range.html",
 			"medal.html",
-			"scene-spoken.html"
+			"scene-spoken.html",
+			"task-area.html"
 		]
 	},
 	"about.html": {
@@ -130,7 +132,42 @@
 			"js/mui.min.js",
 			"css/app.css",
 			"fonts/mui.ttf",
-			"css/mui.min.css"
+			"css/mui.min.css",
+			"images/spoken-img.jpg",
+			"images/English.png",
+			"js/arttmpl.js"
+		],
+		"refer": [
+			"task-area.html"
+		]
+	},
+	"word-search.html": {
+		"resources": [
+			"css/word-search.css",
+			"js/mui.min.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/arttmpl.js"
+		]
+	},
+	"task-area.html": {
+		"resources": [
+			"js/mui.imageViewer.js",
+			"js/mui.min.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/arttmpl.js",
+			"images/head1.png",
+			"js/common.js",
+			"js/immersed.js",
+			"css/mui.imageviewer.css",
+			"images/T.png",
+			"images/mic.png",
+			"images/head2.png",
+			"images/head3.png",
+			"js/taskDetailData.js"
 		]
 	}
 }

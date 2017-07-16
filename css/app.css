@@ -13,7 +13,7 @@ footer {
 	width: 100%;
 	height: 50px;
 	min-height: 50px;
-	border-top:solid 1px rgba(158, 158, 158, 0.43);
+	border-top: solid 1px rgba(158, 158, 158, 0.43);
 	left: 0px;
 	bottom: 0px;
 	overflow: hidden;
@@ -112,7 +112,7 @@ footer {
 	width: 38px;
 	height: 38px;
 	display: inline-block;
-	border-radius:50%;
+	border-radius: 50%;
 	vertical-align: top;
 	text-align: center;
 	float: left;
@@ -315,104 +315,177 @@ footer .mui-icon-paperplane {
 .cancel {
 	background-color: darkred;
 }
+
 .mui-bar {
-    background-color: black;
+	background-color: black;
 }
+
 .mui-bar-nav {
-    top: 0;
-    -webkit-box-shadow: 0 1px 0 black;
-    box-shadow: 0 1px 0 black;
+	top: 0;
+	-webkit-box-shadow: 0 1px 0 black;
+	box-shadow: 0 1px 0 black;
 	height: 59px;
 	padding-top: 17px;
 }
+
 .mui-title {
-    text-align: left;
-    color: white;
-    font-family: 微软雅黑;
+	text-align: left;
+	color: white;
+	font-family: 微软雅黑;
 }
+
 .mui-icon-person-filled:before {
-    content: '\e131';
-    color: white;
+	content: '\e131';
+	color: white;
 }
+
 .mui-icon-arrowleft:before {
-    content: '\e582';
-    color: white;
+	content: '\e582';
+	color: white;
 }
-.mui-content .mui-table-view .mui-table-view-cell .head-img{
+
+.mui-content .mui-table-view .mui-table-view-cell .head-img {
 	width: 70px;
-    height: 70px;	
-    overflow: hidden;
+	height: 70px;
+	overflow: hidden;
 }
-.mui-content .mui-table-view .mui-table-view-cell .head-img img{
+
+.mui-content .mui-table-view .mui-table-view-cell .head-img img {
 	width: 70px;
 	height: 70px;
 }
-.mui-content .mui-table-view .mui-table-view-cell .head-name{
+
+.mui-content .mui-table-view .mui-table-view-cell .head-name {
 	height: 70px;
 	line-height: 70px;
 }
+
 .mui-table-view-cell:after {
-    left: 0;
+	left: 0;
 }
+
 .mui-content .mui-pull-left {
-    float: left;
-    color: black;
-    font-family: 微软雅黑;
-    font-size: 14px;
+	float: left;
+	color: black;
+	font-family: 微软雅黑;
+	font-size: 14px;
 }
+
 .mui-content .mui-pull-right {
-    font-family: 微软雅黑;
-    font-size: 13px;
+	font-family: 微软雅黑;
+	font-size: 13px;
 }
+
 .mui-table-view-cell {
-    position: relative;
-    overflow: hidden;
-    padding: 12px 15px;
-    -webkit-touch-callout: none;
+	position: relative;
+	overflow: hidden;
+	padding: 12px 15px;
+	-webkit-touch-callout: none;
 }
+
 .mui-table-view {
-    position: relative;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-left: 0;
-    list-style: none;
-    background-color: #fff;
-    margin-bottom: 13px;
+	position: relative;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-left: 0;
+	list-style: none;
+	background-color: #fff;
+	margin-bottom: 13px;
 }
+
 .mui-bar-nav~.mui-content {
-padding-top: 60px;
+	padding-top: 60px;
 }
+
 .mui-icon-bars:before {
-color: white;
+	color: white;
 }
+
 .mui-switch.mui-active {
-    border-color: #2196F3;
-    background-color: #2196F3;
+	border-color: #2196F3;
+	background-color: #2196F3;
 }
+
 .mui-switch {
-    margin-left: 34%;
-    margin-top: 7px;
+	margin-left: 34%;
+	margin-top: 7px;
 }
+
 .mui-switch.mui-active:before {
-    right: auto;
-    left: 10px;
-    content: "write";
-    color: #fff;
-    font-size: 12px;
-    font-family: 微软雅黑;
-    text-transform: capitalize;
+	right: auto;
+	left: 10px;
+	content: "write";
+	color: #fff;
+	font-size: 12px;
+	font-family: 微软雅黑;
+	text-transform: capitalize;
 }
+
 .mui-switch:before {
-    font-size: 12px;
-    position: absolute;
-    top: 3px;
-    right: 5px;
-    content: "speak";
-    text-transform: capitalize;
-    color: #999;
-    font-family: 微软雅黑;
+	font-size: 12px;
+	position: absolute;
+	top: 3px;
+	right: 5px;
+	content: "speak";
+	text-transform: capitalize;
+	color: #999;
+	font-family: 微软雅黑;
 }
+
 .mui-icon-search:before {
-    content: '\e466';
-    color: white;
+	content: '\e466';
+	color: white;
+}
+
+.input-text {
+	margin-top: 2px;
+	padding: 2%;
+	width: 90%;
+	border: 1px solid #6C6C6C;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	-webkit-appearance: none;
+}
+
+#audioRobot {
+	display: none;
+}
+
+.out {
+	margin: 9px;
+	height: 30%;
+	width: 90%;
+}
+
+.recognize-english {
+	font-family: "微软雅黑";
+	font-size: 15px;
+}
+.mic-icon{
+	width: 25px;
+	height: 25px;
+}
+.mui-card {
+    margin: 10px 10px 15px 10px;
+}
+.mui-card .mui-card-content {
+    font-size: 14px;
+    position: relative;
+    height: 165px;
+    overflow: hidden;
+}
+.mui-card .mui-card-content  img{
+    width: 100%;
+    height: 100%;
+}
+.mui-card .mui-card-footer .enter-btn{
+	padding-right: 3px;
+}
+.mui-card .mui-card-footer .enter-btn strong{
+	display: inline-block;
+    font-size: 17px;
+    font-family: "微软雅黑";
+    font-weight: 500;
+     margin-right: -6px;
+
 }

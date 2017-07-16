@@ -13,31 +13,114 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<div class="mui-input-row">
-				<input type="text" class="mui-input-clear" placeholder="查询英文或中文">
+			<button id="search-button" class="search-button">搜索</button>
+			<div class="input-wrapper">
+				<div class="mui-input-row">
+					<input type="text" class="mui-input-clear" id="search-input" placeholder="查询英文">
+				</div>
 			</div>
+
 		</header>
 		<div class="mui-content">
+			
+		</div>
+		<script id="wordSearch-template" type="text/template">
 			<ul class="mui-table-view word-translation">
-				<li class="mui-table-view-cell main-word">hello //</li>
-				<li class="mui-table-view-cell translation">int.(见面打招呼或打电话用语)哦，哈罗</li>
-				<li class="mui-table-view-cell translation">英解:n. an expression of greeting</li>
+				<li class="mui-table-view-cell main-word">
+					<strong><%=(word_content)%></strong>
+					/<%=(word_pronunciation)%>/</li>
+				<li class="mui-table-view-cell translation">
+					<%=(definition)%>
+				</li>
+				<li class="mui-table-view-cell translation">英解:
+					<%=(en_definition)%>
+				</li>
 			</ul>
 			<p>例句：</p> 
 			<ul class="mui-table-view example">
 				<li class="mui-table-view-cell">
-					<p>hello,is there anybody there?</p>
-					<p>喂，那里有人吗？</p>
+					<p><%=(example1Annotation)%></p>
+					<p><%=(example1Translation)%></p>
 				</li>
 				<li class="mui-table-view-cell">
-					<p>hello,is there anybody there?</p>
-					<p>喂，那里有人吗？</p>
+					<p><%=(example2Annotation)%></p>
+					<p><%=(example2Translation)%></p>
 				</li>
 			</ul>
-		</div>
+		</script>
 		<script src="js/mui.min.js"></script>
+		<script src="js/arttmpl.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			mui.init()
+			mui.init();
+			var word_content = null; //查询单词
+			var word_pronunciation = null; //单词音标
+			var en_definition = null; //英文解释
+			var definition = null; //中文意思
+			var example1Annotation=null;
+			var example2Annotation=null;
+			var example1Translation=null;
+			var example2Translation=null;
+			var content = document.getElementsByClassName("mui-content")[0];
+			var searchInput = document.getElementById("search-input");
+			var searchWord = function(word) {
+				var apiUrl = "https://api.shanbay.com/bdc/search/?word=" + word;
+				mui.getJSON(apiUrl, function(data) {
+					if(data.msg=="SUCCESS"){
+						word_content = data.data.content;
+						word_pronunciation = data.data.pronunciation;
+						en_definition = data.data.en_definition.defn;
+						definition = data.data.definition;
+						word_id = data.data.id;
+						console.log(word_pronunciation);
+						getExample(word_id);
+					}
+					else{
+						mui.toast("抱歉，未能查到该单词，请重新输入");
+						return;
+					}
+				});
+			}
+			
+			var getExample=function(word_id){
+				var apiUrl="https://api.shanbay.com/bdc/example/?vocabulary_id="+word_id+"&type=sys";
+				mui.getJSON(apiUrl,function(data){
+					if(data.data[0]==undefined||data.data[1]==undefined){
+						example1Annotation="暂未查到相关例句";
+						example1Translation="";
+						example2Annotation="暂未查到相关例句";
+						example2Translation=""
+					}
+					else{
+						example1Annotation=data.data[0].annotation.replace(/(<.[^>]*>)/ig, '');
+						example1Translation=data.data[0].translation;
+						example2Annotation=data.data[1].annotation.replace(/(<.[^>]*>)/ig, '');
+						example2Translation=data.data[1].translation;	
+					}
+					
+					/*填充模板*/
+					content.innerHTML = template('wordSearch-template', {
+						"word_content": word_content,
+						"word_pronunciation": word_pronunciation,
+						"definition": definition,
+						"en_definition": en_definition,
+						"example1Annotation":example1Annotation,
+						"example1Translation":example1Translation,
+						"example2Annotation":example2Annotation,
+						"example2Translation":example2Translation
+					})
+				})
+			}
+			
+			mui.plusReady(function() {
+				var search_buttion = document.getElementById("search-button");
+				search_buttion.addEventListener('tap', function(e) {
+					var value = searchInput.value;
+					console.log("one!");
+					searchWord(value);
+
+				});
+				
+			})
 		</script>
 	</body>
 

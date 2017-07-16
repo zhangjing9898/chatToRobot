@@ -7,26 +7,27 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/app.css" />
-		<style type="text/css">
-			a {
-				color: white;
-			}
-		</style>
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<span class="mui-pull-left mui-icon mui-icon-arrowleft mui-action-back"></span>
 			<h1 class="mui-title">场景口语</h1>
 		</header>
 		<div class="mui-content">
+
+		</div>
+		<script id="scene-template" type="text/template">
+			<% for(var i=1;i<4;i++){ %>
 			<div class="mui-card">
 				<!--页眉，放置标题-->
 				<div class="mui-card-header mui-card-media">
 					<img src="images/English.png" />
 					<div class="mui-media-body">
 						日常英语
-						<p>个人喜好</p>
+						<p>任务
+							<%=i%>
+						</p>
 					</div>
 				</div>
 				<!--内容区-->
@@ -34,47 +35,36 @@
 					<img src="images/spoken-img.jpg" />
 				</div>
 				<!--页脚，放置补充信息或支持的操作-->
-				<div class="mui-card-footer">enter
+				<div class="mui-card-footer mui-pull-right ">
+					<a href="javascript:openInfo(<%=i%>);">
+						<button class="enter-btn">
+						        	<strong>Enter</strong>
+						       		<i class="mui-icon mui-icon-arrowright"></i>
+					        	</button>
+					</a>
 				</div>
 			</div>
-			<div class="mui-card">
-				<!--页眉，放置标题-->
-				<div class="mui-card-header mui-card-media">
-					<img src="images/English.png" />
-					<div class="mui-media-body">
-						日常英语
-						<p>个人喜好</p>
-					</div>
-				</div>
-				<!--内容区-->
-				<div class="mui-card-content">
-						<img src="images/spoken-img.jpg" />
-				</div>
-				<!--页脚，放置补充信息或支持的操作-->
-				<div class="mui-card-footer">enter
-				</div>
-			</div>
-			<div class="mui-card">
-				<!--页眉，放置标题-->
-				<div class="mui-card-header mui-card-media">
-					<img src="images/English.png" />
-					<div class="mui-media-body">
-						日常英语
-						<p>个人喜好</p>
-					</div>
-				</div>
-				<!--内容区-->
-				<div class="mui-card-content">
-						<img src="images/spoken-img.jpg" />
-				</div>
-				<!--页脚，放置补充信息或支持的操作-->
-				<div class="mui-card-footer">enter
-				</div>
-			</div>
-		</div>
+			<%}%>
+		</script>
 		<script src="js/mui.min.js"></script>
+		<script src="js/arttmpl.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			mui.init()
+			mui.init();
+			function openInfo(id) {
+					mui.openWindow({
+						url: 'task-area.html',
+						id: 'task-area.html',
+						extras: {
+							taskId: id
+						}
+					})
+				}
+			mui.plusReady(function() {
+				var content = document.getElementsByClassName('mui-content')[0];
+				content.innerHTML = template('scene-template', {})
+
+				
+			})
 		</script>
 	</body>
 
