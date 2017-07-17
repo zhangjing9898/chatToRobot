@@ -1,0 +1,25 @@
+.mui-content .mui-card .mui-card-content {
+  position: relative;
+}
+.mui-content .mui-card .mui-card-content .img {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+.mui-content .mui-card .mui-card-content .mask {
+  width: 364px;
+  height: 165px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+}
+.mui-content .mui-card .mui-card-content .mask .info {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  text-align: center;
+  margin-top: -30px;
+}

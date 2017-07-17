@@ -135,7 +135,8 @@
 			"css/mui.min.css",
 			"images/spoken-img.jpg",
 			"images/English.png",
-			"js/arttmpl.js"
+			"js/arttmpl.js",
+			"css/scene-spoken.css"
 		],
 		"refer": [
 			"task-area.html"
