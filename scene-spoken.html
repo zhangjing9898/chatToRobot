@@ -16,39 +16,54 @@
 			<h1 class="mui-title">场景口语</h1>
 		</header>
 		<div class="mui-content">
-
-		</div>
-		<script id="scene-template" type="text/template">
-			<% for(var i=1;i<4;i++){ %>
-			<div class="mui-card">
-				<!--页眉，放置标题-->
+			<div class="mui-card spoken-card">
 				<div class="mui-card-header mui-card-media">
-					<img src="images/English.png" />
-					<div class="mui-media-body">
-						日常英语
-						<p>任务
-							<%=i%>
-						</p>
-					</div>
-				</div>
-				<!--内容区-->
-				<div class="mui-card-content">
-					<img src="images/spoken-img.jpg" />
+					<img src="images/scene1.png" />
 					<div class="mask">
 						<div class="info">
-							<h3>未解锁</h3>
+							<h3>UNLOCKED</h3>
 							<p>This task is not unlocked</p>
 						</div>
 					</div>
 				</div>
-				<!--页脚，放置补充信息或支持的操作-->
-				<div class="mui-card-footer mui-pull-right ">
+				<div class="mui-card-content">
+					<div class="task-number">Task one</div>
+					<div class="description">des:The purpose of this mission is to teach how to book rooms in everyday English</div>
+				</div>
+				<div class="mui-card-footer mui-pull-left ">
 					<a href="javascript:openInfo(<%=i%>);">
-						<button class="enter-btn" style="display: none;">
-						        	<strong>Enter</strong>
-						       		<i class="mui-icon mui-icon-arrowright"></i>
+						<button class="enter-btn">
+						        	UNLOCKED
 						</button>
 					</a>
+				</div>
+			</div>
+		</div>
+		<script id="scene-template" type="text/template">
+			<% for(var i=1;i<4;i++){ %>
+			<div class="mui-card spoken-card">
+				<div class="mui-card-header mui-card-media">
+					<img src="images/scene<%=i%>.png" />
+					<div class="mask">
+						<div class="info">
+							<h3>UNLOCKED</h3>
+							<p>This task is not unlocked</p>
+						</div>
+					</div>
+				</div>
+				<div class="mui-card-content">
+					<div class="task-number">Task <%=i%></div>
+					<div class="description">des:The purpose of this mission is to improve your spoken English</div>
+				</div>
+				<div class="mui-card-footer mui-pull-left">
+					<a href="javascript:openInfo(<%=i%>);">
+						<button class="enter-btn" style="display: none;">
+						        	EXPLOER
+						</button>
+					</a>
+					<button class="enter-btn" style="display: block;">
+						        	UNLOCKED
+						</button>
 				</div>
 			</div>
 			<%}%>
@@ -78,6 +93,7 @@
 				for(var j=0;j<medal_num;j++){
 					mui_cards[j].getElementsByClassName("mask")[0].style.display="none";
 					mui_cards[j].getElementsByClassName("enter-btn")[0].style.display="block";
+					mui_cards[j].getElementsByClassName("enter-btn")[1].style.display="none";
 				}
 			})
 		</script>

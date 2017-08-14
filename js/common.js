@@ -92,10 +92,7 @@ w.openDoc=function(t,c){
 /**
  * 关闭等待框
  */
-w.closeWaiting=function(){
-	waiting&&waiting.close();
-	waiting=null;
-}
+
 // 兼容性样式调整
 var adjust=false;
 function compatibleAdjust(){

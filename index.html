@@ -5,6 +5,8 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<!--<script src="js/common.js" type="text/javascript"></script>
+		<script type="text/javascript" src="js/immersed.js" ></script>-->
 		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/app.css" />
 		<link rel="stylesheet" type="text/css" href="css/mui.imageviewer.css" />
@@ -107,7 +109,7 @@
 					}
 				});
 			}, 200);
-
+//			var w = plus.nativeUI.showWaiting("等待中...");
 			var isInTransition = false;
 			/**
 			 * 显示侧滑菜单
@@ -260,8 +262,10 @@
 			var msgItemTap = function(msgItem, event) {
 				var msgType = msgItem.getAttribute('msg-type');
 				var msgContent = msgItem.getAttribute('msg-content');
-				console.log(msgContent);
-				translation(msgContent);
+				var msgContentInner = msgItem.getElementsByClassName("msg-content-inner")[0].innerHTML;
+				console.log("msgItem:" + msgContentInner);
+				console.log("msgContent:" + msgContentInner);
+				translation(msgContentInner);
 				if(msgType == 'sound') {
 					player = plus.audio.createPlayer(msgContent);
 					var playState = msgItem.querySelector('.play-state');
@@ -324,25 +328,28 @@
 			var send = function(msg) {
 				record.push(msg);
 				bindMsgList();
+				plus.nativeUI.closeWaiting();
 				var _self = this;
-				console.log("send()中的:"+msg.contenToRobot);
+				console.log("send()中的:" + msg.contenToRobot);
 				if(msg.contenToRobot == undefined) {
 					msg.contenToRobot = msg.content;
 					toRobot(msg.contenToRobot);
 				} else {
 					var reg = /^[a-zA-Z]/;
 					if(reg.test(msg.contenToRobot)) {
-						
+
 						mui.toast("please use English!");
 					} else {
 						toRobot(msg.contenToRobot);
 					}
 				};
+//				plus.nativeUI.closeWaiting();
 			};
 			/*acfbca724ea1b5db96d2eef88ce677dc
 			 	e51ea27ee6984f7ca3eef3798acaf7da
 			 * */
 			var toRobot = function(info) {
+				plus.nativeUI.showWaiting();
 				var apiUrl = "http://www.tuling123.com/openapi/api";
 				mui.getJSON(apiUrl, {
 					"key": 'e51ea27ee6984f7ca3eef3798acaf7da',
@@ -352,6 +359,7 @@
 					console.log(data.text);
 					var dataTest = data.text;
 					var c = null;
+//					w.closeWaiting();
 					mui.getJSON(
 						'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + dataTest,
 						function(data) {
@@ -363,6 +371,7 @@
 								content: c + ""
 							});
 							bindMsgList();
+							plus.nativeUI.closeWaiting();
 							count++;
 							plus.storage.setItem("key_count", count + "");
 							if(count == "1") {
@@ -373,13 +382,13 @@
 				});
 			};
 
-			var translation=function(info){
+			var translation = function(info) {
 				mui.getJSON(
 					'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + info,
 					function(data) {
-//						mui.toast("翻译这传来的info:"+info);
-//						console.log("点击后的翻译:"+JSON.stringify(data));
-						mui.toast("翻译:"+data.translation);
+						console.log("翻译：" + data.translation);
+						//						console.log("点击后的翻译:"+JSON.stringify(data));
+						mui.toast("翻译:" + data.translation);
 					}
 				);
 			}
@@ -408,6 +417,7 @@
 					//							event.detail.gesture.preventDefault();
 					var contentValue = ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '<br/>');
 					var c = null;
+//					var w = plus.nativeUI.showWaiting("发送中...");
 					mui.getJSON(
 						'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + contentValue,
 						function(data) {

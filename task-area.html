@@ -43,7 +43,7 @@
 			<% for(var i in record){ var item=record[i]; %>
 			<div class="msg-item <%= (item.sender=='self'?' msg-item-self':'') %>" msg-type='<%=(item.type)%>' msg-content='<%=(item.content)%>'>
 				<% if(item.sender=='self' ) { %>
-				<img class="msg-user" src="images/T.png">
+				<img class="msg-user" src="<%=(end_headImg_src)%>">
 				<% } else { %>
 				<img class="msg-user-img" src="<%=(robot_headimg)%>" alt="" />
 				<% } %>
@@ -180,8 +180,15 @@
 			});
 			var bindMsgList = function() {
 				var robot_headimg="images/head"+_self.taskId+".png";
+				var end_headImg_src = null;
+				if(plus.storage.getItem('img_src') == null) {
+					end_headImg_src = "images/T.png";
+				} else {
+					end_headImg_src = plus.storage.getItem('img_src');
+				}
 				ui.areaMsgList.innerHTML = template('msg-template', {
 					"record": record,
+					"end_headImg_src": end_headImg_src,
 					"robot_headimg":robot_headimg
 				});
 				var msgItems = ui.areaMsgList.querySelectorAll('.msg-item');
@@ -200,6 +207,7 @@
 			var send = function(msg) {
 				record.push(msg);
 				bindMsgList();
+				plus.nativeUI.closeWaiting();
 				var _self = this;
 				console.log("send()中的:"+msg.contenToRobot);
 				if(msg.contenToRobot == undefined) {
@@ -218,6 +226,7 @@
 			var audioRobot=document.getElementById("audioRobot");
 			
 			var toRobot = function(info) {
+				plus.nativeUI.showWaiting();
 				var apiUrl = "http://www.tuling123.com/openapi/api";
 				mui.getJSON(apiUrl, {
 					"key": '50365a5652bf4491a13d565664a64d55',
@@ -238,6 +247,7 @@
 								content: c + ""
 							});
 							bindMsgList();
+							plus.nativeUI.closeWaiting();
 							var src='http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&text='+c;
 							audioRobot.setAttribute("src",src);
 						}

@@ -83,7 +83,10 @@
 			var content=document.getElementsByClassName("mui-content")[0];
 			
 			mui.plusReady(function(){
-			
+//				var t=setTimeout(function(){
+//					location.reload();
+//				},10);
+//				clearTimeout(t);
 				var end_headImg_src;
 				if( plus.storage.getItem('img_src') == null) {
 					end_headImg_src = "images/T.png";

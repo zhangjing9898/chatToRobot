@@ -5,6 +5,8 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="js/common.js" type="text/javascript"></script>
+		<script type="text/javascript" src="js/immersed.js" ></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/app.css" />
 		<link rel="stylesheet" href="css/word-search.css" />
@@ -66,15 +68,17 @@
 				var apiUrl = "https://api.shanbay.com/bdc/search/?word=" + word;
 				mui.getJSON(apiUrl, function(data) {
 					if(data.msg=="SUCCESS"){
+						plus.nativeUI.closeWaiting();
 						word_content = data.data.content;
 						word_pronunciation = data.data.pronunciation;
 						en_definition = data.data.en_definition.defn;
 						definition = data.data.definition;
 						word_id = data.data.id;
 						console.log(word_pronunciation);
-						getExample(word_id);
+						getExample(word_id);	
 					}
 					else{
+						plus.nativeUI.closeWaiting();
 						mui.toast("抱歉，未能查到该单词，请重新输入");
 						return;
 					}
@@ -116,6 +120,7 @@
 				search_buttion.addEventListener('tap', function(e) {
 					var value = searchInput.value;
 					console.log("one!");
+					var w = plus.nativeUI.showWaiting("等待中...");
 					searchWord(value);
 
 				});

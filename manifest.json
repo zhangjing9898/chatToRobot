@@ -210,7 +210,8 @@
 					"images/logo.png",
 					"images/people.jpg",
 					"images/head.jpg",
-					"images/had.png"
+					"images/had.png",
+					"js/commonState.js"
 				],
 				"refer": [
 					"profile.html",
@@ -317,7 +318,9 @@
 					"css/mui.min.css",
 					"js/mui.min.js"
 				],
-				"refer": [],
+				"refer": [
+					"index.html"
+				],
 				"priority": 0
 			},
 			"change-name.html": {
@@ -340,7 +343,10 @@
 					"images/spoken-img.jpg",
 					"images/English.png",
 					"js/arttmpl.js",
-					"css/scene-spoken.css"
+					"css/scene-spoken.css",
+					"images/scene3.png",
+					"images/scene1.png",
+					"images/scene2.png"
 				],
 				"refer": [
 					"task-area.html"
@@ -354,7 +360,9 @@
 					"css/app.css",
 					"fonts/mui.ttf",
 					"css/mui.min.css",
-					"js/arttmpl.js"
+					"js/arttmpl.js",
+					"js/common.js",
+					"js/immersed.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -378,6 +386,18 @@
 					"js/taskDetailData.js"
 				],
 				"refer": [],
+				"priority": 0
+			},
+			"enter.html": {
+				"resources": [
+					"images/enter1.jpg",
+					"js/mui.min.js",
+					"images/enter2.jpg",
+					"css/mui.min.css"
+				],
+				"refer": [
+					"index.html"
+				],
 				"priority": 0
 			}
 		},
