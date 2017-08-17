@@ -111,7 +111,7 @@
 		},
 		"runmode": "liberate",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
 		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
-		"distribute": {"plugins":{"share":{"weixin":{"appid":"wxeee1bc87f4a5dbbb","appsecret":"fddcf7339a30d906b2863d9c8f65f8c2","description":"可选，微信分享"}}},
+		"distribute": {"plugins":{"share":{"weixin":{"appid":"wx4ebc63a47dd5b518","appsecret":"10363db8183a08688c5f0ae","description":"可选，微信分享"}}},
 			"apple": {
 				"appid": "",/*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
 				"mobileprovision": "",/*iOS应用打包配置文件*/
@@ -183,7 +183,7 @@
 				},
 				"android": {
 					"mdpi": "C:/Users/Administrator/Desktop/R.png", /*普通屏启动图片，分辨率：240x282*/
-					"ldpi": "C:/Users/Administrator/Desktop/R.png","hdpi":"C:/Users/ZJ/Desktop/main.png","xhdpi":"C:/Users/ZJ/Desktop/main2.png","xxhdpi":"C:/Users/ZJ/Desktop/main3.png"
+					"ldpi": "C:/Users/Administrator/Desktop/R.png","hdpi":"C:/Users/ZJ/Desktop/main1.png","xhdpi":"C:/Users/ZJ/Desktop/main2.png","xxhdpi":"C:/Users/ZJ/Desktop/main3.png"
 				}
 			}
 		}
@@ -248,7 +248,8 @@
 					"range.html",
 					"medal.html",
 					"scene-spoken.html",
-					"task-area.html"
+					"task-area.html",
+					"help-document.html"
 				],
 				"priority": 0
 			},
@@ -398,6 +399,24 @@
 				"refer": [
 					"index.html"
 				],
+				"priority": 0
+			},
+			"help-document.html": {
+				"resources": [
+					"images/riddle.png",
+					"images/weather.png",
+					"css/help-document.css",
+					"images/xiehouyu.png",
+					"images/date.png",
+					"images/Lucy.png",
+					"images/life-knowledge.png",
+					"images/tongue-twister.png",
+					"images/story.png",
+					"images/deliver.png",
+					"images/joke.png",
+					"images/math.png"
+				],
+				"refer": [],
 				"priority": 0
 			}
 		},

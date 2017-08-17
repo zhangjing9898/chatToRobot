@@ -15,7 +15,7 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<button id="search-button" class="search-button">搜索</button>
+			<button id="search-button" class="search-button">查询</button>
 			<div class="input-wrapper">
 				<div class="mui-input-row">
 					<input type="text" class="mui-input-clear" id="search-input" placeholder="查询英文">
@@ -120,6 +120,7 @@
 				search_buttion.addEventListener('tap', function(e) {
 					var value = searchInput.value;
 					console.log("one!");
+					var msg=null;
 					var w = plus.nativeUI.showWaiting("等待中...");
 					searchWord(value);
 

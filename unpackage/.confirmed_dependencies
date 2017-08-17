@@ -55,7 +55,8 @@
 			"range.html",
 			"medal.html",
 			"scene-spoken.html",
-			"task-area.html"
+			"task-area.html",
+			"help-document.html"
 		]
 	},
 	"about.html": {
@@ -189,6 +190,22 @@
 		],
 		"refer": [
 			"index.html"
+		]
+	},
+	"help-document.html": {
+		"resources": [
+			"images/riddle.png",
+			"images/weather.png",
+			"css/help-document.css",
+			"images/xiehouyu.png",
+			"images/date.png",
+			"images/Lucy.png",
+			"images/life-knowledge.png",
+			"images/tongue-twister.png",
+			"images/story.png",
+			"images/deliver.png",
+			"images/joke.png",
+			"images/math.png"
 		]
 	}
 }

@@ -1,0 +1,61 @@
+.mui-content {
+  font-family: "微软雅黑";
+}
+.mui-content .mui-card img {
+  width: 100px;
+  height: 100px;
+}
+.mui-content .mui-card .mui-card-content {
+  height: auto;
+  padding: 10px;
+}
+.mui-content .mui-card .mui-card-content .mui-media-body {
+  margin-left: 106px;
+}
+.mui-content .mui-card .mui-card-content .mui-media-body h3 {
+  font-size: 20px;
+  font-weight: 400;
+}
+.mui-content .mui-card .mui-card-content .mui-media-body p {
+  margin-bottom: auto;
+  color: black;
+}
+.mui-content .mui-card .mui-card-content .mui-media-body div {
+  font-size: 16px;
+}
+.mui-content .mui-card .mui-card-content .color-orange h3 {
+  color: #FF9C5A;
+}
+.mui-content .mui-card .mui-card-content .color-orange div {
+  color: #FF9C5A;
+}
+.mui-content .mui-card .mui-card-content .color-green h3 {
+  color: #30C869;
+}
+.mui-content .mui-card .mui-card-content .color-green div {
+  color: #30C869;
+}
+.mui-content .mui-card .mui-card-content .color-blue h3 {
+  color: #40D5DE;
+}
+.mui-content .mui-card .mui-card-content .color-blue div {
+  color: #40D5DE;
+}
+.mui-content .mui-card .mui-card-content .color-pink h3 {
+  color: #FF8593;
+}
+.mui-content .mui-card .mui-card-content .color-pink div {
+  color: #FF8593;
+}
+.mui-content .mui-card .mui-card-content .color-purple h3 {
+  color: #9381E6;
+}
+.mui-content .mui-card .mui-card-content .color-purple div {
+  color: #9381E6;
+}
+.mui-content .mui-card .mui-card-content .color-blue-other h3 {
+  color: #40BEFF;
+}
+.mui-content .mui-card .mui-card-content .color-blue-other div {
+  color: #40BEFF;
+}

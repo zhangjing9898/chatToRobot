@@ -17,7 +17,7 @@
 	<body contextmenu="return false;">
 		<header id="header" class="mui-bar mui-bar-nav">
 			<span class="mui-pull-left mui-icon mui-icon-bars" id="menu-button"></span>
-			<h1 class="mui-title">机器聊天室</h1>
+			<h1 class="mui-title">Doraemon</h1>
 			<!--<div class="mui-switch mui-active mui-pull-left">
 					<div class="mui-switch-handle"></div>
 				</div>-->
@@ -238,7 +238,7 @@
 			var record = [{
 				sender: 'zs',
 				type: 'text',
-				content: 'hello!Would you like to chat with me?'
+				content: '你好，我是Doraemon,我可以陪你展开一场无厘头有趣的聊天，也可以给你讲笑话、故事、歇后语、绕口令、脑筋急转弯，分析你每天的星座运势，查询你的快递物流信息、所在城市的天气和日历，而且我也是位生活百科小能手哦，最后，希望能陪你度过一段愉快的旅程。'
 			}];
 			plus.storage.clear();
 			checkNetwork();
@@ -326,6 +326,7 @@
 			}
 
 			var send = function(msg) {
+				console.log("send(msg)",msg);
 				record.push(msg);
 				bindMsgList();
 				plus.nativeUI.closeWaiting();
@@ -346,8 +347,7 @@
 //				plus.nativeUI.closeWaiting();
 			};
 			/*acfbca724ea1b5db96d2eef88ce677dc
-			 	e51ea27ee6984f7ca3eef3798acaf7da
-			 * */
+			 	e51ea27ee6984f7ca3eef3798acaf7da*/
 			var toRobot = function(info) {
 				plus.nativeUI.showWaiting();
 				var apiUrl = "http://www.tuling123.com/openapi/api";
@@ -356,27 +356,36 @@
 					"info": info,
 					"userid": plus.device.uuid
 				}, function(data) {
-					console.log(data.text);
 					var dataTest = data.text;
+					console.log(dataTest);
 					var c = null;
-//					w.closeWaiting();
 					mui.getJSON(
 						'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + dataTest,
 						function(data) {
-							c = data.translation;
-							console.log("translation:" + c);
-							record.push({
-								sender: 'zs',
-								type: 'text',
-								content: c + ""
-							});
-							bindMsgList();
-							plus.nativeUI.closeWaiting();
-							count++;
-							plus.storage.setItem("key_count", count + "");
-							if(count == "1") {
-								plus.storage.setItem("start", "true");
+							console.log(data);
+							if(data.errorCode=='30'){
+								var public="Sorry, this message is wrong in English, for you to show the Chinese version:"+data.query;
+								record.push({
+									sender:'zs',
+									type:'text',
+									content:public+''
+								})
+							}else{
+								c = data.translation;
+								console.log("translation:" + c);
+								record.push({
+									sender: 'zs',
+									type: 'text',
+									content: c + ""
+								});
 							}
+							bindMsgList();
+								plus.nativeUI.closeWaiting();
+								count++;
+								plus.storage.setItem("key_count", count + "");
+								if(count == "1") {
+									plus.storage.setItem("start", "true");
+								}
 						}
 					);
 				});
@@ -422,11 +431,12 @@
 						'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + contentValue,
 						function(data) {
 							if(data.errorCode == '30') {
+								var public="Sorry, this message is wrong in English, for you to show the Chinese version:"+data.query;
 								send({
 									sender: 'self',
 									type: 'text',
-									content: contentValue,
-									contenToRobot: contentValue
+									content:public+"",
+									contenToRobot: public+""
 								});
 							} else {
 								console.log(JSON.stringify(data));
