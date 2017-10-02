@@ -37,6 +37,9 @@
   font-size: 23px;
   font-weight: 400;
 }
+.mui-content .spoken-card .mui-card-header .mask .info p {
+  color: white;
+}
 .mui-content .spoken-card .mui-card-content {
   padding: 15px 10px;
   height: auto;
@@ -57,6 +60,9 @@
   margin-top: 10px;
   font-size: 15px;
 }
+.mui-content .spoken-card .mui-card-content .task-img {
+  width: 29px;
+}
 .mui-content .spoken-card .mui-card-footer {
   color: black;
   font-family: 微软雅黑;
@@ -72,6 +78,7 @@
   margin: 0;
   padding: 0;
   font-weight: 500;
-  color: #88A9BB;
-  font-family: 微软雅黑;
+}
+.mui-content .spoken-card .mui-card-footer .explorer-img {
+  width: 20px;
 }
