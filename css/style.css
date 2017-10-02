@@ -1,0 +1,150 @@
+@charset "utf-8";
+.mui-bar .mui-btn {
+	padding: 4px 17px;
+	font-size: 14px;
+	border-radius: 2px;
+	font-family: 微软雅黑;
+}
+
+.mui-content input {
+	border: none;
+	background-color: transparent;
+	border-bottom: 1px solid rgba(76, 217, 100, 0.8);
+	width: 90%;
+	margin-left: 5%;
+	margin-top: 10px;
+	font-size: 14px;
+	font-family: 微软雅黑;
+}
+
+.mui-content p {
+	width: 90%;
+	margin-left: 6%;
+	font-family: 微软雅黑;
+	margin-top: -5px;
+}
+
+.loan_jm1 {
+	width: 94%;
+	margin: 0 auto;
+	margin-top: 73px;
+}
+
+.loan_jm_spa1 {
+	width: 72px;
+	height: 40px;
+	line-height: 40px;
+	font-size: 1em;
+	color: #666;
+	display: block;
+	float: left;
+	font-family: 微软雅黑;
+}
+
+.loan_jm_l1 {
+	margin-top: 10px;
+	margin-bottom: 15px;
+	height: 40px;
+	width: 291px;
+}
+
+.wbk_srn {
+	width: 200px;
+	margin-left: 16px;
+	height: 36px;
+	border: none;
+	background: #FFF;
+	float: left;
+	padding-left: 0;
+	line-height: 40px;
+	color: #666666;
+	font-size: 15px;
+	background-size: 45%;
+	background-position: center;
+	background: transparent;
+	border-bottom: 1px solid #8BC34A;
+	text-align: center;
+}
+
+.wbk_srn b {
+	width: 30px;
+	height: 40px;
+	border: 1px solid #ccc;
+	background: #FFF;
+	float: left;
+	padding-left: 3%;
+	line-height: 40px;
+	color: #ADADAD;
+	font-size: 1.1em;
+	background-size: 45%;
+	background-position: center;
+	background: url(../img/xl.png) right 5px no-repeat;
+}
+
+
+/*城市弹层*/
+
+.container {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #ffffff;
+	z-index: 9999;
+	display: none;
+}
+
+.letter {
+	display: none;
+	width: 5%;
+overflow: hidden;
+line-height: 22px;
+font-size: 16px;
+position: fixed;
+top: 95px;
+right: 23px;
+text-align: center;
+z-index: 999;
+}
+
+.letter ul {
+	list-style-type: none;
+}
+
+.letter ul li a {
+	text-decoration: none;
+}
+
+.city {
+	width: 90%;
+	overflow: hidden;
+	padding: 20px;
+}
+
+.city-list {
+	width: 100%;
+	overflow: hidden;
+}
+
+.city-list .city-letter {
+	color: #6e6e6e;
+	font-size: 16px;
+	display: inline-block;
+	padding-top: 15px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #e8ecf1;
+	width: 100%;
+}
+
+.city-list p {
+	color: #afafaf;
+	width: 95%;
+	height: 50px;
+	line-height: 50px;
+	border-bottom: 1px solid #e8ecf1;
+	cursor: pointer;
+}
+
+.UISelect {
+	margin-top: 5px
+}

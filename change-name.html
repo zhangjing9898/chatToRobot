@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/app.css" />
+		<link rel="stylesheet" href="css/change-name.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<span class="mui-pull-left mui-icon mui-icon-arrowleft mui-action-back" id="return-button"></span>
+			<h1 class="mui-title">更改名字</h1>
+			<button class="mui-btn mui-btn-green mui-pull-right" id="save-button">保存</button>
+		</header>
+		<div class="mui-content ">
+			<div class="mui-input-row">
+				 <input type="text"  class="mui-input-clear" placeholder="请输入您的名字" id="mine_nickname"/>
+			</div>
+		    <p>好名字可以让你的朋友更容易记住你哦~</p>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function(){
+//				plus.storage.setItem("mine-nickname",)
+				var save_button=document.getElementById("save-button");
+				save_button.addEventListener('tap',function(){
+					var mine_nickname=document.getElementById("mine_nickname");
+					var return_button=document.getElementById("return-button");
+					plus.storage.setItem("mine_nickname",mine_nickname.value);
+					mui.toast("保存昵称成功!");
+					mui.trigger(return_button,'touchstart');
+				});
+			});
+		</script>
+	</body>
+
+</html>

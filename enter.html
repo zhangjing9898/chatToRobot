@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div id="slider" class="mui-slider">
+			<div class="mui-slider-group">
+				<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+					<img src="images/enter1.jpg" />
+				</div>
+				<div id="item2mobile" class="mui-slider-item mui-control-content">
+					<img src="images/enter2.jpg" />
+				</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function(){
+				var item2 = document.getElementById('item2mobile');
+				item2.addEventListener('tap',function(){
+					mui.openWindow({
+						url:'index.html',
+						id:'index.html'
+					})
+				})
+			})
+		</script>
+	</body>
+</html>
