@@ -181,12 +181,11 @@ footer .mui-icon:active {
 }
 
 footer .mui-icon-paperplane:before {
-	content: "发送";
+	content: '发送';
+    color: black;
 }
 
 footer .mui-icon-paperplane {
-	/*-webkit-transform: rotateZ(45deg);
-				transform: rotateZ(45deg);*/
 	font-size: 16px;
 	word-break: keep-all;
 	line-height: 100%;
@@ -391,6 +390,7 @@ footer .mui-icon-paperplane {
 	list-style: none;
 	background-color: #fff;
 	margin-bottom: 13px;
+	margin-top: -5px;
 }
 
 .mui-bar-nav~.mui-content {
@@ -487,5 +487,18 @@ footer .mui-icon-paperplane {
     font-family: "微软雅黑";
     font-weight: 500;
      margin-right: -6px;
+}
+.about-area .mui-table-view-cell{
+    padding-bottom: 10px;
+}
+.about-img{
+	width: 23px;
+}
 
+.about-span{
+	position: absolute;
+    padding-left: 7px;
+    top: 12px;
+    font-family: 微软雅黑;
+    font-size: 16px;
 }

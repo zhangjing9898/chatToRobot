@@ -22,7 +22,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #000000;
   color: #ffffff;
 }
 .mui-content .spoken-card .mui-card-header .mask .info {
@@ -54,14 +54,18 @@
   font-family: "微软雅黑";
   font-weight: 500;
   font-size: 25px;
+  display: inline-block;
+  position: absolute;
+  top: 20px;
+  padding-left: 5px;
 }
 .mui-content .spoken-card .mui-card-content .description {
   font-family: 微软雅黑;
-  margin-top: 10px;
+  margin-top: 0px;
   font-size: 15px;
 }
 .mui-content .spoken-card .mui-card-content .task-img {
-  width: 29px;
+  width: 32px;
 }
 .mui-content .spoken-card .mui-card-footer {
   color: black;
@@ -79,6 +83,12 @@
   padding: 0;
   font-weight: 500;
 }
-.mui-content .spoken-card .mui-card-footer .explorer-img {
+.mui-content .spoken-card .mui-card-footer .enter-btn .explorer-img {
   width: 20px;
+}
+.mui-content .spoken-card .mui-card-footer .enter-btn .key {
+  font-size: 16px;
+  display: inline-block;
+  position: absolute;
+  padding-left: 5px;
 }

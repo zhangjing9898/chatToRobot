@@ -2,7 +2,7 @@ body {
   font-family: "微软雅黑";
 }
 .mui-content .mine-info {
-  margin-bottom: 9px;
+  margin-bottom: 1px;
   background-image: url(../images/background.gif);
 }
 .mui-content .mine-info .mui-table-view-cell {
@@ -22,7 +22,7 @@ body {
   font-family: "微软雅黑";
 }
 .mui-content .mine-info:first-child {
-  margin-top: 11px;
+  margin-top: 0px;
 }
 .mui-content .Doraemon-get-info .medal-div {
   height: 47px;
@@ -76,6 +76,30 @@ body {
   margin-left: 20px;
   height: 42px;
   margin-top: 12px;
+}
+.mui-content .medal-list .mui-table-view-cell .head-img-get-detail .honor {
+  color: white;
+  height: 22px;
+  font-weight: normal;
+  font-family: 微软雅黑;
+  display: block;
+  background-color: #c7c7cc;
+  border-radius: 7px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 22px;
+  float: left;
+  padding: 0 5px;
+}
+.mui-content .medal-list .mui-table-view-cell .head-img-get-detail .honor .honor-img {
+  width: 20px;
+  float: left;
+  margin-right: 3px;
+}
+.mui-content .medal-list .mui-table-view-cell .head-img-get-detail p {
+  clear: both;
+  color: #000000;
+  margin-top: 28px;
 }
 .mui-content .medal-list .mui-table-view-cell .conversation-info button {
   margin-top: 15px;

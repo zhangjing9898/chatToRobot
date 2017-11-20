@@ -13,133 +13,184 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<span class="mui-pull-left mui-icon mui-icon-arrowleft mui-action-back"></span>
-			<h1 class="mui-title">领取详情</h1>
+			<h1 class="mui-title">挑战区</h1>
 		</header>
 		<div class="mui-content">
-			
-		</div>
-		<script id='range-template' type="text/template">
 			<ul class="mui-table-view mine-info">
-				<li class="mui-table-view-cell" >
+				<!--<li class="mui-table-view-cell">
 					<p class="head-img">
 						<img src="<%=(end_headImg_src)%>" id="head-img-src" />
 					</p>
 					<p class="already-conversation-info">
-						您已和Doraemon对话<%=count%>条
+						您已和Doraemon对话
+						<%=count%>条
+					</p>
+				</li>-->
+			</ul>
+			<div class="Doraemon-get-info">
+				<!--<div class="medal-div">
+					<img src="images/medal.svg" class="Doraemon-head-img" />
+					<p class="info">挑战区</p>
+				</div>-->
+			</div>
+			<ul class="mui-table-view medal-list">
+				<!--<li class="mui-table-view-cell" id="head1">
+					<p class="mui-pull-left head-img">
+						<img src="images/head1.png" />
+					</p>
+					<div class="mui-pull-left head-img-get-detail">
+						<div class="honor">
+							<img class="honor-img" src="images/honor.png" /> 小屁孩
+						</div>
+						<p>对话超过2条即可领取</p>
+					</div>
+					<p class="mui-pull-right conversation-info">
+						<button class="mui-btn <%=(get_className_one)%>"> <%=(get_status_name_one)%></button>
+					</p>
+				</li>-->
+			</ul>
+		</div>
+		<script id='range-template' type="text/template">
+			<ul class="mui-table-view mine-info">
+				<li class="mui-table-view-cell">
+					<p class="head-img">
+						<img src="<%=(end_headImg_src)%>" id="head-img-src" />
+					</p>
+					<p class="already-conversation-info">
+						您已和Doraemon对话
+						<%=count%>条
 					</p>
 				</li>
 			</ul>
 			<div class="Doraemon-get-info">
 				<div class="medal-div">
 					<img src="images/medal.svg" class="Doraemon-head-img" />
-					<p class="info">领取情况</p>
-				</div>	
+					<p class="info">挑战区</p>
+				</div>
 			</div>
 			<ul class="mui-table-view medal-list">
 				<li class="mui-table-view-cell" id="head1">
 					<p class="mui-pull-left head-img">
 						<img src="images/head1.png" />
 					</p>
-					<p class="mui-pull-left head-img-get-detail">
-						与Doraemon对话
-						<br /> 超过2条即可领取
-					</p>
+					<div class="mui-pull-left head-img-get-detail">
+						<div class="honor">
+							<img class="honor-img" src="images/honor.png" /> 小屁孩
+						</div>
+						<p>即可开启</p>
+					</div>
 					<p class="mui-pull-right conversation-info">
 						<button class="mui-btn <%=(get_className_one)%>"> <%=(get_status_name_one)%></button>
 					</p>
 				</li>
 				<li class="mui-table-view-cell" id="head2">
 					<p class="mui-pull-left head-img">
-						<img src="images/head2.png"  />
+						<img src="images/head2.png" />
 					</p>
-					<p class="mui-pull-left head-img-get-detail">
-						与Doraemon对话
-						<br /> 超过5条即可领取
-					</p>
+					<div class="mui-pull-left head-img-get-detail">
+						<div class="honor">
+							<img class="honor-img" src="images/honor.png" /> 幼儿园班长
+						</div>
+						<p>对话超过5条即可领取</p>
+					</div>
 					<p class="mui-pull-right conversation-info">
 						<button class="mui-btn <%=(get_className_two)%>"> <%=(get_status_name_two)%></button>
 					</p>
 				</li>
 				<li class="mui-table-view-cell" id="head3">
 					<p class="mui-pull-left head-img">
-						<img src="images/head3.png"  />
+						<img src="images/head3.png" />
 					</p>
-					<p class="mui-pull-left head-img-get-detail">
-						与Doraemon对话
-						<br /> 超过20条即可领取
-					</p>
+					<div class="mui-pull-left head-img-get-detail">
+						<div class="honor">
+							<img class="honor-img" src="images/honor.png" /> 五年级中队长
+						</div>
+						<p>对话超过10条即可领取</p>
+					</div>
 					<p class="mui-pull-right conversation-info">
 						<button class="mui-btn <%=(get_className_three)%>"> <%=(get_status_name_three)%></button>
 					</p>
 				</li>
 				<li class="mui-table-view-cell" id="head4">
 					<p class="mui-pull-left head-img">
-						<img src="images/head4.png"  />
+						<img src="images/head4.png" />
 					</p>
-					<p class="mui-pull-left head-img-get-detail">
-						与Doraemon对话
-						<br /> 超过40条即可领取
-					</p>
+					<div class="mui-pull-left head-img-get-detail">
+						<div class="honor">
+							<img class="honor-img" src="images/honor.png" /> 初一小姐姐
+						</div>
+						<p>对话超过40条即可领取</p>
+					</div>
 					<p class="mui-pull-right conversation-info">
 						<button class="mui-btn <%=(get_className_four)%>"> <%=(get_status_name_four)%></button>
 					</p>
 				</li>
 				<li class="mui-table-view-cell" id="head5">
 					<p class="mui-pull-left head-img">
-						<img src="images/head5.png"  />
+						<img src="images/head5.png" />
 					</p>
-					<p class="mui-pull-left head-img-get-detail">
-						与Doraemon对话
-						<br /> 超过50条即可领取
-					</p>
+					<div class="mui-pull-left head-img-get-detail">
+						<div class="honor">
+							<img class="honor-img" src="images/honor.png" /> 青春期的小雷
+						</div>
+						<p>对话超过50条即可领取</p>
+					</div>
 					<p class="mui-pull-right conversation-info">
 						<button class="mui-btn <%=(get_className_five)%>"> <%=(get_status_name_five)%></button>
 					</p>
 				</li>
 				<li class="mui-table-view-cell" id="head6">
 					<p class="mui-pull-left head-img">
-						<img src="images/head6.png"  />
+						<img src="images/head6.png" />
 					</p>
-					<p class="mui-pull-left head-img-get-detail">
-						与Doraemon对话
-						<br /> 超过60条即可领取
-					</p>
+					<div class="mui-pull-left head-img-get-detail">
+						<div class="honor">
+							<img class="honor-img" src="images/honor.png" /> 年级第39名
+						</div>
+						<p>对话超过60条即可领取</p>
+					</div>
 					<p class="mui-pull-right conversation-info">
 						<button class="mui-btn <%=(get_className_six)%>"> <%=(get_status_name_six)%></button>
 					</p>
 				</li>
 				<li class="mui-table-view-cell" id="head7">
 					<p class="mui-pull-left head-img">
-						<img src="images/head7.png"  />
+						<img src="images/head7.png" />
 					</p>
-					<p class="mui-pull-left head-img-get-detail">
-						与Doraemon对话
-						<br /> 超过70条即可领取
-					</p>
+					<div class="mui-pull-left head-img-get-detail">
+						<div class="honor">
+							<img class="honor-img" src="images/honor.png" /> 高三英语课代表
+						</div>
+						<p>对话超过70条即可领取</p>
+					</div>
 					<p class="mui-pull-right conversation-info">
 						<button class="mui-btn <%=(get_className_seven)%>"> <%=(get_status_name_seven)%></button>
 					</p>
 				</li>
 				<li class="mui-table-view-cell" id="head8">
 					<p class="mui-pull-left head-img">
-						<img src="images/head8.png"  />
+						<img src="images/head8.png" />
 					</p>
-					<p class="mui-pull-left head-img-get-detail">
-						与Doraemon对话
-						<br /> 超过80条即可领取
-					</p>
+					<div class="mui-pull-left head-img-get-detail">
+						<div class="honor">
+							<img class="honor-img" src="images/honor.png" /> 大一小萌新
+						</div>
+						<p>对话超过80条即可领取</p>
+					</div>
 					<p class="mui-pull-right conversation-info">
 						<button class="mui-btn <%=(get_className_eight)%>"> <%=(get_status_name_eight)%></button>
 					</p>
 				</li>
 				<li class="mui-table-view-cell" id="head9">
 					<p class="mui-pull-left head-img">
-						<img src="images/head9.png"  />
+						<img src="images/head9.png" />
 					</p>
-					<p class="mui-pull-left head-img-get-detail">
-						与Doraemon对话
-						<br /> 超过90条即可领取
-					</p>
+					<div class="mui-pull-left head-img-get-detail">
+						<div class="honor">
+							<img class="honor-img" src="images/honor.png" /> 大二老学长
+						</div>
+						<p>对话超过90条即可领取</p>
+					</div>
 					<p class="mui-pull-right conversation-info">
 						<button class="mui-btn <%=(get_className_nine)%>"> <%=(get_status_name_nine)%></button>
 					</p>
@@ -153,111 +204,109 @@
 			var content = document.getElementsByClassName("mui-content")[0];
 
 			mui.plusReady(function() {
-				var imgList=null;
-				var buttonNum=document.getElementsByTagName("button");
-				var count=plus.storage.getItem("key_count");
-				if( plus.storage.getItem("key_count") == null) {
-					count=0
+				var imgList = null;
+				var buttonNum = document.getElementsByTagName("button");
+				var count = plus.storage.getItem("key_count");
+				if(plus.storage.getItem("key_count") == null) {
+					count = 0
 				} else {
 					count = plus.storage.getItem("key_count");
 				}
-				var b=plus.storage.getItem("start");
-//				mui.toast(b);
-				if(b=="true"){
+				var b = plus.storage.getItem("start");
+				//				mui.toast(b);
+				if(b == "true") {
 					plus.storage.clear();
 				}
-				
-				var get_className_true=" mui-btn-danger";
-				var get_className_false=" mui-btn-grey";
-				
-				var get_status_name_true="点击领取";
-				var get_status_name_false="未领取";
-				
-				var get_className_one=count>=2?get_className_true:get_className_false;
-				var get_status_name_one=count>=2?get_status_name_true:get_status_name_false;
-				
-				var get_className_two=count>=5?get_className_true:get_className_false;
-				var get_status_name_two=count>=5?get_status_name_true:get_status_name_false;
-				
-				var get_className_three=count>=30?get_className_true:get_className_false;
-				var get_status_name_three=count>=30?get_status_name_true:get_status_name_false;
-				
-				var get_className_four=count>=40?get_className_true:get_className_false;
-				var get_status_name_four=count>=40?get_status_name_true:get_status_name_false;
-				
-				var get_className_five=count>=50?get_className_true:get_className_false;
-				var get_status_name_five=count>=50?get_status_name_true:get_status_name_false;
-				
-				var get_className_six=count>=60?get_className_true:get_className_false;
-				var get_status_name_six=count>=60?get_status_name_true:get_status_name_false;
-				
-				var get_className_seven=count>=70?get_className_true:get_className_false;
-				var get_status_name_seven=count>=70?get_status_name_true:get_status_name_false;
-				
-				var get_className_eight=count>=80?get_className_true:get_className_false;
-				var get_status_name_eight=count>=80?get_status_name_true:get_status_name_false;
-				
-				var get_className_nine=count>=90?get_className_true:get_className_false;
-				var get_status_name_nine=count>=90?get_status_name_true:get_status_name_false;
+
+				var get_className_true = " mui-btn-danger";
+				var get_className_false = " mui-btn-grey";
+
+				var get_status_name_true = "开启挑战";
+				var get_status_name_false = "未开启";
+
+				var get_className_one = count >= 0 ? get_className_true : get_className_false;
+				var get_status_name_one = count >= 0 ? get_status_name_true : get_status_name_false;
+
+				var get_className_two = count >= 5 ? get_className_true : get_className_false;
+				var get_status_name_two = count >= 5 ? get_status_name_true : get_status_name_false;
+
+				var get_className_three = count >= 10 ? get_className_true : get_className_false;
+				var get_status_name_three = count >= 10 ? get_status_name_true : get_status_name_false;
+
+				var get_className_four = count >= 40 ? get_className_true : get_className_false;
+				var get_status_name_four = count >= 40 ? get_status_name_true : get_status_name_false;
+
+				var get_className_five = count >= 50 ? get_className_true : get_className_false;
+				var get_status_name_five = count >= 50 ? get_status_name_true : get_status_name_false;
+
+				var get_className_six = count >= 60 ? get_className_true : get_className_false;
+				var get_status_name_six = count >= 60 ? get_status_name_true : get_status_name_false;
+
+				var get_className_seven = count >= 70 ? get_className_true : get_className_false;
+				var get_status_name_seven = count >= 70 ? get_status_name_true : get_status_name_false;
+
+				var get_className_eight = count >= 80 ? get_className_true : get_className_false;
+				var get_status_name_eight = count >= 80 ? get_status_name_true : get_status_name_false;
+
+				var get_className_nine = count >= 90 ? get_className_true : get_className_false;
+				var get_status_name_nine = count >= 90 ? get_status_name_true : get_status_name_false;
 
 				var end_headImg_src;
-				if( plus.storage.getItem('img_src') == null) {
+				if(plus.storage.getItem('img_src') == null) {
 					end_headImg_src = "images/T.png";
 				} else {
 					end_headImg_src = plus.storage.getItem('img_src');
 				}
-			
 
 				content.innerHTML = template('range-template', {
 					"count": count,
-					"end_headImg_src":end_headImg_src,
-					"get_className_one":get_className_one,
-					"get_className_two":get_className_two,
-					"get_className_three":get_className_three,
-					"get_className_four":get_className_four,
-					"get_className_five":get_className_five,
-					"get_className_six":get_className_six,
-					"get_className_seven":get_className_seven,
-					"get_className_eight":get_className_eight,
-					"get_className_nine":get_className_nine,
-					"get_status_name_nine":get_status_name_nine,
-					"get_status_name_eight":get_status_name_eight,
-					"get_status_name_seven":get_status_name_seven,
-					"get_status_name_six":get_status_name_six,
-					"get_status_name_five":get_status_name_five,
-					"get_status_name_four":get_status_name_four,
-					"get_status_name_three":get_status_name_three,
-					"get_status_name_two":get_status_name_two,
-					"get_status_name_one":get_status_name_one
+					"end_headImg_src": end_headImg_src,
+					"get_className_one": get_className_one,
+					"get_className_two": get_className_two,
+					"get_className_three": get_className_three,
+					"get_className_four": get_className_four,
+					"get_className_five": get_className_five,
+					"get_className_six": get_className_six,
+					"get_className_seven": get_className_seven,
+					"get_className_eight": get_className_eight,
+					"get_className_nine": get_className_nine,
+					"get_status_name_nine": get_status_name_nine,
+					"get_status_name_eight": get_status_name_eight,
+					"get_status_name_seven": get_status_name_seven,
+					"get_status_name_six": get_status_name_six,
+					"get_status_name_five": get_status_name_five,
+					"get_status_name_four": get_status_name_four,
+					"get_status_name_three": get_status_name_three,
+					"get_status_name_two": get_status_name_two,
+					"get_status_name_one": get_status_name_one
 				});
-				
-				mui(".mui-table-view-cell").on('tap','.mui-btn',function(){
-					var className=this.getAttribute("class");
-					var trueType="mui-btn  mui-btn-danger"
-					if(className==trueType){
-						this.setAttribute("class","mui-btn mui-btn-grey");
-						this.innerHTML="已领取";
-						
+
+				mui(".mui-table-view-cell").on('tap', '.mui-btn', function() {
+					var className = this.getAttribute("class");
+					var trueType = "mui-btn  mui-btn-danger"
+					if(className == trueType) {
+						this.setAttribute("class", "mui-btn mui-btn-grey");
+						this.innerHTML = "已领取";
+
 						/*获取其父节点*/
-						var buttonPar=this.parentNode;
+						var buttonPar = this.parentNode;
 						/*获取其父节点的父节点*/
-						var buttonParPar=buttonPar.parentNode;
-						var headImg=buttonParPar.getElementsByTagName("img")[0];
-						var imgs=headImg.getAttribute("src");
-						var reg = /[1-9][0-9]*/g;  
-						imgList = imgs.match(reg); 
-						plus.storage.setItem("light_medal_num",imgList+"");
-						
+						var buttonParPar = buttonPar.parentNode;
+						var headImg = buttonParPar.getElementsByTagName("img")[0];
+						var imgs = headImg.getAttribute("src");
+						var reg = /[1-9][0-9]*/g;
+						imgList = imgs.match(reg);
+						plus.storage.setItem("light_medal_num", imgList + "");
+
 					}
 				});
-				
+
 				/*记录其领取情况*/
-				var get_num=plus.storage.getItem("light_medal_num");
-				for(var n=0;n<get_num;n++){
-					buttonNum[n].setAttribute("class","mui-btn mui-btn-grey");
-					buttonNum[n].innerHTML="已领取";
+				var get_num = plus.storage.getItem("light_medal_num");
+				for(var n = 0; n < get_num; n++) {
+					buttonNum[n].setAttribute("class", "mui-btn mui-btn-grey");
+					buttonNum[n].innerHTML = "已挑战";
 				};
-				
 			});
 		</script>
 	</body>

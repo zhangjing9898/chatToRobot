@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/app.css" />
+		<link rel="stylesheet" href="css/scene-help.css" />
+		<script type="text/javascript">
+						var text = null;
+						function startRecognize() {
+							console.log("tap!!!!");
+							if(plus.os.name=='Android'&&navigator.userAgent.indexOf('StreamApp')>0){
+								plus.nativeUI.toast('当前环境暂不支持语音识别插件');
+								return;
+							}
+							var options = {};
+							options.engine = 'iFly';
+							//options.punctuation = false;	// 是否需要标点符号 
+							text.value = "";
+							outSet( "开始语音识别：" );
+							plus.speech.startRecognize( options, function ( s ) {
+								outLine( s );
+								text.value += s;
+							}, function ( e ) {
+								outSet( "语音识别失败："+e.message );
+							} );
+						}
+			
+		</script>
+	</head>
+
+	<body onload="text=document.getElementById('msg-text');">
+		<header class="mui-bar mui-bar-nav">
+			<span class="mui-pull-left mui-icon mui-icon-arrowleft mui-action-back"></span>
+			<h1 class="mui-title">场景辅助</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-card spoken-card">
+				<div class="mui-card-header mui-card-media" onclick="startRecognize();">
+					<div class="mask">
+						<div class="info">
+							<img src="images/microphone.png" />
+							<p>Tap</p>
+						</div>
+					</div>
+				</div>
+				<div class="mui-card-content">
+					<!--<div class="dcontent">
+						<div class="footer-center">
+							<textarea readonly="readonly" class='input-text' id="Infotext">
+							</textarea>
+							<button id='msg-sound' type="button" class='input-sound' style="display: none;">按住说话</button>
+						</div>
+						<div id="output">
+						</div>
+					</div>-->
+					<div id="dcontent" class="dcontent">
+						<div class="footer-left">
+							<!--<div class="button" id="recognizeEnglish" class="recognize-english" onclick="startRecognizeEnglish();">
+					<img src="images/mic.png" class="mic-icon" />
+				</div>-->
+						</div>
+						<div class="footer-center">
+							<textarea readonly="readonly" class='input-text' id="msg-text">
+							</textarea>
+							<button id='msg-sound' type="button" class='input-sound' style="display: none;">按住说话</button>
+						</div>
+						<label class="footer-right">
+						</label>
+						<div id="output" style="display: none;"></div>
+					</div>
+				</div>
+				<div class="mui-card-footer mui-pull-left">
+					<a href="javascript:openInfo();" class="button lightbg-green clearfix">
+						<span>star talking</span>
+						<div class="icon">
+							<div class="arrow"></div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<!--<script src="js/arttmpl.js" type="text/javascript" charset="utf-8"></script>-->
+		<script src="js/common.js" type="text/javascript"></script>
+		<script type="text/javascript" src="js/immersed.js"></script>
+		<script type="text/javascript">
+			mui.init();
+
+						function openInfo(id) {
+							mui.openWindow({
+								url: 'talk-help.html',
+								id: 'task-help.html',
+								extras: {
+									taskId: "场景辅助"
+								}
+							})
+						}
+			mui.plusReady(function() {
+			
+			})
+		</script>
+	</body>
+
+</html>

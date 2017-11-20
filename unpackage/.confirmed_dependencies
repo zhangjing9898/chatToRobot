@@ -56,7 +56,8 @@
 			"medal.html",
 			"scene-spoken.html",
 			"task-area.html",
-			"help-document.html"
+			"help-document.html",
+			"scene-help.html"
 		]
 	},
 	"about.html": {
@@ -65,8 +66,14 @@
 			"fonts/mui.ttf",
 			"css/mui.min.css",
 			"images/menu-pic.png",
-			"css/app.css"
-		]
+			"css/app.css",
+			"images/about-name.png",
+			"images/advice.png",
+			"images/store.png",
+			"images/about-vision.png",
+			"images/about-person.png"
+		],
+		"refer": []
 	},
 	"range.html": {
 		"resources": [
@@ -87,8 +94,10 @@
 			"images/background.gif",
 			"css/range.css",
 			"images/head6.png",
-			"images/head5.png"
-		]
+			"images/head5.png",
+			"images/honor.png"
+		],
+		"refer": []
 	},
 	"medal.html": {
 		"resources": [
@@ -108,7 +117,8 @@
 			"css/mui.min.css",
 			"images/head6.png",
 			"images/head5.png"
-		]
+		],
+		"refer": []
 	},
 	"choose-area.html": {
 		"resources": [
@@ -130,7 +140,8 @@
 			"css/app.css",
 			"fonts/mui.ttf",
 			"css/mui.min.css"
-		]
+		],
+		"refer": []
 	},
 	"scene-spoken.html": {
 		"resources": [
@@ -144,7 +155,11 @@
 			"css/scene-spoken.css",
 			"images/scene3.png",
 			"images/scene1.png",
-			"images/scene2.png"
+			"images/scene2.png",
+			"images/explorer.png",
+			"images/task-img.png",
+			"images/about-name.png",
+			"images/scene%3C%\u003di%%3E.png"
 		],
 		"refer": [
 			"task-area.html"
@@ -160,7 +175,8 @@
 			"js/arttmpl.js",
 			"js/common.js",
 			"js/immersed.js"
-		]
+		],
+		"refer": []
 	},
 	"task-area.html": {
 		"resources": [
@@ -179,7 +195,8 @@
 			"images/head2.png",
 			"images/head3.png",
 			"js/taskDetailData.js"
-		]
+		],
+		"refer": []
 	},
 	"enter.html": {
 		"resources": [
@@ -206,6 +223,45 @@
 			"images/deliver.png",
 			"images/joke.png",
 			"images/math.png"
+		],
+		"refer": []
+	},
+	"scene-help.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/app.css",
+			"css/scene-spoken.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/arttmpl.js",
+			"js/mui.imageViewer.js",
+			"js/common.js",
+			"images/mic.png",
+			"css/mui.imageviewer.css",
+			"js/taskDetailData.js",
+			"js/immersed.js",
+			"css/scene-help.css",
+			"images/microphone.png"
+		],
+		"refer": [
+			"talk-help.html"
+		]
+	},
+	"talk-help.html": {
+		"resources": [
+			"images/mic.png",
+			"js/taskDetailData.js",
+			"images/head4.png",
+			"images/T.png",
+			"js/mui.imageViewer.js",
+			"js/common.js",
+			"js/mui.min.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/mui.imageviewer.css",
+			"js/immersed.js",
+			"js/arttmpl.js"
 		]
 	}
 }

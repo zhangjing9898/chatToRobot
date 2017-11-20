@@ -1,0 +1,120 @@
+.mui-content .spoken-card {
+  margin: 20px;
+  border-radius: 4px;
+}
+.mui-content .spoken-card .mui-card-header {
+  display: block;
+  width: 100%;
+  height: 280px;
+  padding: 0;
+}
+.mui-content .spoken-card .mui-card-header > img:first-child {
+  font-size: 0;
+  line-height: 0;
+  float: left;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+.mui-content .spoken-card .mui-card-header .mask {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+}
+.mui-content .spoken-card .mui-card-header .mask .info {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  text-align: center;
+  margin-top: -118px;
+}
+.mui-content .spoken-card .mui-card-header .mask .info p {
+  color: white;
+  font-size: 23px;
+  font-family: "微软雅黑";
+}
+.mui-content .spoken-card .mui-card-content {
+  padding: 15px 10px;
+  height: auto;
+  padding-bottom: 4px;
+}
+.mui-content .spoken-card .mui-card-content textarea {
+  margin-bottom: 0;
+}
+.mui-content .spoken-card .mui-card-footer {
+  padding-top: 0;
+  width: 100%;
+  /*****Buttons*****/
+  /*Green*/
+}
+.mui-content .spoken-card .mui-card-footer:before {
+  background-color: transparent;
+}
+.mui-content .spoken-card .mui-card-footer body {
+  /*background-image: url("http://joshuasortino.com/projects/css3-colored-buttons/images/background.png"), -webkit-gradient(linear, right top, left top, color-stop(0.5, rgb(48,48,48)), color-stop(0.5, rgb(240,240,240)) );*/
+  font-family: helvetica;
+}
+.mui-content .spoken-card .mui-card-footer .button {
+  width: 100%;
+  display: block;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ie-border-radius: 6px;
+  border-radius: 6px;
+  padding: .48em .8em;
+  text-shadow: rgba(0, 0, 0, 0.5) 0px -1px 0px;
+  font-size: 18px;
+  font-weight: 700;
+  -webkit-transition-property: background-color;
+  -webkit-transition-duration: .15s;
+  -webkit-transition-timing-function: ease-in-out;
+  cursor: pointer;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+.mui-content .spoken-card .mui-card-footer .button span {
+  vertical-align: middle;
+}
+.mui-content .spoken-card .mui-card-footer .icon {
+  width: 26px;
+  height: 26px;
+  -webkit-border-radius: 13px;
+  -moz-border-radius: 13px;
+  -ie-border-radius: 13px;
+  border-radius: 13px;
+  background: rgba(0, 0, 0, 0.3);
+  float: right;
+  -webkit-box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.2) inset, 0px 0px 0px 1px rgba(255, 255, 255, 0.2);
+  -moz-box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.2) inset, 0px 0px 0px 1px rgba(255, 255, 255, 0.2);
+  -ie-box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.2) inset, 0px 0px 0px 1px rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.2) inset, 0px 0px 0px 1px rgba(255, 255, 255, 0.2);
+}
+.mui-content .spoken-card .mui-card-footer .arrow {
+  margin: 7px 0px 0 8px;
+  -webkit-border-style: solid;
+  -moz-border-style: solid;
+  -ie-border-style: solid;
+  border-style: solid;
+  border-width: 6px 6px 6px 12px;
+  width: 0;
+  height: 0;
+}
+.mui-content .spoken-card .mui-card-footer .lightbg-green {
+  background-color: #808080;
+  color: #e2f1d8;
+  -webkit-box-shadow: 0px 0px 0px 1px #63715a inset, 0px 0px 0px 2px #87977a inset, 0px 4px 0px 0px #63715a, 0px 5px 0px 0px #535e4b, 0px 8px 0px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 0px 0px 1px #63715a inset, 0px 0px 0px 2px #87977a inset, 0px 4px 0px 0px #63715a, 0px 5px 0px 0px #535e4b, 0px 8px 0px 0px rgba(0, 0, 0, 0.15);
+  -ie-box-shadow: 0px 0px 0px 1px #63715a inset, 0px 0px 0px 2px #87977a inset, 0px 4px 0px 0px #63715a, 0px 5px 0px 0px #535e4b, 0px 8px 0px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 0px 1px #63715a inset, 0px 0px 0px 2px #87977a inset, 0px 4px 0px 0px #63715a, 0px 5px 0px 0px #535e4b, 0px 8px 0px 0px rgba(0, 0, 0, 0.15);
+}
+.mui-content .spoken-card .mui-card-footer .lightbg-green:hover {
+  background-color: #808080;
+}
+.mui-content .spoken-card .mui-card-footer .lightbg-green .arrow {
+  border-color: transparent transparent transparent #87977a;
+}
