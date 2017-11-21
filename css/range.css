@@ -2,11 +2,7 @@ body {
   font-family: "微软雅黑";
 }
 .mui-content .mine-info {
-<<<<<<< HEAD
   margin-bottom: 1px;
-=======
-  margin-bottom: 9px;
->>>>>>> 8bb08bdd8bb6229c7521643fa49733e07a8c8a89
   background-image: url(../images/background.gif);
 }
 .mui-content .mine-info .mui-table-view-cell {
@@ -26,11 +22,7 @@ body {
   font-family: "微软雅黑";
 }
 .mui-content .mine-info:first-child {
-<<<<<<< HEAD
   margin-top: 0px;
-=======
-  margin-top: 11px;
->>>>>>> 8bb08bdd8bb6229c7521643fa49733e07a8c8a89
 }
 .mui-content .Doraemon-get-info .medal-div {
   height: 47px;
@@ -85,7 +77,6 @@ body {
   height: 42px;
   margin-top: 12px;
 }
-<<<<<<< HEAD
 .mui-content .medal-list .mui-table-view-cell .head-img-get-detail .honor {
   color: white;
   height: 22px;
@@ -110,8 +101,6 @@ body {
   color: #000000;
   margin-top: 28px;
 }
-=======
->>>>>>> 8bb08bdd8bb6229c7521643fa49733e07a8c8a89
 .mui-content .medal-list .mui-table-view-cell .conversation-info button {
   margin-top: 15px;
 }

@@ -9,25 +9,26 @@
 		<link rel="stylesheet" href="css/app.css" />
 		<link rel="stylesheet" href="css/mui.imageviewer.css" />
 		<script type="text/javascript">
-				var text = null;
-				function startRecognizeEnglish() {
-					var msgText=document.getElementById("msg-text");
-						if(plus.os.name == 'Android' && navigator.userAgent.indexOf('StreamApp') > 0) {
-							plus.nativeUI.toast('当前环境暂不支持语音识别插件');
-							return;
-						}
-						var options = {};
-						options.engine = 'iFly';
-						options.lang = 'en-us';
-						text.value = "";
-						outSet("开始语音识别：");
-						plus.speech.startRecognize(options, function(s) {
-							outLine(s);
-							text.value += s;
-						}, function(e) {
-							outSet("语音识别失败：" + e.message);
-						});
-					}
+			var text = null;
+
+			function startRecognizeEnglish() {
+				var msgText = document.getElementById("msg-text");
+				if(plus.os.name == 'Android' && navigator.userAgent.indexOf('StreamApp') > 0) {
+					plus.nativeUI.toast('当前环境暂不支持语音识别插件');
+					return;
+				}
+				var options = {};
+				options.engine = 'iFly';
+				options.lang = 'en-us';
+				text.value = "";
+				outSet("开始语音识别：");
+				plus.speech.startRecognize(options, function(s) {
+					outLine(s);
+					text.value += s;
+				}, function(e) {
+					outSet("语音识别失败：" + e.message);
+				});
+			}
 		</script>
 	</head>
 
@@ -59,8 +60,8 @@
 					<div class="msg-content-arrow"></div>
 					<%if(item.sender=='self'){%>
 					<%}else{%>
-						<audio id="audioRobot" controls="controls" autoplay="autoplay">
-						</audio>
+					<audio id="audioRobot" controls="controls" autoplay="autoplay">
+					</audio>
 					<%}%>
 				</div>
 				<div class="mui-item-clear"></div>
@@ -71,7 +72,7 @@
 			<div id='msg-list'>
 			</div>
 		</div>
-		<footer  id="dcontent"  class="dcontent">
+		<footer id="dcontent" class="dcontent">
 			<div class="footer-left">
 				<div class="button" id="recognizeEnglish" class="recognize-english" onclick="startRecognizeEnglish();">
 					<img src="images/mic.png" class="mic-icon" />
@@ -82,7 +83,7 @@
 				</textarea>
 				<button id='msg-sound' type="button" class='input-sound' style="display: none;">按住说话</button>
 			</div>
-			<label  class="footer-right">
+			<label class="footer-right">
 				<i id='msg-type' class="mui-icon mui-icon-paperplane"></i>
 			</label>
 			<div id="output"></div>
@@ -90,191 +91,239 @@
 		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/arttmpl.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/common.js" type="text/javascript"></script>
-		<script type="text/javascript" src="js/immersed.js" ></script>
-		<script type="text/javascript" src="js/mui.imageViewer.js" ></script>
-		<script type="text/javascript" src="js/taskDetailData.js" ></script>
+		<script type="text/javascript" src="js/immersed.js"></script>
+		<script type="text/javascript" src="js/mui.imageViewer.js"></script>
+		<script type="text/javascript" src="js/taskDetailData.js"></script>
 		<script type="text/javascript">
-		var MIN_SOUND_TIME = 800;
-		mui.init({
-			gestureConfig: {
-				tap: true, //默认为true
-				doubletap: true, //默认为false
-				longtap: true, //默认为false
-				swipe: true, //默认为true
-				drag: true, //默认为true
-				hold: true, //默认为false，不监听
-				release: true //默认为false，不监听
-			}
-		});
-		template.config('escape', false);
-		mui.plusReady(function() {
-			
-			/***接受传的值****/
-			var _self=plus.webview.currentWebview();
-
-			var robotContent="Hello, I have some trouble now. Can you help me? I want to know how to get to the nearest bank";
-			
-			plus.webview.currentWebview().setStyle({
-				softinputMode: "adjustResize"
-			});
-			var showKeyboard = function() {
-				if(mui.os.ios) {
-					var webView = plus.webview.currentWebview().nativeInstanceObject();
-					webView.plusCallMethod({
-						"setKeyboardDisplayRequiresUserAction": false
-					});
-				} else {
-					var Context = plus.android.importClass("android.content.Context");
-					var InputMethodManager = plus.android.importClass("android.view.inputmethod.InputMethodManager");
-					var main = plus.android.runtimeMainActivity();
-					var imm = main.getSystemService(Context.INPUT_METHOD_SERVICE);
-					imm.toggleSoftInput(0, InputMethodManager.SHOW_FORCED);
-					imm.showSoftInput(main.getWindow().getDecorView(), InputMethodManager.SHOW_IMPLICIT);
-				};
-			};
-			var record = [{
-				sender: 'zs',
-				type: 'text',
-				content: robotContent
-			}];
-			var ui = {
-				body: document.querySelector('body'),
-				footer: document.querySelector('footer'),
-				footerRight: document.querySelector('.footer-right'),
-				btnMsgType: document.querySelector('#msg-type'),
-				boxMsgText: document.querySelector('#msg-text'),
-				boxMsgSound: document.querySelector('#msg-sound'),
-				areaMsgList: document.querySelector('#msg-list'),
-				boxSoundAlert: document.querySelector('#sound-alert'),
-				h: document.querySelector('#h'),
-				content: document.querySelector('.mui-content')
-			};
-			ui.h.style.width = ui.boxMsgText.offsetWidth + 'px';
-			//alert(ui.boxMsgText.offsetWidth );
-			var footerPadding = ui.footer.offsetHeight - ui.boxMsgText.offsetHeight;
-			var msgItemTap = function(msgItem, event) {
-				var msgType = msgItem.getAttribute('msg-type');
-				var msgContent = msgItem.getAttribute('msg-content')
-				if(msgType == 'sound') {
-					player = plus.audio.createPlayer(msgContent);
-					var playState = msgItem.querySelector('.play-state');
-					playState.innerText = '正在播放...';
-					player.play(function() {
-						playState.innerText = '点击播放';
-					}, function(e) {
-						playState.innerText = '点击播放';
-					});
+			var MIN_SOUND_TIME = 800;
+			mui.init({
+				gestureConfig: {
+					tap: true, //默认为true
+					doubletap: true, //默认为false
+					longtap: true, //默认为false
+					swipe: true, //默认为true
+					drag: true, //默认为true
+					hold: true, //默认为false，不监听
+					release: true //默认为false，不监听
 				}
-			};
-			var imageViewer = new mui.ImageViewer('.msg-content-image', {
-				dbl: false
 			});
-			var bindMsgList = function() {
-				var robot_headimg="images/head"+_self.taskId+".png";
-				var end_headImg_src = null;
-				if(plus.storage.getItem('img_src') == null) {
-					end_headImg_src = "images/T.png";
-				} else {
-					end_headImg_src = plus.storage.getItem('img_src');
+			//点击翻译
+			var translation = function(info) {
+				mui.getJSON(
+					'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + info,
+					function(data) {
+						console.log("翻译：" + data.translation);
+						//						console.log("点击后的翻译:"+JSON.stringify(data));
+//						mui.toast("翻译:" + data.translation);
+						plus.nativeUI.alert(data.translation, function(e) {
+//							var i = e.index;
+//							if(i < 0) {
+//								outLine(data.translation);
+//							} else {
+//								outLine("提示框已关闭！");
+//							}
+						}, "中文翻译", "关闭");
+
+					}
+				);
+			}
+			//判断audio是否播放完
+			
+			template.config('escape', false);
+			mui.plusReady(function() {
+
+				/***接受传的值****/
+				var _self = plus.webview.currentWebview();
+
+				var robotContent = "Hello, I have some trouble now. Can you help me? I want to know how to get to the nearest bank";
+
+				plus.webview.currentWebview().setStyle({
+					softinputMode: "adjustResize"
+				});
+				var showKeyboard = function() {
+					if(mui.os.ios) {
+						var webView = plus.webview.currentWebview().nativeInstanceObject();
+						webView.plusCallMethod({
+							"setKeyboardDisplayRequiresUserAction": false
+						});
+					} else {
+						var Context = plus.android.importClass("android.content.Context");
+						var InputMethodManager = plus.android.importClass("android.view.inputmethod.InputMethodManager");
+						var main = plus.android.runtimeMainActivity();
+						var imm = main.getSystemService(Context.INPUT_METHOD_SERVICE);
+						imm.toggleSoftInput(0, InputMethodManager.SHOW_FORCED);
+						imm.showSoftInput(main.getWindow().getDecorView(), InputMethodManager.SHOW_IMPLICIT);
+					};
+				};
+				var record = [{
+					sender: 'zs',
+					type: 'text',
+					content: robotContent
+				}];
+				var ui = {
+					body: document.querySelector('body'),
+					footer: document.querySelector('footer'),
+					footerRight: document.querySelector('.footer-right'),
+					btnMsgType: document.querySelector('#msg-type'),
+					boxMsgText: document.querySelector('#msg-text'),
+					boxMsgSound: document.querySelector('#msg-sound'),
+					areaMsgList: document.querySelector('#msg-list'),
+					boxSoundAlert: document.querySelector('#sound-alert'),
+					h: document.querySelector('#h'),
+					content: document.querySelector('.mui-content')
+				};
+				ui.h.style.width = ui.boxMsgText.offsetWidth + 'px';
+				//alert(ui.boxMsgText.offsetWidth );
+				var footerPadding = ui.footer.offsetHeight - ui.boxMsgText.offsetHeight;
+//				var audioRobot = document.getElementById("audioRobot");
+				var msgItemTap = function(msgItem, event) {
+					console.log("msgItemTap!!!!");
+					var msgType = msgItem.getAttribute('msg-type');
+					var msgContent = msgItem.getAttribute('msg-content');
+					var msgContentInner = msgItem.getElementsByClassName("msg-content-inner")[0].innerHTML;
+					translation(msgContentInner);
+					audioRobot.addEventListener('ended',function(e){
+						recognizeEnglishBtn.click();
+					})
+				};
+				var imageViewer = new mui.ImageViewer('.msg-content-image', {
+					dbl: false
+				});
+				//自动点击
+				var recognizeEnglishBtn=document.getElementById("recognizeEnglish");
+//				recognizeEnglishBtn.onclick=function(){
+//					console.log("1");
+//				}
+				
+				//第一次播放
+				var onePlay=function(){
+					
+					var src = 'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&text=' + robotContent;
+					audioRobot.setAttribute("src", src);
+					audioRobot.addEventListener('ended',function(e){
+						recognizeEnglishBtn.click();
+					})
 				}
 				
-				ui.areaMsgList.innerHTML = template('msg-template', {
-					"record": record,
-					"end_headImg_src": end_headImg_src,
-					"robot_headimg":robot_headimg
-				});
-				var audioRobot=document.getElementById("audioRobot");
-				var src='http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&text='+robotContent;
-//				console.log("!!!!!!!",src);
-				console.log(audioRobot);
-				audioRobot.setAttribute("src",src);
-				var msgItems = ui.areaMsgList.querySelectorAll('.msg-item');
-				[].forEach.call(msgItems, function(item, index) {
-					item.addEventListener('tap', function(event) {
-						msgItemTap(item, event);
-					}, false);
-				});
-				imageViewer.findAllImage();
-				ui.areaMsgList.scrollTop = ui.areaMsgList.scrollHeight + ui.areaMsgList.offsetHeight;
-			};
-			bindMsgList();
-			window.addEventListener('resize', function() {
-				ui.areaMsgList.scrollTop = ui.areaMsgList.scrollHeight + ui.areaMsgList.offsetHeight;
-			}, false);
-			var send = function(msg) {
-				record.push(msg);
-				bindMsgList();
-				plus.nativeUI.closeWaiting();
-				var _self = this;
-				console.log("send()中的:"+msg.contenToRobot);
-				if(msg.contenToRobot == undefined) {
-					msg.contenToRobot = msg.content;
-					toRobot(msg.contenToRobot);
-				} else {
-					var reg = /^[a-zA-Z]/;
-					if(reg.test(msg.contenToRobot)) {
-						
-						mui.toast("please use English!");
+				
+				//计次
+//				var playCount=0;
+				var bindMsgList = function() {
+					var robot_headimg = "images/head" + _self.taskId + ".png";
+					var end_headImg_src = null;
+					if(plus.storage.getItem('img_src') == null) {
+						end_headImg_src = "images/T.png";
 					} else {
-						toRobot(msg.contenToRobot);
+						end_headImg_src = plus.storage.getItem('img_src');
 					}
-				};
-			};
-			
-			
-			var toRobot = function(info) {
-				plus.nativeUI.showWaiting();
-				var apiUrl = "http://www.tuling123.com/openapi/api";
-				mui.getJSON(apiUrl, {
-					"key": '50365a5652bf4491a13d565664a64d55',
-					"info": info,
-					"userid": plus.device.uuid
-				}, function(data) {
-					console.log(data.text);
-					var dataTest = data.text;
-					var c = null;
-					mui.getJSON(
-						'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + dataTest,
-						function(data) {
-							c = data.translation;
-							console.log("translation:" + c);
-							record.push({
-								sender: 'zs',
-								type: 'text',
-								content: c + ""
-							});
-							bindMsgList();
-							plus.nativeUI.closeWaiting();
-							var src='http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&text='+c;
-							audioRobot.setAttribute("src",src);
-						}
-					);
-					
-				});
-			};
-			
 
-			function msgTextFocus() {
-				ui.boxMsgText.focus();
-				setTimeout(function() {
+					ui.areaMsgList.innerHTML = template('msg-template', {
+						"record": record,
+						"end_headImg_src": end_headImg_src,
+						"robot_headimg": robot_headimg
+					});
+					
+//					var msgItemOne=ui.areaMsgList.querySelector('.msg-item')[0];
+//					playCount++;
+					var msgItems = ui.areaMsgList.querySelectorAll('.msg-item');
+					[].forEach.call(msgItems, function(item, index) {
+						var innerHtml=item.querySelector('.msg-content-inner').innerHTML;
+						console.log("innerHtml"+innerHtml);
+						var audioRobot = document.getElementById("audioRobot");
+						var src = 'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&text=' + innerHtml;
+						audioRobot.setAttribute("src", src);
+							audioRobot.addEventListener('ended',function(e){
+								recognizeEnglishBtn.click();
+							});
+							item.addEventListener('tap', function(event) {
+								msgItemTap(item, event);
+							}, false);
+//						}
+						
+					});
+//					audioRobot.addEventListener('ended',function(e){
+//						recognizeEnglishBtn.click();
+//					})
+					imageViewer.findAllImage();
+					ui.areaMsgList.scrollTop = ui.areaMsgList.scrollHeight + ui.areaMsgList.offsetHeight;
+				};
+				bindMsgList();
+				
+				window.addEventListener('resize', function() {
+					ui.areaMsgList.scrollTop = ui.areaMsgList.scrollHeight + ui.areaMsgList.offsetHeight;
+				}, false);
+				var send = function(msg) {
+					record.push(msg);
+					bindMsgList();
+					plus.nativeUI.closeWaiting();
+					var _self = this;
+					console.log("send()中的:" + msg.contenToRobot);
+					if(msg.contenToRobot == undefined) {
+						msg.contenToRobot = msg.content;
+						toRobot(msg.contenToRobot);
+					} else {
+						var reg = /^[a-zA-Z]/;
+						if(reg.test(msg.contenToRobot)) {
+
+							mui.toast("please use English!");
+						} else {
+							toRobot(msg.contenToRobot);
+						}
+					};
+				};
+				
+				var toRobot = function(info) {
+					plus.nativeUI.showWaiting();
+					var apiUrl = "http://www.tuling123.com/openapi/api";
+					mui.getJSON(apiUrl, {
+						"key": '2af9c5ad757b4bbabe357cbbf866effb',
+						"info": info,
+						"userid": plus.device.uuid
+					}, function(data) {
+						console.log(data.text);
+						var dataTest = data.text;
+						var c = null;
+						mui.getJSON(
+							'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + dataTest,
+							function(data) {
+								c = data.translation;
+								console.log("translation:" + c);
+								record.push({
+									sender: 'zs',
+									type: 'text',
+									content: c + ""
+								});
+								bindMsgList();
+								plus.nativeUI.closeWaiting();
+//								var src = 'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&text=' + c;
+//								audioRobot.setAttribute("src", src);
+							}
+						);
+
+					});
+				};
+
+				function msgTextFocus() {
 					ui.boxMsgText.focus();
-				}, 150);
-			}
-			//解决长按“发送”按钮，导致键盘关闭的问题；
-			ui.footerRight.addEventListener('touchstart', function(event) {
-				if(ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
-					msgTextFocus();
-					event.preventDefault();
+					setTimeout(function() {
+						ui.boxMsgText.focus();
+					}, 150);
 				}
-			});
-			//解决长按“发送”按钮，导致键盘关闭的问题；
-			ui.footerRight.addEventListener('touchmove', function(event) {
-				if(ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
-					msgTextFocus();
-					event.preventDefault();
-				}
-			});
-			ui.footerRight.addEventListener('release', function(event) {
+				//解决长按“发送”按钮，导致键盘关闭的问题；
+				ui.footerRight.addEventListener('touchstart', function(event) {
+					if(ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
+						msgTextFocus();
+						event.preventDefault();
+					}
+				});
+				//解决长按“发送”按钮，导致键盘关闭的问题；
+				ui.footerRight.addEventListener('touchmove', function(event) {
+					if(ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
+						msgTextFocus();
+						event.preventDefault();
+					}
+				});
+				ui.footerRight.addEventListener('release', function(event) {
 					ui.boxMsgText.focus();
 					setTimeout(function() {
 						ui.boxMsgText.focus();
@@ -306,9 +355,11 @@
 					);
 					ui.boxMsgText.value = '';
 					mui.trigger(ui.boxMsgText, 'input', null);
-			}, false);
-		});
-	</script>
+				}, false);
+				
+				
+			});
+		</script>
 	</body>
 
 </html>

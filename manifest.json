@@ -249,12 +249,8 @@
 					"medal.html",
 					"scene-spoken.html",
 					"task-area.html",
-<<<<<<< HEAD
 					"help-document.html",
 					"scene-help.html"
-=======
-					"help-document.html"
->>>>>>> 8bb08bdd8bb6229c7521643fa49733e07a8c8a89
 				],
 				"priority": 0
 			},
@@ -264,16 +260,12 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"images/menu-pic.png",
-<<<<<<< HEAD
 					"css/app.css",
 					"images/about-name.png",
 					"images/advice.png",
 					"images/store.png",
 					"images/about-vision.png",
 					"images/about-person.png"
-=======
-					"css/app.css"
->>>>>>> 8bb08bdd8bb6229c7521643fa49733e07a8c8a89
 				],
 				"refer": [],
 				"priority": 0
@@ -297,12 +289,8 @@
 					"images/background.gif",
 					"css/range.css",
 					"images/head6.png",
-<<<<<<< HEAD
 					"images/head5.png",
 					"images/honor.png"
-=======
-					"images/head5.png"
->>>>>>> 8bb08bdd8bb6229c7521643fa49733e07a8c8a89
 				],
 				"refer": [],
 				"priority": 0
@@ -366,16 +354,12 @@
 					"css/scene-spoken.css",
 					"images/scene3.png",
 					"images/scene1.png",
-<<<<<<< HEAD
 					"images/scene2.png",
 					"images/explorer.png",
 					"images/task-img.png",
 					"images/about-name.png",
 					null,
 					"images/scene%3C%\u003di%%3E.png"
-=======
-					"images/scene2.png"
->>>>>>> 8bb08bdd8bb6229c7521643fa49733e07a8c8a89
 				],
 				"refer": [
 					"task-area.html"
@@ -446,7 +430,6 @@
 				],
 				"refer": [],
 				"priority": 0
-<<<<<<< HEAD
 			},
 			"scene-help.html": {
 				"resources": [
@@ -488,8 +471,6 @@
 				],
 				"refer": [],
 				"priority": 0
-=======
->>>>>>> 8bb08bdd8bb6229c7521643fa49733e07a8c8a89
 			}
 		},
 		"idle": {
