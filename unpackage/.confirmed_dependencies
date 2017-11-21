@@ -56,8 +56,12 @@
 			"medal.html",
 			"scene-spoken.html",
 			"task-area.html",
+<<<<<<< HEAD
 			"help-document.html",
 			"scene-help.html"
+=======
+			"help-document.html"
+>>>>>>> 8bb08bdd8bb6229c7521643fa49733e07a8c8a89
 		]
 	},
 	"about.html": {
@@ -66,6 +70,7 @@
 			"fonts/mui.ttf",
 			"css/mui.min.css",
 			"images/menu-pic.png",
+<<<<<<< HEAD
 			"css/app.css",
 			"images/about-name.png",
 			"images/advice.png",
@@ -74,6 +79,10 @@
 			"images/about-person.png"
 		],
 		"refer": []
+=======
+			"css/app.css"
+		]
+>>>>>>> 8bb08bdd8bb6229c7521643fa49733e07a8c8a89
 	},
 	"range.html": {
 		"resources": [
@@ -94,10 +103,15 @@
 			"images/background.gif",
 			"css/range.css",
 			"images/head6.png",
+<<<<<<< HEAD
 			"images/head5.png",
 			"images/honor.png"
 		],
 		"refer": []
+=======
+			"images/head5.png"
+		]
+>>>>>>> 8bb08bdd8bb6229c7521643fa49733e07a8c8a89
 	},
 	"medal.html": {
 		"resources": [
@@ -117,8 +131,12 @@
 			"css/mui.min.css",
 			"images/head6.png",
 			"images/head5.png"
+<<<<<<< HEAD
 		],
 		"refer": []
+=======
+		]
+>>>>>>> 8bb08bdd8bb6229c7521643fa49733e07a8c8a89
 	},
 	"choose-area.html": {
 		"resources": [
@@ -140,8 +158,12 @@
 			"css/app.css",
 			"fonts/mui.ttf",
 			"css/mui.min.css"
+<<<<<<< HEAD
 		],
 		"refer": []
+=======
+		]
+>>>>>>> 8bb08bdd8bb6229c7521643fa49733e07a8c8a89
 	},
 	"scene-spoken.html": {
 		"resources": [
@@ -155,11 +177,15 @@
 			"css/scene-spoken.css",
 			"images/scene3.png",
 			"images/scene1.png",
+<<<<<<< HEAD
 			"images/scene2.png",
 			"images/explorer.png",
 			"images/task-img.png",
 			"images/about-name.png",
 			"images/scene%3C%\u003di%%3E.png"
+=======
+			"images/scene2.png"
+>>>>>>> 8bb08bdd8bb6229c7521643fa49733e07a8c8a89
 		],
 		"refer": [
 			"task-area.html"
@@ -175,8 +201,12 @@
 			"js/arttmpl.js",
 			"js/common.js",
 			"js/immersed.js"
+<<<<<<< HEAD
 		],
 		"refer": []
+=======
+		]
+>>>>>>> 8bb08bdd8bb6229c7521643fa49733e07a8c8a89
 	},
 	"task-area.html": {
 		"resources": [
@@ -195,8 +225,12 @@
 			"images/head2.png",
 			"images/head3.png",
 			"js/taskDetailData.js"
+<<<<<<< HEAD
 		],
 		"refer": []
+=======
+		]
+>>>>>>> 8bb08bdd8bb6229c7521643fa49733e07a8c8a89
 	},
 	"enter.html": {
 		"resources": [
@@ -223,6 +257,7 @@
 			"images/deliver.png",
 			"images/joke.png",
 			"images/math.png"
+<<<<<<< HEAD
 		],
 		"refer": []
 	},
@@ -262,6 +297,8 @@
 			"css/mui.imageviewer.css",
 			"js/immersed.js",
 			"js/arttmpl.js"
+=======
+>>>>>>> 8bb08bdd8bb6229c7521643fa49733e07a8c8a89
 		]
 	}
 }

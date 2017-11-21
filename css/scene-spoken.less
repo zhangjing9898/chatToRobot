@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .mui-content {
     .spoken-card {
         margin: 20px;
@@ -93,4 +94,91 @@
             }
         }
     }
+=======
+.mui-content {
+    .spoken-card {
+        margin: 20px;
+        border-radius: 4px;
+        .mui-card-header {
+            display: block;
+            width: 100%;
+            height: 178px;
+            padding: 0;
+            &>img:first-child {
+                font-size: 0;
+                line-height: 0;
+                float: left;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+            }
+            .mask {
+                width: 100%;
+                height: 178px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: rgba(0, 0, 0, 0.5);
+                color: rgba(255, 255, 255, 1);
+                .info {
+                    position: absolute;
+                    width: 100%;
+                    top: 50%;
+                    left: 0;
+                    text-align: center;
+                    margin-top: -30px;
+                    h3 {
+                        font-size: 23px;
+                        font-weight: 400;
+                    }
+                    p{
+                        color: white;
+                    }
+                }
+            }
+        }
+        .mui-card-content {
+            padding: 15px 10px;
+            height: auto;
+            padding-bottom: 4px;
+            .img {
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center center;
+            }
+            .task-number {
+                font-family: "微软雅黑";
+                font-weight: 500;
+                font-size: 25px;
+            }
+            .description {
+                font-family: 微软雅黑;
+                margin-top: 10px;
+                font-size: 15px;
+            }
+            .task-img{
+                width: 29px;
+            }
+        }
+        .mui-card-footer {
+            color: black;
+            font-family: 微软雅黑;
+            font-size: 14px;
+            padding: 10px 13px;
+            padding-top: 0;
+            &:before {
+                background-color: transparent;
+            }
+            .enter-btn {
+                border: none;
+                margin: 0;
+                padding: 0;
+                font-weight: 500;
+            }
+            .explorer-img{
+                width: 20px;
+            }
+        }
+    }
+>>>>>>> 8bb08bdd8bb6229c7521643fa49733e07a8c8a89
 }

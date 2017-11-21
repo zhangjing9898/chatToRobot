@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .mui-content .spoken-card {
   margin: 20px;
   border-radius: 4px;
@@ -92,3 +93,89 @@
   position: absolute;
   padding-left: 5px;
 }
+=======
+.mui-content .spoken-card {
+  margin: 20px;
+  border-radius: 4px;
+}
+.mui-content .spoken-card .mui-card-header {
+  display: block;
+  width: 100%;
+  height: 178px;
+  padding: 0;
+}
+.mui-content .spoken-card .mui-card-header > img:first-child {
+  font-size: 0;
+  line-height: 0;
+  float: left;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+.mui-content .spoken-card .mui-card-header .mask {
+  width: 100%;
+  height: 178px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+}
+.mui-content .spoken-card .mui-card-header .mask .info {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  text-align: center;
+  margin-top: -30px;
+}
+.mui-content .spoken-card .mui-card-header .mask .info h3 {
+  font-size: 23px;
+  font-weight: 400;
+}
+.mui-content .spoken-card .mui-card-header .mask .info p {
+  color: white;
+}
+.mui-content .spoken-card .mui-card-content {
+  padding: 15px 10px;
+  height: auto;
+  padding-bottom: 4px;
+}
+.mui-content .spoken-card .mui-card-content .img {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+.mui-content .spoken-card .mui-card-content .task-number {
+  font-family: "微软雅黑";
+  font-weight: 500;
+  font-size: 25px;
+}
+.mui-content .spoken-card .mui-card-content .description {
+  font-family: 微软雅黑;
+  margin-top: 10px;
+  font-size: 15px;
+}
+.mui-content .spoken-card .mui-card-content .task-img {
+  width: 29px;
+}
+.mui-content .spoken-card .mui-card-footer {
+  color: black;
+  font-family: 微软雅黑;
+  font-size: 14px;
+  padding: 10px 13px;
+  padding-top: 0;
+}
+.mui-content .spoken-card .mui-card-footer:before {
+  background-color: transparent;
+}
+.mui-content .spoken-card .mui-card-footer .enter-btn {
+  border: none;
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+}
+.mui-content .spoken-card .mui-card-footer .explorer-img {
+  width: 20px;
+}
+>>>>>>> 8bb08bdd8bb6229c7521643fa49733e07a8c8a89
