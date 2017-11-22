@@ -13,6 +13,7 @@
 
 			function startRecognizeEnglish() {
 				var msgText = document.getElementById("msg-text");
+				var sendBtn=document.getElementById("senBtnArea");
 				if(plus.os.name == 'Android' && navigator.userAgent.indexOf('StreamApp') > 0) {
 					plus.nativeUI.toast('当前环境暂不支持语音识别插件');
 					return;
@@ -21,10 +22,16 @@
 				options.engine = 'iFly';
 				options.lang = 'en-us';
 				text.value = "";
-				outSet("开始语音识别：");
+//				outSet("开始语音识别：");
 				plus.speech.startRecognize(options, function(s) {
 					outLine(s);
 					text.value += s;
+					var outputText=document.getElementById("output").innerText;
+					console.log(outputText);
+					if(outputText!=null){
+						console.log("outputText is not empty!");
+						mui.trigger(sendBtn,'release');
+					}
 				}, function(e) {
 					outSet("语音识别失败：" + e.message);
 				});
@@ -83,7 +90,7 @@
 				</textarea>
 				<button id='msg-sound' type="button" class='input-sound' style="display: none;">按住说话</button>
 			</div>
-			<label class="footer-right">
+			<label class="footer-right" id="senBtnArea">
 				<i id='msg-type' class="mui-icon mui-icon-paperplane"></i>
 			</label>
 			<div id="output"></div>
@@ -174,6 +181,7 @@
 				};
 				ui.h.style.width = ui.boxMsgText.offsetWidth + 'px';
 				//alert(ui.boxMsgText.offsetWidth );
+				console.log(ui.boxMsgText.innerText);
 				var footerPadding = ui.footer.offsetHeight - ui.boxMsgText.offsetHeight;
 //				var audioRobot = document.getElementById("audioRobot");
 				var msgItemTap = function(msgItem, event) {
@@ -191,6 +199,7 @@
 				});
 				//自动点击
 				var recognizeEnglishBtn=document.getElementById("recognizeEnglish");
+				
 //				recognizeEnglishBtn.onclick=function(){
 //					console.log("1");
 //				}
@@ -228,7 +237,7 @@
 					var msgItems = ui.areaMsgList.querySelectorAll('.msg-item');
 					[].forEach.call(msgItems, function(item, index) {
 						var innerHtml=item.querySelector('.msg-content-inner').innerHTML;
-						console.log("innerHtml"+innerHtml);
+//						console.log("innerHtml"+innerHtml);
 						var audioRobot = document.getElementById("audioRobot");
 						var src = 'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&text=' + innerHtml;
 						audioRobot.setAttribute("src", src);
@@ -356,8 +365,7 @@
 					ui.boxMsgText.value = '';
 					mui.trigger(ui.boxMsgText, 'input', null);
 				}, false);
-				
-				
+			
 			});
 		</script>
 	</body>
