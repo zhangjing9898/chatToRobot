@@ -1,0 +1,53 @@
+.mui-table-view .answer-area {
+  padding-left: 31px;
+  padding-top: 5px;
+  font-size: 15px;
+}
+.mui-table-view .answer-area .demo--label {
+  margin: 0 20px 0 0;
+  display: inline-block;
+}
+.mui-table-view .answer-area .demo--radio {
+  display: none;
+}
+.mui-table-view .answer-area .demo--radio:checked + .demo--radioInput:after {
+  background-color: #57ad68;
+  border-radius: 100%;
+  content: "";
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}
+.mui-table-view .answer-area .demo--radioInput {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 100%;
+  display: inline-block;
+  height: 16px;
+  margin-right: 10px;
+  margin-top: -1px;
+  vertical-align: middle;
+  width: 16px;
+  line-height: 1;
+  padding: 7px;
+  position: relative;
+}
+.mui-table-view .answer-area .demo--checkbox.demo--radioInput,
+.mui-table-view .answer-area .demo--radio:checked + .demo--checkbox.demo--radioInput:after {
+  border-radius: 0;
+}
+.submit-btn {
+  box-sizing: border-box;
+}
+.submit-btn .submit-style {
+  border: 1px solid #4cbb50;
+  background-color: #33b34c;
+  width: 80%;
+  padding: 10px;
+  margin-left: 10%;
+  font-family: 微软雅黑;
+  font-size: 15px;
+}

@@ -1,0 +1,65 @@
+html,
+* {
+    //  box-sizing: initial;
+}
+
+.mui-table-view {
+    .answer-area {
+        padding-left: 31px;
+        padding-top: 5px;
+        font-size: 15px;
+        .demo--label {
+            margin: 0 20px 0 0;
+            display: inline-block;
+        }
+        .demo--radio {
+            display: none;
+            &:checked {
+                &+.demo--radioInput {
+                    &:after {
+                        background-color: #57ad68;
+                        border-radius: 100%;
+                        content: "";
+                        display: inline-block;
+                        height: 10px;
+                        width: 10px;
+                        position: absolute;
+                        top: 2px;
+                        left: 2px;
+                    }
+                }
+            }
+        }
+        .demo--radioInput {
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 100%;
+            display: inline-block;
+            height: 16px;
+            margin-right: 10px;
+            margin-top: -1px;
+            vertical-align: middle;
+            width: 16px;
+            line-height: 1;
+            padding: 7px;
+            position: relative;
+        }
+        .demo--checkbox.demo--radioInput,
+        .demo--radio:checked+.demo--checkbox.demo--radioInput:after {
+            border-radius: 0;
+        }
+    }
+}
+
+.submit-btn {
+    box-sizing: border-box;
+    .submit-style {
+        border: 1px solid #4cbb50;
+        background-color: rgb(51, 179, 76);
+        width: 80%;
+        padding: 10px;
+        margin-left: 10%;
+        font-family: 微软雅黑;
+        font-size: 15px;
+    }
+}

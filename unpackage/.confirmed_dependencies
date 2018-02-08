@@ -194,7 +194,8 @@
 			"images/mic.png",
 			"images/head2.png",
 			"images/head3.png",
-			"js/taskDetailData.js"
+			"js/taskDetailData.js",
+			"images/authentication.png"
 		],
 		"refer": []
 	},

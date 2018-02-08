@@ -37,6 +37,9 @@
 		<script id='msgHead-template' type="text/template">
 			<span class="mui-pull-left mui-icon mui-icon-arrowleft mui-action-back" id="return-button"></span>
 			<h1 class="mui-title">任务<%=(taks_num)%></h1>
+			<span  class="mui-icon  mui-pull-right" id="authentication-btn">
+				<img  class="auth-icon" src="images/authentication.png" />
+			</span>
 		</script>
 		<pre id='h'></pre>
 		<script id='msg-template' type="text/template">
@@ -310,6 +313,16 @@
 					ui.boxMsgText.value = '';
 					mui.trigger(ui.boxMsgText, 'input', null);
 			}, false);
+			
+			var authentication_btn= document.getElementById("authentication-btn");
+
+			 authentication_btn.addEventListener('tap', function() {
+				mui.openWindow({
+					url: 'authentication-page.html',
+					id: 'authentication-page.html'
+				});
+			});
+
 		});
 	</script>
 	</body>

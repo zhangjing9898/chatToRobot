@@ -332,7 +332,14 @@ footer .mui-icon-paperplane {
 	color: white;
 	font-family: 微软雅黑;
 }
-
+.mui-subtitle{
+	text-align: right;
+}
+.auth-icon{
+	width: 31px;
+    margin-top: -3px;
+    margin-right: 8px;
+}
 .mui-icon-person-filled:before {
 	content: '\e131';
 	color: white;
