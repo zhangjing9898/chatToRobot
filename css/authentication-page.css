@@ -1,3 +1,30 @@
+.mui-content > .mui-table-view:first-child {
+  margin-top: 0;
+}
+.mui-content .tips-area {
+  margin-bottom: 10px;
+  font-family: 微软雅黑;
+  color: grey;
+  font-size: 15px;
+  padding: 0 20px;
+}
+.mui-content .tips-area .tip-detail {
+  margin-top: -30px;
+  margin-left: 29px;
+}
+.mui-area-title .head-img {
+  border-radius: 50%;
+  float: left;
+}
+.mui-area-title .title {
+  color: white;
+  font-family: 微软雅黑;
+  font-size: 19px;
+  position: absolute;
+  left: 50%;
+  margin-left: -47px;
+  top: 31px;
+}
 .mui-table-view .answer-area {
   padding-left: 31px;
   padding-top: 5px;

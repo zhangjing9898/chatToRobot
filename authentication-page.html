@@ -8,64 +8,106 @@
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/app.css" />
 		<link rel="stylesheet" href="css/authentication-page.css" />
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js" ></script>
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
-			<span class="mui-pull-left mui-icon mui-icon-arrowleft mui-action-back"></span>
+			<span class="mui-pull-left mui-icon mui-icon-arrowleft mui-action-back" id="return-btn"></span>
 			<h1 class="mui-title">认证区</h1>
-			<span class="mui-icon mui-icon-upload mui-pull-right" id="share_btn"></span>
 		</header>
 		<div class="mui-content">
-
+			<div class="mui-table-view mui-area-title">
+				<li class="mui-table-view-cell" style="background-image: url(images/background.gif);">
+					<p class="head-img">
+						<img src="images/T.png"/>
+					</p>
+					<p class="title">
+						记忆认证区
+					</p>
+				</li>
+			</div>
+			
+			<div class="tips-area">
+				<img class="about-img" src="images/gift.png" />
+				<div class="tip-detail">为了确保您完整完成了该场景口语训练，下面有几个问题考考您？全部回答正确，记忆方可认证成功哦~</div>
+			</div>
+			
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
-					<img class="about-img" src="images/questionIcon.png" />
+					<img class="about-img" src="images/question.png" />
 					<span class="about-span">1.酒店在3楼？</span>
-					<div class="answer-area">
+					<div class="answer-area" id="questionOne">
 						<label class="demo--label">
-					        <input class="demo--radio" type="radio" name="demo-radio" >
+					        <input class="demo--radio" type="radio" name="demo-radio"  value="1">
 					        <span class="demo--radioInput"></span>YES
 					    </label>
 						<label class="demo--label">
-					        <input class="demo--radio" type="radio" name="demo-radio" checked>
+					        <input class="demo--radio" type="radio" name="demo-radio" value="0" checked>
 					        <span class="demo--radioInput"></span>NO
 					    </label>
 					</div>
 				</li>
 				<li class="mui-table-view-cell">
-					<img class="about-img" src="images/questionIcon.png" />
+					<img class="about-img" src="images/question.png" />
 					<span class="about-span">2.一间房间房费为350美元一晚？</span>
-					<div class="answer-area">
+					<div class="answer-area" id="questionTwo">
 						<label class="demo--label">
-					        <input class="demo--radio" type="radio" name="demo-radio1" >
+					        <input class="demo--radio" type="radio" name="demo-radio1" value="1" >
 					        <span class="demo--radioInput"></span>YES
 					    </label>
 						<label class="demo--label">
-					        <input class="demo--radio" type="radio" name="demo-radio1" checked>
+					        <input class="demo--radio" type="radio" name="demo-radio1" value="0" checked>
 					        <span class="demo--radioInput"></span>NO
 					    </label>
 					</div>
 				</li>
 				<li class="mui-table-view-cell">
-					<img class="about-img" src="images/questionIcon.png" />
+					<img class="about-img" src="images/question.png" />
 					<span class="about-span">2.一间房间房费为350美元一晚？</span>
-					<div class="answer-area">
+					<div class="answer-area" id="questionThree">
 						<label class="demo--label">
-					        <input class="demo--radio" type="radio" name="demo-radio2" >
+					        <input class="demo--radio" type="radio" name="demo-radio2" value="1">
 					        <span class="demo--radioInput"></span>YES
 					    </label>
 						<label class="demo--label">
-					        <input class="demo--radio" type="radio" name="demo-radio2" checked>
+					        <input class="demo--radio" type="radio" name="demo-radio2" value="0" checked>
 					        <span class="demo--radioInput"></span>NO
 					    </label>
 					</div>
 				</li>
 			</ul>
 			<div class="submit-btn">
-				<button class="mui-btn-green submit-style">提交</button>
+				<button id="authenticationBtn" class="mui-btn-green submit-style">提交</button>
 			</div>
 		</div>
 	</body>
-
+	<script type="text/javascript" src="js/answer.js" ></script>
+	<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		mui.plusReady(function() {
+			//碎片数记录
+			var fragment=0;
+			var authentication=document.getElementById("authenticationBtn");
+			authentication.addEventListener('tap',function(){
+				var selectedRadio1=$("#questionOne input:radio:checked").val();
+				var selectedRadio2=$("#questionTwo input:radio:checked").val();
+				var selectedRadio3=$("#questionThree input:radio:checked").val();
+				var endSelected=selectedRadio1+selectedRadio2+selectedRadio3;
+				var returnBtn=document.getElementById("return-btn");
+				//judgement answer
+				var itemAnswer=answerData[0];
+				var itemContent=itemAnswer.answer;
+				if(itemContent==endSelected){
+					fragment++;
+					mui.toast('认证成功');
+					mui.trigger(returnBtn,'touchstart');
+				}else{
+					mui.toast('认证失败');
+				}
+				//存入缓存....
+				plus.storage.setItem("fragment_num", fragment + "");
+			})
+		})
+	</script>
 </html>

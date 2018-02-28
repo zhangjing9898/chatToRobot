@@ -17,37 +17,13 @@
 		</header>
 		<div class="mui-content">
 			<ul class="mui-table-view mine-info">
-				<!--<li class="mui-table-view-cell">
-					<p class="head-img">
-						<img src="<%=(end_headImg_src)%>" id="head-img-src" />
-					</p>
-					<p class="already-conversation-info">
-						您已和Doraemon对话
-						<%=count%>条
-					</p>
-				</li>-->
+				
 			</ul>
 			<div class="Doraemon-get-info">
-				<!--<div class="medal-div">
-					<img src="images/medal.svg" class="Doraemon-head-img" />
-					<p class="info">挑战区</p>
-				</div>-->
+				
 			</div>
 			<ul class="mui-table-view medal-list">
-				<!--<li class="mui-table-view-cell" id="head1">
-					<p class="mui-pull-left head-img">
-						<img src="images/head1.png" />
-					</p>
-					<div class="mui-pull-left head-img-get-detail">
-						<div class="honor">
-							<img class="honor-img" src="images/honor.png" /> 小屁孩
-						</div>
-						<p>对话超过2条即可领取</p>
-					</div>
-					<p class="mui-pull-right conversation-info">
-						<button class="mui-btn <%=(get_className_one)%>"> <%=(get_status_name_one)%></button>
-					</p>
-				</li>-->
+				
 			</ul>
 		</div>
 		<script id='range-template' type="text/template">
@@ -296,7 +272,7 @@
 						var imgs = headImg.getAttribute("src");
 						var reg = /[1-9][0-9]*/g;
 						imgList = imgs.match(reg);
-						plus.storage.setItem("light_medal_num", imgList + "");
+						 plus.storage.setItem("light_medal_num", imgList + "");
 
 					}
 				});

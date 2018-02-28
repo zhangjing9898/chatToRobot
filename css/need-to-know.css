@@ -1,0 +1,52 @@
+body {
+  font-family: 微软雅黑;
+}
+.mui-content #slider .title {
+  text-align: center;
+  font-weight: normal;
+  font-size: 29px;
+  margin-top: 29px;
+  margin-bottom: 33px;
+}
+.mui-content #slider .img-area {
+  width: 100%;
+  margin-left: 5%;
+  margin-top: 20px;
+}
+.mui-content #slider .img-area img {
+  width: 30%;
+  float: left;
+}
+.mui-content #slider .title2 {
+  text-align: center;
+  font-weight: normal;
+  font-size: 26px;
+  margin-top: 17px;
+}
+.mui-content #slider .know-detail {
+  padding: 10px;
+}
+.mui-content #slider .know-detail p {
+  font-size: 16px;
+  text-indent: 2em;
+}
+.mui-content #slider .enter-btn button {
+  background: transparent;
+  padding: 0.5rem 2rem;
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+  color: #41403E;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  outline: none;
+   box-shadow: 2px 8px 4px -6px rgba(0, 0, 0, 0.2);
+  border-radius: 57px 15px 57px 15px/15px 97px 15px 97px;
+  left: 50%;
+  margin-left: -131px;
+}
+.mui-content #slider .enter-btn button:hover {
+  box-shadow: 2px 8px 4px -6px rgba(0, 0, 0, 0.3);
+}
+.mui-content #slider .enter-btn button.lined.thick {
+  border: solid 3px #41403E;
+}

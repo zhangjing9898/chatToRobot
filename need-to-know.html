@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/app.css" />
+		<link rel="stylesheet" href="css/need-to-know.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<span class="mui-pull-left mui-icon mui-icon-arrowleft mui-action-back" id="return-btn"></span>
+			<h1 class="mui-title">被偷走的10年</h1>
+		</header>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider">
+				<div class="mui-slider-group">
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<h1 class="title">
+							 我是谁？
+						</h1>
+						<h1 class="title">which one?</h1>
+						<div class="img-area">
+							<img src="images/person/person1.png" />
+							<img src="images/person/person2.png" />
+							<img src="images/person/person3.png" />
+							<img src="images/person/person4.png" />
+							<img src="images/person/person5.png" />
+							<img src="images/person/person6.png" />
+							<img src="images/person/person7.png" />
+							<img src="images/person/person8.png" />
+							<img src="images/person/person9.png" />
+						</div>
+					</div>
+					<div class="mui-slider-item">
+						<h1 class="title2">Long Long Ago</h1>
+						<div class="know-detail">
+							<p>
+								在多维宇宙中存在无数个时空相错的平行世界，宇宙深处的某一个世界也生活着同样一个野比大雄，可是他的身边似乎少了一个机器猫的陪伴，也缺少了一些关于自己的记忆。接下来是一场奇妙的冒险，请你帮助野比大雄找回他丢失的那十年记忆。
+							</p>
+							<p>
+								由于失去了记忆，他给自己取了一个最简单的名字：Mike。在那过去的十年里，每一年都有一个Robot曾参与过他的生活，然后我们将代替Mike，与Robot进行交流，从它口中“套出”当年的那些记忆，再进入下一个"记忆认证"页面，完成3个相关记忆问题，如果问题被全部答对，即可认证记忆成功，获得相应的记忆碎片。十枚碎片集齐方可让他想起自己想起发生的这一切。
+							</p>
+							<p>
+								这里，列举一个简单的例子：</p>
+								<p> 故事线索：Robot比尔曾经在mike15岁的时候和他一起订过一家酒店。
+								<p>任务：你现在需要同比尔进行对话，然后从他口中套出当年的记忆，帮助Mike找回他那段属于他自己的故事。
+							</p>
+						</div>
+						<div class="enter-btn" id="start-btn">
+							<button class='lined thick'>Start Game</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			var start_btn=document.getElementById("start-btn");
+			start_btn.addEventListener('tap',function(){
+				mui.openWindow({
+					url:'scene-spoken.html',
+					id:'scene-spoken.html'
+				})
+			})
+		</script>
+	</body>
+
+</html>

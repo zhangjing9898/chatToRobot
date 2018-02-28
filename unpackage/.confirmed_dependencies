@@ -57,7 +57,8 @@
 			"scene-spoken.html",
 			"task-area.html",
 			"help-document.html",
-			"scene-help.html"
+			"scene-help.html",
+			"need-to-know.html"
 		]
 	},
 	"about.html": {
@@ -197,7 +198,9 @@
 			"js/taskDetailData.js",
 			"images/authentication.png"
 		],
-		"refer": []
+		"refer": [
+			"authentication-page.html"
+		]
 	},
 	"enter.html": {
 		"resources": [
@@ -263,6 +266,42 @@
 			"css/mui.imageviewer.css",
 			"js/immersed.js",
 			"js/arttmpl.js"
+		]
+	},
+	"authentication-page.html": {
+		"resources": [
+			"css/authentication-page.css",
+			"js/jquery-1.11.3.min.js",
+			"js/mui.min.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"images/background.gif",
+			"js/answer.js",
+			"css/mui.min.css",
+			"images/T.png",
+			"images/gift.png",
+			"images/question.png"
+		]
+	},
+	"need-to-know.html": {
+		"resources": [
+			"images/person/person3.png",
+			"images/person/person2.png",
+			"images/person/person7.png",
+			"images/person/person6.png",
+			"images/person/person5.png",
+			"css/need-to-know.css",
+			"images/person/person9.png",
+			"images/person/person8.png",
+			"images/person/person4.png",
+			"images/person/person1.png",
+			"fonts/mui.ttf",
+			"js/mui.min.js",
+			"css/app.css",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"scene-spoken.html"
 		]
 	}
 }

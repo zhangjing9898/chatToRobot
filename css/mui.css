@@ -4879,13 +4879,10 @@ body > .mui-progressbar
 .mui-toast-message
 {
     font-size: 14px;
-
     width: 270px;
     margin: 5px auto;
     padding: 5px;
-
     text-align: center;
-
     color: #000;
     border-radius: 7px;
     background-color: #d8d8d8;
@@ -4904,7 +4901,6 @@ body > .mui-progressbar
 
     vertical-align: top;
     vertical-align: middle;
-
     border: solid 1px #bbb;
     border-radius: 3px;
     background-color: #efeff4;
