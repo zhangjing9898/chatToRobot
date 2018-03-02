@@ -10,7 +10,7 @@
 	"icons": {
 		"72": "icon.png"
 	},
-	"launch_path": "index.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+	"launch_path": "test.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
 	"developer": {
 		"name": "",/*开发者名称*/
 		"email": "",/*开发者邮箱地址*/
@@ -513,6 +513,25 @@
 				"refer": [
 					"scene-spoken.html"
 				],
+				"priority": 0
+			},
+			"test.html": {
+				"resources": [
+					"js/mui.imageViewer.js",
+					"js/common.js",
+					"js/mui.min.js",
+					"css/app.css",
+					"images/mic.png",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/mui.imageviewer.css",
+					"js/taskDetailData.js",
+					"js/immersed.js",
+					"js/arttmpl.js",
+					"images/authentication.png",
+					"images/T.png"
+				],
+				"refer": [],
 				"priority": 0
 			}
 		},
