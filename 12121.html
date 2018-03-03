@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/app.css" />
+		<link rel="stylesheet" href="css/mui.imageviewer.css" />
+		<script type="text/javascript">
+		
+		</script>
+	</head>
+
+	<body onload="text=document.getElementById('msg-text');">
+		<input  id="inputBox" type="text"/>
+		<button id="sendBtn">send</button>
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/arttmpl.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/common.js" type="text/javascript"></script>
+		<script type="text/javascript" src="js/immersed.js"></script>
+		<script type="text/javascript" src="js/mui.imageViewer.js"></script>
+		<script type="text/javascript" src="js/taskDetailData.js"></script>
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript">
+			var iB=document.getElementById("inputBox");
+			var sB=document.getElementById("sendBtn");
+			
+//			console.log(inner);
+
+
+				
+			var getBot = function(info) {
+					var infoNow=parseInt(info);
+					var apiurl = "https://webchat.botframework.com/v3/directline/conversations/Bh4myB9CyHZF634WtsuaPh/activities?watermark="+infoNow;
+					mui.ajax(apiurl, {
+						dataType: 'json',
+						type: 'get',
+						timeout:10000,
+						headers: {
+							'Authorization': 'Bearer JLyE93qL-5Y.cwA.TXg.dm3GFznmHXfMRq7CNqdz7Adf1TJ60QpTBtmK6KVY1vY',
+							'Content-Type': 'application/json'
+						},
+						success: function(data) {
+						
+							var a = data.activities;
+							var all=JSON.stringify(data);
+							var ans=a.text;
+							console.log("all"+all);
+							console.log("a:"+a)
+							if(a==""){
+								getBot(infoNow)
+							}else{
+								console.log(data.activities[0].text);
+								return	
+							}
+//							console.log("ans"+JSON.stringify(ans));
+//							toRead(ans);
+						},
+						error: function(xhr, type, errorThrown) {
+							console.log(xhr);
+							console.log(type);
+							console.log(errorThrown);
+						}
+					})
+				}
+			var toRobot = function(info) {
+					var apiUrl = "https://webchat.botframework.com/v3/directline/conversations/Bh4myB9CyHZF634WtsuaPh/activities";
+					mui.ajax(apiUrl, {
+						data: {
+							"type": "message",
+							"from": {
+								"id": "14pdNFiHk8S",
+								"name": "You"
+							},
+							"text": info
+						},
+						dataType: 'json',
+						type: 'post',
+						headers: {
+							'Authorization': 'Bearer JLyE93qL-5Y.cwA.TXg.dm3GFznmHXfMRq7CNqdz7Adf1TJ60QpTBtmK6KVY1vY',
+							'Content-Type': 'application/json'
+						},
+						success: function(data) {
+							var a = [];
+							var id = data.id;
+							a = id.split('|');
+							var watermark = a[1];
+							getBot(a[1]);
+						},
+						error: function(xhr, type, errorThrown) {
+							//异常处理；
+							console.log(type);
+						}
+					})
+				};
+			
+			sB.addEventListener('click',function(){
+				var inner=iB.value;
+				toRobot(inner);
+			})
+		</script>
+	</body>
+
+</html>

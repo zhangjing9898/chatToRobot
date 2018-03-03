@@ -117,9 +117,9 @@
 
 				/***接受传的值****/
 				var _self = plus.webview.currentWebview();
-				//			mui.toast(_self.taskId);
+							mui.toast(_self.taskId);
 				var task_num = _self.taskId;
-				var item = data[0];
+				var item = data[task_num-1];
 				var robotContent = item.detail;
 				//			console.log("item:"+item);
 				var taskHead = document.getElementsByClassName("mui-bar-nav")[0];
@@ -147,27 +147,30 @@
 				};
 
 				var getBot = function(info) {
-					console.log("info:" + info);
-					var apiurl = "https://webchat.botframework.com/v3/directline/conversations/Bh4myB9CyHZF634WtsuaPh/activities"
+					var infoNow=parseInt(info);
+					var apiurl = "https://webchat.botframework.com/v3/directline/conversations/Bh4myB9CyHZF634WtsuaPh/activities?watermark="+infoNow;
 					mui.ajax(apiurl, {
-						data: {
-							"watermark": info,
-						},
+						dataType: 'json',
 						type: 'get',
+						timeout:10000,
 						headers: {
 							'Authorization': 'Bearer JLyE93qL-5Y.cwA.TXg.dm3GFznmHXfMRq7CNqdz7Adf1TJ60QpTBtmK6KVY1vY',
 							'Content-Type': 'application/json'
 						},
 						success: function(data) {
 							var a = data.activities;
-							var str=a[a.length-1];
-							var str1=JSON.stringify(str);
-							var ans = str[0];
-							console.log(ans);
-//							toRead(ans);
+							if(a==""){
+								getBot(infoNow)
+							}else{
+								toRead(data.activities[0].text);
+//								console.log();
+								return	
+							}
 						},
 						error: function(xhr, type, errorThrown) {
+							console.log(xhr);
 							console.log(type);
+							console.log(errorThrown);
 						}
 					})
 				}

@@ -14,6 +14,7 @@
 		<header class="mui-bar mui-bar-nav">
 			<span class="mui-pull-left mui-icon mui-icon-arrowleft mui-action-back"></span>
 			<h1 class="mui-title">朋友池</h1>
+			<span class="mui-icon mui-icon-camera mui-pull-right" id="img-recognize"></span>
 		</header>
 		<div class="mui-content">
 			<ul class="mui-table-view mine-info">
@@ -197,7 +198,7 @@
 				var get_className_true = " mui-btn-danger";
 				var get_className_false = " mui-btn-grey";
 
-				var get_status_name_true = "开启挑战";
+				var get_status_name_true = "记忆追溯";
 				var get_status_name_false = "未开启";
 
 				var get_className_one = count >= 0 ? get_className_true : get_className_false;
@@ -281,7 +282,7 @@
 				var get_num = plus.storage.getItem("light_medal_num");
 				for(var n = 0; n < get_num; n++) {
 					buttonNum[n].setAttribute("class", "mui-btn mui-btn-grey");
-					buttonNum[n].innerHTML = "已挑战";
+					buttonNum[n].innerHTML = "场景已开启";
 				};
 			});
 		</script>
