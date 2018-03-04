@@ -64,7 +64,7 @@
 			function drawImgingrey(canvasA) {
 				var contextA = canvasA.getContext("2d");
 				var image = new Image();
-				image.src = "images/head" + (i + 1) + ".png";
+				image.src = "images/person/person" + (i + 1) + ".png";
 				image.onload = function() {
 					contextA.drawImage(image, 0, 0, canvasA.width, canvasA.height);
 					if(canvasA.className == "canvas unget") {
@@ -103,7 +103,7 @@
 				function drawImg(canvasA) {
 					var contextA = canvasA.getContext("2d");
 					var image = new Image();
-					image.src = "images/head" + (j + 1) + ".png";
+					image.src = "images/person/person" + (j + 1) + ".png";
 					console.log(image.src);
 					image.onload = function() {
 						contextA.drawImage(image, 0, 0, canvasA.width, canvasA.height);

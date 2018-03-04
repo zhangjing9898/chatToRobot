@@ -16,40 +16,6 @@
 			<h1 class="mui-title">场景口语</h1>
 		</header>
 		<div class="mui-content">
-			<!--<div class="mui-card spoken-card">
-				<div class="mui-card-header mui-card-media">
-					<img src="images/scene<%=i%>.png" />
-					<div class="mask">
-						<div class="info">
-							<h3>LOCKED</h3>
-							<p>This task is locked</p>
-						</div>
-					</div>
-				</div>
-				<div class="mui-card-content">
-					<img class="task-img" src="images/task-img.png"  />
-					<div class="task-number">Task
-						<%=i%>
-					</div>
-					<div class="description">des:The purpose of this mission is to improve your spoken English</div>
-				</div>
-				<div class="mui-card-footer mui-pull-left">
-					<a href="javascript:openInfo(<%=i%>);">
-						<button class="enter-btn" style="display: none;">
-							<img src="images/explorer.png" class="explorer-img"/>
-							<img src="images/explorer.png" class="explorer-img"/>
-							<img src="images/explorer.png" class="explorer-img"/>
-						     <strong class="key">Explorer</strong>   	
-						</button>
-					</a>
-					<button class="enter-btn" style="display: block;">
-						<img src="images/explorer.png" class="explorer-img"/>
-							<img src="images/explorer.png" class="explorer-img"/>
-							<img src="images/explorer.png" class="explorer-img"/>
-						     <strong class="key">Locked</strong>
-						</button>
-				</div>
-			</div>-->
 		</div>
 		<script id="scene-template" type="text/template">
 			<% for(var i=1;i<4;i++){ %>
@@ -64,7 +30,7 @@
 					</div>
 				</div>
 				<div class="mui-card-content">
-					<img src="images/task-img.png"  class="task-img"/>
+					<img src="images/task-img.png" class="task-img"/>
 					<div class="task-number">Task
 						<%=i%>
 					</div>
@@ -109,7 +75,7 @@
 
 				/*解锁任务*/
 				var medal_num = plus.storage.getItem("light_medal_num");
-				console.log("medal_num:" + medal_num);
+//				console.log("medal_num:" + medal_num);
 				var mui_cards = document.getElementsByClassName("mui-card");
 				for(var j = 0; j < medal_num; j++) {
 					mui_cards[j].getElementsByClassName("mask")[0].style.display = "none";

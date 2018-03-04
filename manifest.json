@@ -1,7 +1,7 @@
 {
 	"@platforms": ["android", "iPhone", "iPad"],
 	"id": "H5B73DF05",/*应用的标识，创建应用时自动生成，勿手动修改*/
-	"name": "Doraemon",/*应用名称，程序桌面图标名称*/
+	"name": "哆说",/*应用名称，程序桌面图标名称*/
 	"version": {
 		"name": "1.1.4",/*应用版本名称*/
 		"code": "83"
@@ -211,7 +211,8 @@
 					"images/people.jpg",
 					"images/head.jpg",
 					"images/had.png",
-					"js/commonState.js"
+					"js/commonState.js",
+					"images/person.jpg"
 				],
 				"refer": [
 					"profile.html",
@@ -291,9 +292,21 @@
 					"css/range.css",
 					"images/head6.png",
 					"images/head5.png",
-					"images/honor.png"
+					"images/honor.png",
+					"js/mui.imageViewer.js",
+					"images/person/person6.png",
+					"images/person/person9.png",
+					"images/person/person2.png",
+					"images/person/person3.png",
+					"images/person/person7.png",
+					"images/person/person5.png",
+					"images/person/person8.png",
+					"images/person/person4.png",
+					"images/person/person1.png"
 				],
-				"refer": [],
+				"refer": [
+					"task-area.html"
+				],
 				"priority": 0
 			},
 			"medal.html": {
@@ -313,7 +326,16 @@
 					"images/head4.png",
 					"css/mui.min.css",
 					"images/head6.png",
-					"images/head5.png"
+					"images/head5.png",
+					"images/person/person2.png",
+					"images/person/person1.png",
+					"images/person/person3.png",
+					"images/person/person7.png",
+					"images/person/person6.png",
+					"images/person/person5.png",
+					"images/person/person9.png",
+					"images/person/person8.png",
+					"images/person/person4.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -360,7 +382,8 @@
 					"images/task-img.png",
 					"images/about-name.png",
 					null,
-					"images/scene%3C%\u003di%%3E.png"
+					"images/scene%3C%\u003di%%3E.png",
+					"images/gift.png"
 				],
 				"refer": [
 					"task-area.html"
@@ -508,7 +531,8 @@
 					"fonts/mui.ttf",
 					"js/mui.min.js",
 					"css/app.css",
-					"css/mui.min.css"
+					"css/mui.min.css",
+					"images/enter-btn.png"
 				],
 				"refer": [
 					"scene-spoken.html"

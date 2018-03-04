@@ -34,7 +34,7 @@
 						<img src="<%=(end_headImg_src)%>" id="head-img-src" />
 					</p>
 					<p class="already-conversation-info">
-						您已和Doraemon对话
+						您已和阿哆对话
 						<%=count%>条
 					</p>
 				</li>
@@ -48,7 +48,7 @@
 			<ul class="mui-table-view medal-list">
 				<li class="mui-table-view-cell" id="head1">
 					<p class="mui-pull-left head-img">
-						<img src="images/head1.png" />
+						<img src="images/person/person1.png" />
 					</p>
 					<div class="mui-pull-left head-img-get-detail">
 						<div class="honor">
@@ -62,7 +62,7 @@
 				</li>
 				<li class="mui-table-view-cell" id="head2">
 					<p class="mui-pull-left head-img">
-						<img src="images/head2.png" />
+						<img src="images/person/person2.png" />
 					</p>
 					<div class="mui-pull-left head-img-get-detail">
 						<div class="honor">
@@ -76,7 +76,7 @@
 				</li>
 				<li class="mui-table-view-cell" id="head3">
 					<p class="mui-pull-left head-img">
-						<img src="images/head3.png" />
+						<img src="images/person/person3.png" />
 					</p>
 					<div class="mui-pull-left head-img-get-detail">
 						<div class="honor">
@@ -90,7 +90,7 @@
 				</li>
 				<li class="mui-table-view-cell" id="head4">
 					<p class="mui-pull-left head-img">
-						<img src="images/head4.png" />
+						<img src="images/person/person4.png" />
 					</p>
 					<div class="mui-pull-left head-img-get-detail">
 						<div class="honor">
@@ -104,7 +104,7 @@
 				</li>
 				<li class="mui-table-view-cell" id="head5">
 					<p class="mui-pull-left head-img">
-						<img src="images/head5.png" />
+						<img src="images/person/person5.png" />
 					</p>
 					<div class="mui-pull-left head-img-get-detail">
 						<div class="honor">
@@ -118,7 +118,7 @@
 				</li>
 				<li class="mui-table-view-cell" id="head6">
 					<p class="mui-pull-left head-img">
-						<img src="images/head6.png" />
+						<img src="images/person/person6.png" />
 					</p>
 					<div class="mui-pull-left head-img-get-detail">
 						<div class="honor">
@@ -132,7 +132,7 @@
 				</li>
 				<li class="mui-table-view-cell" id="head7">
 					<p class="mui-pull-left head-img">
-						<img src="images/head7.png" />
+						<img src="images/person/person7.png" />
 					</p>
 					<div class="mui-pull-left head-img-get-detail">
 						<div class="honor">
@@ -146,7 +146,7 @@
 				</li>
 				<li class="mui-table-view-cell" id="head8">
 					<p class="mui-pull-left head-img">
-						<img src="images/head8.png" />
+						<img src="images/person/person8.png" />
 					</p>
 					<div class="mui-pull-left head-img-get-detail">
 						<div class="honor">
@@ -160,7 +160,7 @@
 				</li>
 				<li class="mui-table-view-cell" id="head9">
 					<p class="mui-pull-left head-img">
-						<img src="images/head9.png" />
+						<img src="images/person/person9.png" />
 					</p>
 					<div class="mui-pull-left head-img-get-detail">
 						<div class="honor">
@@ -176,116 +176,160 @@
 		</script>
 		<script src="js/mui.min.js"></script>
 		<script src="js/arttmpl.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-			mui.init();
-			var content = document.getElementsByClassName("mui-content")[0];
+		<script src="js/mui.imageViewer.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">mui.init();
+var content = document.getElementsByClassName("mui-content")[0];
 
-			mui.plusReady(function() {
-				var imgList = null;
-				var buttonNum = document.getElementsByTagName("button");
-				var count = plus.storage.getItem("key_count");
-				if(plus.storage.getItem("key_count") == null) {
-					count = 0
-				} else {
-					count = plus.storage.getItem("key_count");
-				}
-				var b = plus.storage.getItem("start");
-				//				mui.toast(b);
-				if(b == "true") {
-					plus.storage.clear();
-				}
+mui.plusReady(function() {
+	var imgList = null;
+	var buttonNum = document.getElementsByTagName("button");
+	var count = plus.storage.getItem("key_count");
+	if(plus.storage.getItem("key_count") == null) {
+		count = 0
+	} else {
+		count = plus.storage.getItem("key_count");
+	}
+	var b = plus.storage.getItem("start");
+	//				mui.toast(b);
+	if(b == "true") {
+		plus.storage.clear();
+	}
 
-				var get_className_true = " mui-btn-danger";
-				var get_className_false = " mui-btn-grey";
+	var get_className_true = " mui-btn-danger";
+	var get_className_false = " mui-btn-grey";
 
-				var get_status_name_true = "记忆追溯";
-				var get_status_name_false = "未开启";
+	var get_status_name_true = "记忆追溯";
+	var get_status_name_false = "未开启";
 
-				var get_className_one = count >= 0 ? get_className_true : get_className_false;
-				var get_status_name_one = count >= 0 ? get_status_name_true : get_status_name_false;
+	var get_className_one = count >= 0 ? get_className_true : get_className_false;
+	var get_status_name_one = count >= 0 ? get_status_name_true : get_status_name_false;
 
-				var get_className_two = count >= 5 ? get_className_true : get_className_false;
-				var get_status_name_two = count >= 5 ? get_status_name_true : get_status_name_false;
+	var get_className_two = count >= 5 ? get_className_true : get_className_false;
+	var get_status_name_two = count >= 5 ? get_status_name_true : get_status_name_false;
 
-				var get_className_three = count >= 10 ? get_className_true : get_className_false;
-				var get_status_name_three = count >= 10 ? get_status_name_true : get_status_name_false;
+	var get_className_three = count >= 10 ? get_className_true : get_className_false;
+	var get_status_name_three = count >= 10 ? get_status_name_true : get_status_name_false;
 
-				var get_className_four = count >= 40 ? get_className_true : get_className_false;
-				var get_status_name_four = count >= 40 ? get_status_name_true : get_status_name_false;
+	var get_className_four = count >= 40 ? get_className_true : get_className_false;
+	var get_status_name_four = count >= 40 ? get_status_name_true : get_status_name_false;
 
-				var get_className_five = count >= 50 ? get_className_true : get_className_false;
-				var get_status_name_five = count >= 50 ? get_status_name_true : get_status_name_false;
+	var get_className_five = count >= 50 ? get_className_true : get_className_false;
+	var get_status_name_five = count >= 50 ? get_status_name_true : get_status_name_false;
 
-				var get_className_six = count >= 60 ? get_className_true : get_className_false;
-				var get_status_name_six = count >= 60 ? get_status_name_true : get_status_name_false;
+	var get_className_six = count >= 60 ? get_className_true : get_className_false;
+	var get_status_name_six = count >= 60 ? get_status_name_true : get_status_name_false;
 
-				var get_className_seven = count >= 70 ? get_className_true : get_className_false;
-				var get_status_name_seven = count >= 70 ? get_status_name_true : get_status_name_false;
+	var get_className_seven = count >= 70 ? get_className_true : get_className_false;
+	var get_status_name_seven = count >= 70 ? get_status_name_true : get_status_name_false;
 
-				var get_className_eight = count >= 80 ? get_className_true : get_className_false;
-				var get_status_name_eight = count >= 80 ? get_status_name_true : get_status_name_false;
+	var get_className_eight = count >= 80 ? get_className_true : get_className_false;
+	var get_status_name_eight = count >= 80 ? get_status_name_true : get_status_name_false;
 
-				var get_className_nine = count >= 90 ? get_className_true : get_className_false;
-				var get_status_name_nine = count >= 90 ? get_status_name_true : get_status_name_false;
+	var get_className_nine = count >= 90 ? get_className_true : get_className_false;
+	var get_status_name_nine = count >= 90 ? get_status_name_true : get_status_name_false;
 
-				var end_headImg_src;
-				if(plus.storage.getItem('img_src') == null) {
-					end_headImg_src = "images/T.png";
-				} else {
-					end_headImg_src = plus.storage.getItem('img_src');
-				}
+	var end_headImg_src;
+	if(plus.storage.getItem('img_src') == null) {
+		end_headImg_src = "images/T.png";
+	} else {
+		end_headImg_src = plus.storage.getItem('img_src');
+	}
 
-				content.innerHTML = template('range-template', {
-					"count": count,
-					"end_headImg_src": end_headImg_src,
-					"get_className_one": get_className_one,
-					"get_className_two": get_className_two,
-					"get_className_three": get_className_three,
-					"get_className_four": get_className_four,
-					"get_className_five": get_className_five,
-					"get_className_six": get_className_six,
-					"get_className_seven": get_className_seven,
-					"get_className_eight": get_className_eight,
-					"get_className_nine": get_className_nine,
-					"get_status_name_nine": get_status_name_nine,
-					"get_status_name_eight": get_status_name_eight,
-					"get_status_name_seven": get_status_name_seven,
-					"get_status_name_six": get_status_name_six,
-					"get_status_name_five": get_status_name_five,
-					"get_status_name_four": get_status_name_four,
-					"get_status_name_three": get_status_name_three,
-					"get_status_name_two": get_status_name_two,
-					"get_status_name_one": get_status_name_one
-				});
+	content.innerHTML = template('range-template', {
+		"count": count,
+		"end_headImg_src": end_headImg_src,
+		"get_className_one": get_className_one,
+		"get_className_two": get_className_two,
+		"get_className_three": get_className_three,
+		"get_className_four": get_className_four,
+		"get_className_five": get_className_five,
+		"get_className_six": get_className_six,
+		"get_className_seven": get_className_seven,
+		"get_className_eight": get_className_eight,
+		"get_className_nine": get_className_nine,
+		"get_status_name_nine": get_status_name_nine,
+		"get_status_name_eight": get_status_name_eight,
+		"get_status_name_seven": get_status_name_seven,
+		"get_status_name_six": get_status_name_six,
+		"get_status_name_five": get_status_name_five,
+		"get_status_name_four": get_status_name_four,
+		"get_status_name_three": get_status_name_three,
+		"get_status_name_two": get_status_name_two,
+		"get_status_name_one": get_status_name_one
+	});
 
-				mui(".mui-table-view-cell").on('tap', '.mui-btn', function() {
-					var className = this.getAttribute("class");
-					var trueType = "mui-btn  mui-btn-danger"
-					if(className == trueType) {
-						this.setAttribute("class", "mui-btn mui-btn-grey");
-						this.innerHTML = "已领取";
+	mui(".mui-table-view-cell").on('tap', '.mui-btn', function() {
+		var className = this.getAttribute("class");
+		var trueType = "mui-btn  mui-btn-danger"
+		if(className == trueType) {
+			this.setAttribute("class", "mui-btn mui-btn-grey");
+			this.innerHTML = "场景已开启";
 
-						/*获取其父节点*/
-						var buttonPar = this.parentNode;
-						/*获取其父节点的父节点*/
-						var buttonParPar = buttonPar.parentNode;
-						var headImg = buttonParPar.getElementsByTagName("img")[0];
-						var imgs = headImg.getAttribute("src");
-						var reg = /[1-9][0-9]*/g;
-						imgList = imgs.match(reg);
-						 plus.storage.setItem("light_medal_num", imgList + "");
+			/*获取其父节点*/
+			var buttonPar = this.parentNode;
+			/*获取其父节点的父节点*/
+			var buttonParPar = buttonPar.parentNode;
+			var headImg = buttonParPar.getElementsByTagName("img")[0];
+			var imgs = headImg.getAttribute("src");
+			var reg = /[1-9][0-9]*/g;
+			imgList = imgs.match(reg);
+			plus.storage.setItem("light_medal_num", imgList + "");
 
-					}
-				});
+		}
+	});
 
-				/*记录其领取情况*/
-				var get_num = plus.storage.getItem("light_medal_num");
-				for(var n = 0; n < get_num; n++) {
-					buttonNum[n].setAttribute("class", "mui-btn mui-btn-grey");
-					buttonNum[n].innerHTML = "场景已开启";
-				};
-			});
-		</script>
+	/*记录其领取情况*/
+	var get_num = plus.storage.getItem("light_medal_num");
+	for(var n = 0; n < get_num; n++) {
+		buttonNum[n].setAttribute("class", "mui-btn mui-btn-grey");
+		buttonNum[n].innerHTML = "场景已开启";
+	};
+
+	//拍照识别
+	function openInfo(id) {
+		mui.openWindow({
+			url: 'task-area.html',
+			id: 'task-area.html',
+			extras: {
+				taskId: id
+			}
+		})
+	}
+
+	var img_recognize = document.getElementById("img-recognize");
+	img_recognize.addEventListener('tap', function(event) {
+		var btnArray = [{
+			title: "拍照"
+		}, {
+			title: "从相册选择"
+		}];
+		plus.nativeUI.actionSheet({
+			title: "选择照片",
+			cancel: "取消",
+			buttons: btnArray
+		}, function(e) {
+			var index = e.index;
+			switch(index) {
+				case 0:
+					break;
+				case 1:
+					var cmr = plus.camera.getCamera();
+					cmr.captureImage(function(path) {
+						mui.toast("图片分析成功！进入场景：订酒店~");
+						openInfo(1);
+					}, function(err) {});
+					break;
+				case 2:
+					plus.gallery.pick(function(path) {
+						mui.toast("图片分析成功！进入场景：订酒店~");
+						openInfo(1);
+					}, function(err) {}, null);openInfo(1);
+					break;
+			}
+		});
+	}, false);
+
+});</script>
 	</body>
 
 </html>
