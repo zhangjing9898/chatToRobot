@@ -6,7 +6,7 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<script src="js/common.js" type="text/javascript"></script>
-		<script type="text/javascript" src="js/immersed.js" ></script>
+		<script type="text/javascript" src="js/immersed.js"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/app.css" />
 		<link rel="stylesheet" href="css/word-search.css" />
@@ -24,13 +24,12 @@
 
 		</header>
 		<div class="mui-content">
-			
 		</div>
 		<script id="wordSearch-template" type="text/template">
 			<ul class="mui-table-view word-translation">
 				<li class="mui-table-view-cell main-word">
-					<strong><%=(word_content)%></strong>
-					/<%=(word_pronunciation)%>/</li>
+					<strong><%=(word_content)%></strong> /
+					<%=(word_pronunciation)%>/</li>
 				<li class="mui-table-view-cell translation">
 					<%=(definition)%>
 				</li>
@@ -38,94 +37,229 @@
 					<%=(en_definition)%>
 				</li>
 			</ul>
-			<p>例句：</p> 
+			<p>例句：</p>
 			<ul class="mui-table-view example">
 				<li class="mui-table-view-cell">
-					<p><%=(example1Annotation)%></p>
-					<p><%=(example1Translation)%></p>
+					<p>
+						<%=(example1Annotation)%>
+					</p>
+					<p>
+						<%=(example1Translation)%>
+					</p>
 				</li>
 				<li class="mui-table-view-cell">
-					<p><%=(example2Annotation)%></p>
-					<p><%=(example2Translation)%></p>
+					<p>
+						<%=(example2Annotation)%>
+					</p>
+					<p>
+						<%=(example2Translation)%>
+					</p>
 				</li>
 			</ul>
+			<button class="mui-btn mui-btn-danger mark-word">标记该单词</button>
+		</script>
+
+		<script id="wordSearch-template2" type="text/template">
+			<ul class="mui-table-view word-translation">
+				<li class="mui-table-view-cell main-word">
+					<strong><%=(word_content)%></strong> /
+					<%=(word_pronunciation)%>/</li>
+				<li class="mui-table-view-cell translation">
+					相近词:
+					<%=(definition)%>
+				</li>
+				<li class="mui-table-view-cell translation">网络翻译:
+					<%=(webMean)%>
+				</li>
+			</ul>
+			<p>猜你想要的：</p>
+			<ul class="mui-table-view example">
+				<li class="mui-table-view-cell">
+					<p>
+						<strong class="strong-color">ch:</strong>
+						<%=(example1Translation)%>
+					</p>
+					<p>
+						<strong class="strong-color">eh:</strong>
+						<%=(example1Annotation)%>
+					</p>
+				</li>
+				<li class="mui-table-view-cell">
+					<p>
+						<strong class="strong-color">ch:</strong>
+						<%=(example2Translation)%>
+					</p>
+					<p>
+						<strong class="strong-color">en:</strong>
+						<%=(example2Annotation)%>
+					</p>
+				</li>
+			</ul>
+			<button class="mui-btn mui-btn-danger mark-word" id="mark-word">标记该单词</button>
 		</script>
 		<script src="js/mui.min.js"></script>
 		<script src="js/arttmpl.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
+			//标记单词请求
+			var putWord = function(obj, word) {
+				obj.addEventListener('tap', function(e) {
+					var url = "http://192.168.1.104:3000/markWord";
+					mui.ajax(url, {
+						data: {
+							word:word
+						},
+						type: 'get', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						headers:{'Content-Type':'text/html; charset=utf-8'},	
+						success: function(data) {
+							if(data=="1"){
+								mui.toast("该单词标记成功~")
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							//异常处理；
+							console.log(type);
+						}
+					});
+				})
+			}
 			mui.init();
 			var word_content = null; //查询单词
+			var word_content2 = null; //查询单词
+			var base_word = null;
 			var word_pronunciation = null; //单词音标
 			var en_definition = null; //英文解释
 			var definition = null; //中文意思
-			var example1Annotation=null;
-			var example2Annotation=null;
-			var example1Translation=null;
-			var example2Translation=null;
+			var example1Annotation = null;
+			var example2Annotation = null;
+			var example1Translation = null;
+			var example2Translation = null;
 			var content = document.getElementsByClassName("mui-content")[0];
+			var contentChinese = document.getElementById("chinese-area");
 			var searchInput = document.getElementById("search-input");
-			var searchWord = function(word) {
+
+			//过滤不必要字符
+			var filterChar = function(word) {
+				var wordNew = JSON.stringify(word);
+				var reg = new RegExp('"', "g");
+				wordNew = wordNew.replace(reg, "");
+				wordNew = wordNew.replace(/\[|]/g, '');
+				return wordNew;
+			}
+
+			//英-->汉
+			var searchInEnglish = function(word) {
 				var apiUrl = "https://api.shanbay.com/bdc/search/?word=" + word;
 				mui.getJSON(apiUrl, function(data) {
-					if(data.msg=="SUCCESS"){
+					if(data.msg == "SUCCESS") {
 						plus.nativeUI.closeWaiting();
 						word_content = data.data.content;
 						word_pronunciation = data.data.pronunciation;
 						en_definition = data.data.en_definition.defn;
 						definition = data.data.definition;
 						word_id = data.data.id;
-						console.log(word_pronunciation);
-						getExample(word_id);	
-					}
-					else{
+						//						console.log(word_pronunciation);
+						getExample(word_id);
+					} else {
 						plus.nativeUI.closeWaiting();
 						mui.toast("抱歉，未能查到该单词，请重新输入");
 						return;
 					}
 				});
 			}
-			
-			var getExample=function(word_id){
-				var apiUrl="https://api.shanbay.com/bdc/example/?vocabulary_id="+word_id+"&type=sys";
-				mui.getJSON(apiUrl,function(data){
-					if(data.data[0]==undefined||data.data[1]==undefined){
-						example1Annotation="暂未查到相关例句";
-						example1Translation="";
-						example2Annotation="暂未查到相关例句";
-						example2Translation=""
+
+			var searchWord = function(word) {
+				//对输入的词语进行判断分类，英文or中文
+				console.log("word" + word);
+				console.log("searchWord");
+				var reg = /^[a-zA-Z]/;
+				if(reg.test(word)) {
+					console.log("englise");
+					searchInEnglish(word);
+				} else {
+					console.log("chinese");
+					searchInChinese(word);
+				}
+			}
+
+			var getExample = function(word_id) {
+				var apiUrl = "https://api.shanbay.com/bdc/example/?vocabulary_id=" + word_id + "&type=sys";
+				mui.getJSON(apiUrl, function(data) {
+					if(data.data[0] == undefined || data.data[1] == undefined) {
+						example1Annotation = "暂未查到相关例句";
+						example1Translation = "";
+						example2Annotation = "暂未查到相关例句";
+						example2Translation = ""
+					} else {
+						example1Annotation = data.data[0].annotation.replace(/(<.[^>]*>)/ig, '');
+						example1Translation = data.data[0].translation;
+						example2Annotation = data.data[1].annotation.replace(/(<.[^>]*>)/ig, '');
+						example2Translation = data.data[1].translation;
 					}
-					else{
-						example1Annotation=data.data[0].annotation.replace(/(<.[^>]*>)/ig, '');
-						example1Translation=data.data[0].translation;
-						example2Annotation=data.data[1].annotation.replace(/(<.[^>]*>)/ig, '');
-						example2Translation=data.data[1].translation;	
-					}
-					
+
 					/*填充模板*/
 					content.innerHTML = template('wordSearch-template', {
 						"word_content": word_content,
 						"word_pronunciation": word_pronunciation,
 						"definition": definition,
 						"en_definition": en_definition,
-						"example1Annotation":example1Annotation,
-						"example1Translation":example1Translation,
-						"example2Annotation":example2Annotation,
-						"example2Translation":example2Translation
+						"example1Annotation": example1Annotation,
+						"example1Translation": example1Translation,
+						"example2Annotation": example2Annotation,
+						"example2Translation": example2Translation
+					})
+					//标记单词
+					var mark_word_button = document.getElementById("mark-word");
+					mark_word_button.addEventListener('tap', function(e) {
+						mui.toast("1212");
 					})
 				})
 			}
+
+			//汉-->英
+			var searchInChinese = function(word) {
+				var content = document.getElementsByClassName("mui-content")[0];
+				var apiUrl2 = "http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=" + word
+				console.log(apiUrl2);
+				mui.getJSON(apiUrl2, function(data) {
+					plus.nativeUI.closeWaiting();
+					word_content = filterChar(data.translation[0]);
+					word_pronunciation = data.basic.phonetic == null ? "" : data.basic.phonetic;
+					definition = filterChar(data.basic.explains);
+					webMean = filterChar(data.web[0].value);
+					example1Annotation = filterChar(data.web[1].value);
+					example1Translation = filterChar(data.web[1].key);
+					example2Annotation = filterChar(data.web[2].value);
+					example2Translation = filterChar(data.web[2].key);
+
+					content.innerHTML = template('wordSearch-template2', {
+						"word_content": word_content,
+						"word_pronunciation": word_pronunciation,
+						"definition": definition,
+						"webMean": webMean,
+						"example1Annotation": example1Annotation,
+						"example1Translation": example1Translation,
+						"example2Annotation": example2Annotation,
+						"example2Translation": example2Translation
+					})
+					//标记单词
+					var mark_word_button = document.getElementById("mark-word");
+					putWord(mark_word_button, word_content);
+				});
+			}
+
 			
+
 			mui.plusReady(function() {
 				var search_buttion = document.getElementById("search-button");
 				search_buttion.addEventListener('tap', function(e) {
 					var value = searchInput.value;
 					console.log("one!");
-					var msg=null;
+					var msg = null;
 					var w = plus.nativeUI.showWaiting("等待中...");
 					searchWord(value);
-
 				});
-				
+
 			})
 		</script>
 	</body>

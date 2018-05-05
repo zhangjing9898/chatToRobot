@@ -38,6 +38,9 @@
 .mui-content .mui-table-view:after {
   background-color: transparent;
 }
+.mui-content .mui-table-view .mui-table-view-cell .strong-color {
+  color: #E91E63;
+}
 .mui-content p {
   font-family: "微软雅黑";
   color: black;
@@ -55,4 +58,10 @@
 }
 .mui-content .word-translation .translation {
   font-size: 13px;
+}
+.mui-content .mark-word {
+  width: 100%;
+  height: 46px;
+  border-radius: 3px;
+  font-family: 微软雅黑;
 }

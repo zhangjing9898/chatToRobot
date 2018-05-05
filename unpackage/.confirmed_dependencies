@@ -1,351 +1,351 @@
 {
-	"index.html": {
-		"resources": [
-			"/js/mui.imageViewer.js",
-			"js/mui.min.js",
-			"css/app.css",
-			"/css/mui.min.css",
-			"/js/arttmpl.js",
-			"js/mui.imageViewer.js",
-			"js/arttmpl.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"css/mui.imageviewer.css",
-			"images/icon.png",
-			"images/cool.png",
-			"images/T.png",
-			"js/immersed.js",
-			"js/common.js",
-			"images/logo.png",
-			"images/people.jpg",
-			"images/head.jpg",
-			"images/had.png",
-			"js/commonState.js",
-			"images/person.jpg"
-		],
-		"refer": [
-			"profile.html",
-			"index-menu.html",
-			"word-search.html"
-		]
-	},
-	"profile.html": {
-		"resources": [
-			"images/T.png",
-			"js/mui.min.js",
-			"css/app.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/arttmpl.js"
-		],
-		"refer": [
-			"choose-area.html",
-			"change-name.html"
-		]
-	},
-	"index-menu.html": {
-		"resources": [
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"images/menu-pic.png"
-		],
-		"refer": [
-			"about.html",
-			"profile.html",
-			"range.html",
-			"medal.html",
-			"scene-spoken.html",
-			"task-area.html",
-			"help-document.html",
-			"scene-help.html",
-			"need-to-know.html"
-		]
-	},
-	"about.html": {
-		"resources": [
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"images/menu-pic.png",
-			"css/app.css",
-			"images/about-name.png",
-			"images/advice.png",
-			"images/store.png",
-			"images/about-vision.png",
-			"images/about-person.png"
-		],
-		"refer": []
-	},
-	"range.html": {
-		"resources": [
-			"js/mui.min.js",
-			"css/app.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"images/T.png",
-			"js/arttmpl.js",
-			"images/head3.png",
-			"images/head9.png",
-			"images/medal.svg",
-			"images/head2.png",
-			"images/head7.png",
-			"images/head8.png",
-			"images/head1.png",
-			"images/head4.png",
-			"images/background.gif",
-			"css/range.css",
-			"images/head6.png",
-			"images/head5.png",
-			"images/honor.png",
-			"js/mui.imageViewer.js",
-			"images/person/person6.png",
-			"images/person/person9.png",
-			"images/person/person2.png",
-			"images/person/person3.png",
-			"images/person/person7.png",
-			"images/person/person5.png",
-			"images/person/person8.png",
-			"images/person/person4.png",
-			"images/person/person1.png"
-		],
-		"refer": [
-			"task-area.html"
-		]
-	},
-	"medal.html": {
-		"resources": [
-			"css/medal.css",
-			"images/wall.svg",
-			"images/head9.png",
-			"images/head3.png",
-			"fonts/mui.ttf",
-			"images/T.png",
-			"images/head2.png",
-			"images/head7.png",
-			"images/head8.png",
-			"images/head1.png",
-			"js/mui.min.js",
-			"css/app.css",
-			"images/head4.png",
-			"css/mui.min.css",
-			"images/head6.png",
-			"images/head5.png",
-			"images/person/person2.png",
-			"images/person/person1.png",
-			"images/person/person3.png",
-			"images/person/person7.png",
-			"images/person/person6.png",
-			"images/person/person5.png",
-			"images/person/person9.png",
-			"images/person/person8.png",
-			"images/person/person4.png"
-		],
-		"refer": []
-	},
-	"choose-area.html": {
-		"resources": [
-			"css/style.css",
-			"js/zepto.js",
-			"css/app.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/mui.min.js"
-		],
-		"refer": [
-			"index.html"
-		]
-	},
-	"change-name.html": {
-		"resources": [
-			"css/change-name.css",
-			"js/mui.min.js",
-			"css/app.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css"
-		],
-		"refer": []
-	},
-	"scene-spoken.html": {
-		"resources": [
-			"js/mui.min.js",
-			"css/app.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"images/spoken-img.jpg",
-			"images/English.png",
-			"js/arttmpl.js",
-			"css/scene-spoken.css",
-			"images/scene3.png",
-			"images/scene1.png",
-			"images/scene2.png",
-			"images/explorer.png",
-			"images/task-img.png",
-			"images/about-name.png",
-			"images/scene%3C%\u003di%%3E.png",
-			"images/gift.png"
-		],
-		"refer": [
-			"task-area.html"
-		]
-	},
-	"word-search.html": {
-		"resources": [
-			"css/word-search.css",
-			"js/mui.min.js",
-			"css/app.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/arttmpl.js",
-			"js/common.js",
-			"js/immersed.js"
-		],
-		"refer": []
-	},
-	"task-area.html": {
-		"resources": [
-			"js/mui.imageViewer.js",
-			"js/mui.min.js",
-			"css/app.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/arttmpl.js",
-			"images/head1.png",
-			"js/common.js",
-			"js/immersed.js",
-			"css/mui.imageviewer.css",
-			"images/T.png",
-			"images/mic.png",
-			"images/head2.png",
-			"images/head3.png",
-			"js/taskDetailData.js",
-			"images/authentication.png"
-		],
-		"refer": [
-			"authentication-page.html"
-		]
-	},
-	"enter.html": {
-		"resources": [
-			"images/enter1.jpg",
-			"js/mui.min.js",
-			"images/enter2.jpg",
-			"css/mui.min.css"
-		],
-		"refer": [
-			"index.html"
-		]
-	},
-	"help-document.html": {
-		"resources": [
-			"images/riddle.png",
-			"images/weather.png",
-			"css/help-document.css",
-			"images/xiehouyu.png",
-			"images/date.png",
-			"images/Lucy.png",
-			"images/life-knowledge.png",
-			"images/tongue-twister.png",
-			"images/story.png",
-			"images/deliver.png",
-			"images/joke.png",
-			"images/math.png"
-		],
-		"refer": []
-	},
-	"scene-help.html": {
-		"resources": [
-			"js/mui.min.js",
-			"css/app.css",
-			"css/scene-spoken.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/arttmpl.js",
-			"js/mui.imageViewer.js",
-			"js/common.js",
-			"images/mic.png",
-			"css/mui.imageviewer.css",
-			"js/taskDetailData.js",
-			"js/immersed.js",
-			"css/scene-help.css",
-			"images/microphone.png"
-		],
-		"refer": [
-			"talk-help.html"
-		]
-	},
-	"talk-help.html": {
-		"resources": [
-			"images/mic.png",
-			"js/taskDetailData.js",
-			"images/head4.png",
-			"images/T.png",
-			"js/mui.imageViewer.js",
-			"js/common.js",
-			"js/mui.min.js",
-			"css/app.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"css/mui.imageviewer.css",
-			"js/immersed.js",
-			"js/arttmpl.js"
-		],
-		"refer": []
-	},
-	"authentication-page.html": {
-		"resources": [
-			"css/authentication-page.css",
-			"js/jquery-1.11.3.min.js",
-			"js/mui.min.js",
-			"css/app.css",
-			"fonts/mui.ttf",
-			"images/background.gif",
-			"js/answer.js",
-			"css/mui.min.css",
-			"images/T.png",
-			"images/gift.png",
-			"images/question.png"
-		],
-		"refer": []
-	},
-	"need-to-know.html": {
-		"resources": [
-			"images/person/person3.png",
-			"images/person/person2.png",
-			"images/person/person7.png",
-			"images/person/person6.png",
-			"images/person/person5.png",
-			"css/need-to-know.css",
-			"images/person/person9.png",
-			"images/person/person8.png",
-			"images/person/person4.png",
-			"images/person/person1.png",
-			"fonts/mui.ttf",
-			"js/mui.min.js",
-			"css/app.css",
-			"css/mui.min.css",
-			"images/enter-btn.png"
-		],
-		"refer": [
-			"scene-spoken.html"
-		]
-	},
-	"test.html": {
-		"resources": [
-			"js/mui.imageViewer.js",
-			"js/common.js",
-			"js/mui.min.js",
-			"css/app.css",
-			"images/mic.png",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"css/mui.imageviewer.css",
-			"js/taskDetailData.js",
-			"js/immersed.js",
-			"js/arttmpl.js",
-			"images/authentication.png",
-			"images/T.png"
-		],
-		"refer": []
-	}
+  "index.html": {
+    "resources": [
+      "/js/mui.imageViewer.js",
+      "js/mui.min.js",
+      "css/app.css",
+      "/css/mui.min.css",
+      "/js/arttmpl.js",
+      "js/mui.imageViewer.js",
+      "js/arttmpl.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/mui.imageviewer.css",
+      "images/icon.png",
+      "images/cool.png",
+      "images/T.png",
+      "js/immersed.js",
+      "js/common.js",
+      "images/logo.png",
+      "images/people.jpg",
+      "images/head.jpg",
+      "images/had.png",
+      "js/commonState.js",
+      "images/person.jpg"
+    ],
+    "refer": [
+      "profile.html",
+      "index-menu.html",
+      "word-search.html"
+    ]
+  },
+  "profile.html": {
+    "resources": [
+      "images/T.png",
+      "js/mui.min.js",
+      "css/app.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/arttmpl.js"
+    ],
+    "refer": [
+      "choose-area.html",
+      "change-name.html"
+    ]
+  },
+  "index-menu.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/menu-pic.png"
+    ],
+    "refer": [
+      "about.html",
+      "profile.html",
+      "range.html",
+      "medal.html",
+      "scene-spoken.html",
+      "task-area.html",
+      "help-document.html",
+      "scene-help.html",
+      "need-to-know.html"
+    ]
+  },
+  "about.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/menu-pic.png",
+      "css/app.css",
+      "images/about-name.png",
+      "images/advice.png",
+      "images/store.png",
+      "images/about-vision.png",
+      "images/about-person.png"
+    ],
+    "refer": []
+  },
+  "range.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/app.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/T.png",
+      "js/arttmpl.js",
+      "images/head3.png",
+      "images/head9.png",
+      "images/medal.svg",
+      "images/head2.png",
+      "images/head7.png",
+      "images/head8.png",
+      "images/head1.png",
+      "images/head4.png",
+      "images/background.gif",
+      "css/range.css",
+      "images/head6.png",
+      "images/head5.png",
+      "images/honor.png",
+      "js/mui.imageViewer.js",
+      "images/person/person6.png",
+      "images/person/person9.png",
+      "images/person/person2.png",
+      "images/person/person3.png",
+      "images/person/person7.png",
+      "images/person/person5.png",
+      "images/person/person8.png",
+      "images/person/person4.png",
+      "images/person/person1.png"
+    ],
+    "refer": [
+      "task-area.html"
+    ]
+  },
+  "medal.html": {
+    "resources": [
+      "css/medal.css",
+      "images/wall.svg",
+      "images/head9.png",
+      "images/head3.png",
+      "fonts/mui.ttf",
+      "images/T.png",
+      "images/head2.png",
+      "images/head7.png",
+      "images/head8.png",
+      "images/head1.png",
+      "js/mui.min.js",
+      "css/app.css",
+      "images/head4.png",
+      "css/mui.min.css",
+      "images/head6.png",
+      "images/head5.png",
+      "images/person/person2.png",
+      "images/person/person1.png",
+      "images/person/person3.png",
+      "images/person/person7.png",
+      "images/person/person6.png",
+      "images/person/person5.png",
+      "images/person/person9.png",
+      "images/person/person8.png",
+      "images/person/person4.png"
+    ],
+    "refer": []
+  },
+  "choose-area.html": {
+    "resources": [
+      "css/style.css",
+      "js/zepto.js",
+      "css/app.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/mui.min.js"
+    ],
+    "refer": [
+      "index.html"
+    ]
+  },
+  "change-name.html": {
+    "resources": [
+      "css/change-name.css",
+      "js/mui.min.js",
+      "css/app.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css"
+    ],
+    "refer": []
+  },
+  "scene-spoken.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/app.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "images/spoken-img.jpg",
+      "images/English.png",
+      "js/arttmpl.js",
+      "css/scene-spoken.css",
+      "images/scene3.png",
+      "images/scene1.png",
+      "images/scene2.png",
+      "images/explorer.png",
+      "images/task-img.png",
+      "images/about-name.png",
+      "images/scene%3C%\u003di%%3E.png",
+      "images/gift.png"
+    ],
+    "refer": [
+      "task-area.html"
+    ]
+  },
+  "word-search.html": {
+    "resources": [
+      "css/word-search.css",
+      "js/mui.min.js",
+      "css/app.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/arttmpl.js",
+      "js/common.js",
+      "js/immersed.js"
+    ],
+    "refer": []
+  },
+  "task-area.html": {
+    "resources": [
+      "js/mui.imageViewer.js",
+      "js/mui.min.js",
+      "css/app.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/arttmpl.js",
+      "images/head1.png",
+      "js/common.js",
+      "js/immersed.js",
+      "css/mui.imageviewer.css",
+      "images/T.png",
+      "images/mic.png",
+      "images/head2.png",
+      "images/head3.png",
+      "js/taskDetailData.js",
+      "images/authentication.png"
+    ],
+    "refer": [
+      "authentication-page.html"
+    ]
+  },
+  "enter.html": {
+    "resources": [
+      "images/enter1.jpg",
+      "js/mui.min.js",
+      "images/enter2.jpg",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "index.html"
+    ]
+  },
+  "help-document.html": {
+    "resources": [
+      "images/riddle.png",
+      "images/weather.png",
+      "css/help-document.css",
+      "images/xiehouyu.png",
+      "images/date.png",
+      "images/Lucy.png",
+      "images/life-knowledge.png",
+      "images/tongue-twister.png",
+      "images/story.png",
+      "images/deliver.png",
+      "images/joke.png",
+      "images/math.png"
+    ],
+    "refer": []
+  },
+  "scene-help.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/app.css",
+      "css/scene-spoken.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/arttmpl.js",
+      "js/mui.imageViewer.js",
+      "js/common.js",
+      "images/mic.png",
+      "css/mui.imageviewer.css",
+      "js/taskDetailData.js",
+      "js/immersed.js",
+      "css/scene-help.css",
+      "images/microphone.png"
+    ],
+    "refer": [
+      "talk-help.html"
+    ]
+  },
+  "talk-help.html": {
+    "resources": [
+      "images/mic.png",
+      "js/taskDetailData.js",
+      "images/head4.png",
+      "images/T.png",
+      "js/mui.imageViewer.js",
+      "js/common.js",
+      "js/mui.min.js",
+      "css/app.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/mui.imageviewer.css",
+      "js/immersed.js",
+      "js/arttmpl.js"
+    ],
+    "refer": []
+  },
+  "authentication-page.html": {
+    "resources": [
+      "css/authentication-page.css",
+      "js/jquery-1.11.3.min.js",
+      "js/mui.min.js",
+      "css/app.css",
+      "fonts/mui.ttf",
+      "images/background.gif",
+      "js/answer.js",
+      "css/mui.min.css",
+      "images/T.png",
+      "images/gift.png",
+      "images/question.png"
+    ],
+    "refer": []
+  },
+  "need-to-know.html": {
+    "resources": [
+      "images/person/person3.png",
+      "images/person/person2.png",
+      "images/person/person7.png",
+      "images/person/person6.png",
+      "images/person/person5.png",
+      "css/need-to-know.css",
+      "images/person/person9.png",
+      "images/person/person8.png",
+      "images/person/person4.png",
+      "images/person/person1.png",
+      "fonts/mui.ttf",
+      "js/mui.min.js",
+      "css/app.css",
+      "css/mui.min.css",
+      "images/enter-btn.png"
+    ],
+    "refer": [
+      "scene-spoken.html"
+    ]
+  },
+  "test.html": {
+    "resources": [
+      "js/mui.imageViewer.js",
+      "js/common.js",
+      "js/mui.min.js",
+      "css/app.css",
+      "images/mic.png",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/mui.imageviewer.css",
+      "js/taskDetailData.js",
+      "js/immersed.js",
+      "js/arttmpl.js",
+      "images/authentication.png",
+      "images/T.png"
+    ],
+    "refer": []
+  }
 }
