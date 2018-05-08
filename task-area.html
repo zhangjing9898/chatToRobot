@@ -8,6 +8,11 @@
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/app.css" />
 		<link rel="stylesheet" href="css/mui.imageviewer.css" />
+		<style>
+			.fontColor {
+				color: red;
+			}
+		</style>
 		<script type="text/javascript">
 			var text = null;
 
@@ -117,9 +122,9 @@
 
 				/***接受传的值****/
 				var _self = plus.webview.currentWebview();
-//							mui.toast(_self.taskId);
+				//							mui.toast(_self.taskId);
 				var task_num = _self.taskId;
-				var item = data[task_num-1];
+				var item = data[task_num - 1];
 				var robotContent = item.detail;
 				//			console.log("item:"+item);
 				var taskHead = document.getElementsByClassName("mui-bar-nav")[0];
@@ -147,24 +152,24 @@
 				};
 
 				var getBot = function(info) {
-					var infoNow=parseInt(info);
-					var apiurl = "https://webchat.botframework.com/v3/directline/conversations/Bh4myB9CyHZF634WtsuaPh/activities?watermark="+infoNow;
+					var infoNow = parseInt(info);
+					var apiurl = "https://webchat.botframework.com/v3/directline/conversations/Bh4myB9CyHZF634WtsuaPh/activities?watermark=" + infoNow;
 					mui.ajax(apiurl, {
 						dataType: 'json',
 						type: 'get',
-						timeout:10000,
+						timeout: 10000,
 						headers: {
 							'Authorization': 'Bearer JLyE93qL-5Y.cwA.TXg.dm3GFznmHXfMRq7CNqdz7Adf1TJ60QpTBtmK6KVY1vY',
 							'Content-Type': 'application/json'
 						},
 						success: function(data) {
 							var a = data.activities;
-							if(a==""){
+							if(a == "") {
 								getBot(infoNow)
-							}else{
+							} else {
 								toRead(data.activities[0].text);
-//								console.log();
-								return	
+								//								console.log();
+								return
 							}
 						},
 						error: function(xhr, type, errorThrown) {
@@ -195,7 +200,6 @@
 						}
 					);
 				}
-
 				var record = [{
 					sender: 'zs',
 					type: 'text',
@@ -279,71 +283,155 @@
 					};
 				};
 				var audioRobot = document.getElementById("audioRobot");
-
-				var toRobot = function(info) {
-					plus.nativeUI.showWaiting();
-					var apiUrl = "https://webchat.botframework.com/v3/directline/conversations/Bh4myB9CyHZF634WtsuaPh/activities";
-					mui.ajax(apiUrl, {
-						data: {
-							"type": "message",
-							"from": {
-								"id": "14pdNFiHk8S",
-								"name": "You"
-							},
-							"text": info
-						},
-						dataType: 'json',
-						type: 'post',
+				var toRobotUser=function(content,contentValue){
+					var c = null;
+					mui.getJSON(
+						'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + contentValue,
+						function(data) {
+							if(data.errorCode == '30') {
+								send({
+									sender: 'self',
+									type: 'text',
+									content: contentValue,
+									contenToRobot: contentValue
+								});
+							} else {
+								console.log(JSON.stringify(data));
+								c = data.translation;
+//								mui.toast(content);
+								send({
+									sender: 'self',
+									type: 'text',
+									content:content,
+									contenToRobot: c + ""
+								});
+							}
+						}
+					);
+				}
+				//markWord
+				var markWordFn = function(userArray, markArray) {
+					var arr1 = userArray; //用户说的话
+					var arr2 = markArray; //bot返回的单词
+					var temp = []; //临时数组1 
+					var temparray = []; //临时数组2    重复的
+					var tempArrayIndex = []; //重复数  下标
+					for(var i = 0; i < arr2.length; i++) {
+						temp[arr2[i]] = true; //巧妙地方：把数组B的值当成临时数组1的键并赋值为真 
+					};
+					for(var i = 0; i < arr1.length; i++) {
+						if(temp[arr1[i]]) {
+							temparray.push(arr1[i]); //巧妙地方：同时把数组A的值当成临时数组1的键并判断是否为真，如果不为真说明没重复，就合并到一个新数组里，这样就可以得到一个全新并无重复的数组
+							tempArrayIndex.push(i);
+						};
+					};
+					var str = "";
+					var index = 0;
+					for(var i = 0; i < arr1.length; i++) {
+						if(i == tempArrayIndex[index]) {
+							str += "<span class=fontColor>" + arr1[i] + "</span>" + " ";
+							index++;
+						} else {
+							str += arr1[i] + " ";
+						}
+					}
+//					mui.toast(str);
+					return str;
+				}
+				//标记单词
+				function markWordStyle(arr1,contentValue) {
+					var wordArray = [];
+					var url = "http://172.20.10.2:3000/readWord";
+					mui.ajax(url, {
+						data: {},
+						type: 'get', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
 						headers: {
-							'Authorization': 'Bearer JLyE93qL-5Y.cwA.TXg.dm3GFznmHXfMRq7CNqdz7Adf1TJ60QpTBtmK6KVY1vY',
-							'Content-Type': 'application/json'
+							'Content-Type': 'text/html; charset=utf-8'
 						},
-						success: function(data) {
-							var a = [];
-							var id = data.id;
-							a = id.split('|');
-							var watermark = a[1];
-							getBot(a[1]);
+						success: function(result) {
+							iterator(0);
+							function iterator(i) {
+								if(i == result.length) {
+									var contentRes=markWordFn(arr1, wordArray);
+									toRobotUser(contentRes,contentValue);
+								}
+								wordArray.push(result[i].word);
+								iterator(i + 1);
+							}
 						},
 						error: function(xhr, type, errorThrown) {
 							//异常处理；
+							mui.toast(type);
 							console.log(type);
 						}
-					})
-
-					//					mui.getJSON(apiUrl, {
-					//						"key": '50365a5652bf4491a13d565664a64d55',
-					//						"info": info,
-					//						"userid": plus.device.uuid
-					//					}, function(data) {
-					//						console.log(data.text);
-					//						var dataTest = data.text;
-					//						var c = null;
-					//						mui.getJSON(
-					//							'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + dataTest,
-					//							function(data) {
-					//								c = data.translation;
-					//								console.log("translation:" + c);
-					//								record.push({
-					//									sender: 'zs',
-					//									type: 'text',
-					//									content: c + ""
-					//								});
-					//								bindMsgList();
-					//								plus.nativeUI.closeWaiting();
-					//								var src = 'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&text=' + c;
-					//								audioRobot.setAttribute("src", src);
-					//							}
-					//						);
-					//					});
+					});
 				};
+				
+				var toRobot = function(info) {
+					plus.nativeUI.showWaiting();
+					var apiUrl = "http://www.tuling123.com/openapi/api";
+					//					var apiUrl = "https://webchat.botframework.com/v3/directline/conversations/Bh4myB9CyHZF634WtsuaPh/activities";
+					//					mui.ajax(apiUrl, {
+					//						data: {
+					//							"type": "message",
+					//							"from": {
+					//								"id": "14pdNFiHk8S",
+					//								"name": "You"
+					//							},
+					//							"text": info
+					//						},
+					//						dataType: 'json',
+					//						type: 'post',
+					//						headers: {
+					//							'Authorization': 'Bearer JLyE93qL-5Y.cwA.TXg.dm3GFznmHXfMRq7CNqdz7Adf1TJ60QpTBtmK6KVY1vY',
+					//							'Content-Type': 'application/json'
+					//						},
+					//						success: function(data) {
+					//							var a = [];
+					//							var id = data.id;
+					//							a = id.split('|');
+					//							var watermark = a[1];
+					//							getBot(a[1]);
+					//						},
+					//						error: function(xhr, type, errorThrown) {
+					//							//异常处理；
+					//							console.log(type);
+					//						}
+					//					})
 
+					mui.getJSON(apiUrl, {
+						"key": '50365a5652bf4491a13d565664a64d55',
+						"info": info,
+						"userid": plus.device.uuid
+					}, function(data) {
+						console.log(data.text);
+						var dataTest = data.text;
+						var c = null;
+						mui.getJSON(
+							'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + dataTest,
+							function(data) {
+								c = data.translation;
+								console.log("translation:" + c);
+								record.push({
+									sender: 'zs',
+									type: 'text',
+									content: c + ""
+								});
+								bindMsgList();
+								plus.nativeUI.closeWaiting();
+								var src = 'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&text=' + c;
+								audioRobot.setAttribute("src", src);
+							}
+						);
+					});
+				};
 				function msgTextFocus() {
 					ui.boxMsgText.focus();
 					setTimeout(function() {
 						ui.boxMsgText.focus();
 					}, 150);
-				}
+				};
 				//解决长按“发送”按钮，导致键盘关闭的问题；
 				ui.footerRight.addEventListener('touchstart', function(event) {
 					if(ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
@@ -364,30 +452,8 @@
 						ui.boxMsgText.focus();
 					}, 150);
 					var contentValue = ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '<br/>');
-					var c = null;
-					mui.getJSON(
-						'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + contentValue,
-						function(data) {
-							if(data.errorCode == '30') {
-								send({
-									sender: 'self',
-									type: 'text',
-									content: contentValue,
-									contenToRobot: contentValue
-								});
-							} else {
-								console.log(JSON.stringify(data));
-								c = data.translation;
-								console.log("translation:" + c);
-								send({
-									sender: 'self',
-									type: 'text',
-									content: contentValue,
-									contenToRobot: c + ""
-								});
-							}
-						}
-					);
+					var arr1=contentValue.split(" ");
+					markWordStyle(arr1,contentValue);
 					ui.boxMsgText.value = '';
 					mui.trigger(ui.boxMsgText, 'input', null);
 				}, false);
