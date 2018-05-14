@@ -153,8 +153,7 @@
 
 				var getBot = function(info) {
 					var infoNow = parseInt(info);
-//					http://webchat.botframework.com/v3/directline/conversations/Amz7n8XnZvYIg6P3ZV3q5d/activities?watermark=5
-					var apiurl = "http://webchat.botframework.com/v3/directline/conversations/Amz7n8XnZvYIg6P3ZV3q5d/activities?watermark=" + infoNow;
+					var apiurl = "http://webchat.botframework.com/v3/directline/conversations/7fwxlljs4iT3iMiqSTTIEX/activities?watermark=" + infoNow;
 					mui.ajax(apiurl, {
 						dataType: 'json',
 						type: 'get',
@@ -342,7 +341,7 @@
 				//标记单词
 				function markWordStyle(arr1,contentValue) {
 					var wordArray = [];
-					var url = "http://192.168.0.105:3000/readWord";
+					var url = "http://172.20.10.2:3000/testReadWord";
 					mui.ajax(url, {
 						data: {},
 						type: 'get', //HTTP请求类型
@@ -351,15 +350,23 @@
 							'Content-Type': 'text/html; charset=utf-8'
 						},
 						success: function(result) {
-							iterator(0);
-							function iterator(i) {
-								if(i == result.length) {
-									var contentRes=markWordFn(arr1, wordArray);
-									toRobotUser(contentRes,contentValue);
-								}
-								wordArray.push(result[i].word);
-								iterator(i + 1);
-							}
+//							var a=JSON.parse(result);
+//							mui.toast(typeof a);
+//							iterator(0);
+//							function iterator(i) {
+//								if(i == result.length) {
+//									var contentRes=markWordFn(arr1, wordArray);
+//									toRobotUser(contentRes,contentValue);
+//								}
+//								wordArray.push(result[i].word);
+//								iterator(i + 1);
+//							}
+							var a = JSON.parse(result);
+							for(var i in a) {
+								wordArray.push(a[i]);
+							};
+							var contentRes = markWordFn(arr1, wordArray);
+							toRobotUser(contentRes,contentValue);
 						},
 						error: function(xhr, type, errorThrown) {
 							//异常处理；
@@ -373,12 +380,12 @@
 					plus.nativeUI.showWaiting();
 //					var apiUrl = "http://www.tuling123.com/openapi/api";
 //				https://webchat.botframework.com/v3/directline/conversations/Bh4myB9CyHZF634WtsuaPh/activities
-										var apiUrl = "https://webchat.botframework.com/v3/directline/conversations/Amz7n8XnZvYIg6P3ZV3q5d/activities";
+										var apiUrl = "https://webchat.botframework.com/v3/directline/conversations/7fwxlljs4iT3iMiqSTTIEX/activities";
 										mui.ajax(apiUrl, {
 											data: {
 												"type": "message",
 												"from": {
-													"id": "14pdNFiHk8S",
+													"id": "1VmYBNde8Oy",
 													"name": "You"
 												},
 												"text": info

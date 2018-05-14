@@ -26,40 +26,45 @@
 		<div class="mui-content">
 		</div>
 		<script id="wordSearch-template" type="text/template">
-			<ul class="mui-table-view word-translation">
-				<li class="mui-table-view-cell main-word">
-					<strong><%=(word_content)%></strong> /
-					<%=(word_pronunciation)%>/</li>
-				<li class="mui-table-view-cell translation">
-					<%=(definition)%>
-				</li>
-				<li class="mui-table-view-cell translation">英解:
-					<%=(en_definition)%>
-				</li>
-			</ul>
-			<p>例句：</p>
-			<ul class="mui-table-view example">
-				<li class="mui-table-view-cell">
-					<p>
-						<%=(example1Annotation)%>
-					</p>
-					<p>
-						<%=(example1Translation)%>
-					</p>
-				</li>
-				<li class="mui-table-view-cell">
-					<p>
-						<%=(example2Annotation)%>
-					</p>
-					<p>
-						<%=(example2Translation)%>
-					</p>
-				</li>
-			</ul>
-			<button class="mui-btn mui-btn-danger mark-word">标记该单词</button>
+			<form action="http://139.219.2.212:20021\hotel" method="post" enctype="multipart/form-data">
+				<ul class="mui-table-view word-translation">
+					<li class="mui-table-view-cell main-word">
+						<strong><%=(word_content)%></strong> /
+						<%=(word_pronunciation)%>/</li>
+					<li class="mui-table-view-cell translation">
+						<%=(definition)%>
+					</li>
+					<li class="mui-table-view-cell translation">英解:
+						<%=(en_definition)%>
+					</li>
+				</ul>
+				<p>例句：</p>
+				<ul class="mui-table-view example">
+					<li class="mui-table-view-cell">
+						<p>
+							<%=(example1Annotation)%>
+						</p>
+						<p>
+							<%=(example1Translation)%>
+						</p>
+					</li>
+					<li class="mui-table-view-cell">
+						<p>
+							<%=(example2Annotation)%>
+						</p>
+						<p>
+							<%=(example2Translation)%>
+						</p>
+					</li>
+				</ul>
+				<button type="submit" class="mui-btn mui-btn-danger mark-word" >标记该单词</button>
+			</form>
+			
+			<!--<button class="mui-btn mui-btn-danger mark-word">标记该单词</button>-->
 		</script>
 
 		<script id="wordSearch-template2" type="text/template">
+			<form action="http://139.219.2.212:20021\hotel" method="post" enctype="multipart/form-data">
 			<ul class="mui-table-view word-translation">
 				<li class="mui-table-view-cell main-word">
 					<strong><%=(word_content)%></strong> /
@@ -95,7 +100,9 @@
 					</p>
 				</li>
 			</ul>
-			<button class="mui-btn mui-btn-danger mark-word" id="mark-word">标记该单词</button>
+			<button type="submit" class="mui-btn mui-btn-danger mark-word" >标记该单词</button>
+			</form>
+			<!--<button class="mui-btn mui-btn-danger mark-word" id="mark-word">标记该单词</button>-->
 		</script>
 		<script src="js/mui.min.js"></script>
 		<script src="js/arttmpl.js" type="text/javascript" charset="utf-8"></script>
@@ -103,22 +110,22 @@
 			//标记单词请求
 			var putWord = function(obj, word) {
 				obj.addEventListener('tap', function(e) {
-					var url = "http://172.20.10.2:3000/markWord";
+					var url = "http://139.219.2.212:3000/markWord";
 					mui.ajax(url, {
 						data: {
 							word:word
 						},
-						type: 'get', //HTTP请求类型
+						type: 'post', //HTTP请求类型
 						timeout: 10000, //超时时间设置为10秒；
-						headers:{'Content-Type':'text/html; charset=utf-8'},	
+						headers:{'Content-Type':'form/datal; charset=utf-8'},	
 						success: function(data) {
-							if(data=="1"){
-								mui.toast("该单词标记成功~")
+							if(data=={}){
+								mui.toast("标记成功");
 							}
 						},
 						error: function(xhr, type, errorThrown) {
 							//异常处理；
-							console.log(type);
+							mui.toast(type);
 						}
 					});
 				})
@@ -211,7 +218,7 @@
 					//标记单词
 					var mark_word_button = document.getElementById("mark-word");
 					mark_word_button.addEventListener('tap', function(e) {
-						mui.toast("1212");
+						mui.toast("122");
 					})
 				})
 			}
