@@ -74,556 +74,552 @@
 	<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/arttmpl.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/mui.imageViewer.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript">
-		var MIN_SOUND_TIME = 800;
-		mui.init({
-			gestureConfig: {
-				tap: true, //默认为true
-				doubletap: true, //默认为false
-				longtap: true, //默认为false
-				swipe: true, //默认为true
-				drag: true, //默认为true
-				hold: true, //默认为false，不监听
-				release: true //默认为false，不监听
+	<script type="text/javascript">var MIN_SOUND_TIME = 800;
+mui.init({
+	gestureConfig: {
+		tap: true, //默认为true
+		doubletap: true, //默认为false
+		longtap: true, //默认为false
+		swipe: true, //默认为true
+		drag: true, //默认为true
+		hold: true, //默认为false，不监听
+		release: true //默认为false，不监听
+	}
+});
+template.config('escape', false);
+
+/*计数器*/
+var count = 0;
+mui.plusReady(function() {
+	var mainPage = plus.webview.currentWebview();
+	mainPage.addEventListener('maskClick', closeMenu);
+	//处理侧滑导航，为了避免和子页面初始化等竞争资源，延迟加载侧滑页面；
+	setTimeout(function() {
+		menu = mui.preload({
+			id: 'index-menu,',
+			url: 'index-menu.html',
+			styles: {
+				left: 0,
+				width: '70%',
+				zindex: -1
+			},
+			show: {
+				aniShow: 'none'
 			}
 		});
-		template.config('escape', false);
-
-		/*计数器*/
-		var count = 0;
-		mui.plusReady(function() {
-			var mainPage = plus.webview.currentWebview();
-			mainPage.addEventListener('maskClick', closeMenu);
-			//处理侧滑导航，为了避免和子页面初始化等竞争资源，延迟加载侧滑页面；
-			setTimeout(function() {
-				menu = mui.preload({
-					id: 'index-menu,',
-					url: 'index-menu.html',
-					styles: {
-						left: 0,
-						width: '70%',
-						zindex: -1
-					},
-					show: {
-						aniShow: 'none'
+	}, 200);
+	//			var w = plus.nativeUI.showWaiting("等待中...");
+	var isInTransition = false;
+	/**
+	 * 显示侧滑菜单
+	 */
+	function openMenu() {
+		if(isInTransition) {
+			return;
+		}
+		if(!showMenu) {
+			//侧滑菜单处于隐藏状态，则立即显示出来；
+			isInTransition = true;
+			menu.setStyle({
+				mask: 'rgba(0,0,0,0)'
+			}); //menu设置透明遮罩防止点击
+			menu.show('none', 0, function() {
+				//主窗体开始侧滑并显示遮罩
+				mainPage.setStyle({
+					mask: 'rgba(0,0,0,0.4)',
+					left: '70%',
+					transition: {
+						duration: 150
 					}
 				});
-			}, 200);
-//			var w = plus.nativeUI.showWaiting("等待中...");
-			var isInTransition = false;
-			/**
-			 * 显示侧滑菜单
-			 */
-			function openMenu() {
-				if(isInTransition) {
-					return;
-				}
-				if(!showMenu) {
-					//侧滑菜单处于隐藏状态，则立即显示出来；
-					isInTransition = true;
+				mui.later(function() {
+					isInTransition = false;
 					menu.setStyle({
-						mask: 'rgba(0,0,0,0)'
-					}); //menu设置透明遮罩防止点击
-					menu.show('none', 0, function() {
-						//主窗体开始侧滑并显示遮罩
-						mainPage.setStyle({
-							mask: 'rgba(0,0,0,0.4)',
-							left: '70%',
-							transition: {
-								duration: 150
-							}
-						});
-						mui.later(function() {
-							isInTransition = false;
-							menu.setStyle({
-								mask: "none"
-							}); //移除menu的mask
-						}, 160);
-						showMenu = true;
-					});
-				}
-			};
-			/**
-			 * 关闭菜单
-			 */
-			function closeMenu() {
-				if(isInTransition) {
-					return;
-				}
-				if(showMenu) {
-					//关闭遮罩；
-					//主窗体开始侧滑；
-					isInTransition = true;
-					mainPage.setStyle({
-						mask: 'none',
-						left: '0',
-						transition: {
-							duration: 200
-						}
-					});
-					showMenu = false;
-					//等动画结束后，隐藏菜单webview，节省资源；
-					mui.later(function() {
-						isInTransition = false;
-						menu.hide();
-					}, 300);
-				}
-			};
-			var menu_button = document.getElementById("menu-button");
-			var showMenu = false;
-			//点击左上角侧滑图标，打开侧滑菜单；
-			menu_button.addEventListener('tap', function(e) {
-				if(showMenu) {
-					closeMenu();
-				} else {
-					openMenu();
+						mask: "none"
+					}); //移除menu的mask
+				}, 160);
+				showMenu = true;
+			});
+		}
+	};
+	/**
+	 * 关闭菜单
+	 */
+	function closeMenu() {
+		if(isInTransition) {
+			return;
+		}
+		if(showMenu) {
+			//关闭遮罩；
+			//主窗体开始侧滑；
+			isInTransition = true;
+			mainPage.setStyle({
+				mask: 'none',
+				left: '0',
+				transition: {
+					duration: 200
 				}
 			});
-			//主界面向右滑动，若菜单未显示，则显示菜单；否则不做任何操作
-			window.addEventListener("swiperight", openMenu);
-			//主界面向左滑动，若菜单已显示，则关闭菜单；否则，不做任何操作；
-			window.addEventListener("swipeleft", closeMenu);
-			//侧滑菜单触发关闭菜单命令
-			window.addEventListener("menu:close", closeMenu);
-			window.addEventListener("menu:open", openMenu);
-			//重写mui.menu方法，Android版本menu按键按下可自动打开、关闭侧滑菜单；
-			mui.menu = function() {
-				if(showMenu) {
-					closeMenu();
-				} else {
-					openMenu();
-				}
-			}
-			//首页返回键处理
-			//1、若侧滑菜单显示，则关闭侧滑菜单
-			//2、否则，执行mui框架默认的关闭首页功能
-			var _back = mui.back;
-			mui.back = function() {
-				if(showMenu) {
-					closeMenu();
-				} else {
-					_back();
-				}
-			};
+			showMenu = false;
+			//等动画结束后，隐藏菜单webview，节省资源；
+			mui.later(function() {
+				isInTransition = false;
+				menu.hide();
+			}, 300);
+		}
+	};
+	var menu_button = document.getElementById("menu-button");
+	var showMenu = false;
+	//点击左上角侧滑图标，打开侧滑菜单；
+	menu_button.addEventListener('tap', function(e) {
+		if(showMenu) {
+			closeMenu();
+		} else {
+			openMenu();
+		}
+	});
+	//主界面向右滑动，若菜单未显示，则显示菜单；否则不做任何操作
+	window.addEventListener("swiperight", openMenu);
+	//主界面向左滑动，若菜单已显示，则关闭菜单；否则，不做任何操作；
+	window.addEventListener("swipeleft", closeMenu);
+	//侧滑菜单触发关闭菜单命令
+	window.addEventListener("menu:close", closeMenu);
+	window.addEventListener("menu:open", openMenu);
+	//重写mui.menu方法，Android版本menu按键按下可自动打开、关闭侧滑菜单；
+	mui.menu = function() {
+		if(showMenu) {
+			closeMenu();
+		} else {
+			openMenu();
+		}
+	}
+	//首页返回键处理
+	//1、若侧滑菜单显示，则关闭侧滑菜单
+	//2、否则，执行mui框架默认的关闭首页功能
+	var _back = mui.back;
+	mui.back = function() {
+		if(showMenu) {
+			closeMenu();
+		} else {
+			_back();
+		}
+	};
 
-			var my_info = document.getElementById("word-search");
+	var my_info = document.getElementById("word-search");
 
-			my_info.addEventListener('tap', function() {
-				mui.openWindow({
-					url: 'word-search.html',
-					id: 'word-search.html'
-				});
+	my_info.addEventListener('tap', function() {
+		mui.openWindow({
+			url: 'word-search.html',
+			id: 'word-search.html'
+		});
+	});
+
+	plus.webview.currentWebview().setStyle({
+		softinputMode: "adjustResize"
+	});
+	var showKeyboard = function() {
+		if(mui.os.ios) {
+			var webView = plus.webview.currentWebview().nativeInstanceObject();
+			webView.plusCallMethod({
+				"setKeyboardDisplayRequiresUserAction": false
 			});
-
-			plus.webview.currentWebview().setStyle({
-				softinputMode: "adjustResize"
+		} else {
+			var Context = plus.android.importClass("android.content.Context");
+			var InputMethodManager = plus.android.importClass("android.view.inputmethod.InputMethodManager");
+			var main = plus.android.runtimeMainActivity();
+			var imm = main.getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.toggleSoftInput(0, InputMethodManager.SHOW_FORCED);
+			//var view = ((ViewGroup)main.findViewById(android.R.id.content)).getChildAt(0);
+			imm.showSoftInput(main.getWindow().getDecorView(), InputMethodManager.SHOW_IMPLICIT);
+			//alert("ll");
+		};
+	};
+	var record = [{
+		sender: 'zs',
+		type: 'text',
+		content: '你好，我是阿哆,我可以陪你展开一场无厘头有趣的聊天，也可以给你讲笑话、故事、歇后语、绕口令、脑筋急转弯，分析你每天的星座运势，查询你的快递物流信息、所在城市的天气和日历，而且我也是位生活百科小能手哦，最后，希望能陪你度过一段愉快的旅程。'
+	}];
+	plus.storage.clear();
+	checkNetwork();
+	var ui = {
+		body: document.querySelector('body'),
+		footer: document.querySelector('footer'),
+		footerRight: document.querySelector('.footer-right'),
+		footerLeft: document.querySelector('.footer-left'),
+		btnMsgType: document.querySelector('#msg-type'),
+		boxMsgText: document.querySelector('#msg-text'),
+		boxMsgSound: document.querySelector('#msg-sound'),
+		btnMsgImage: document.querySelector('#msg-image'),
+		areaMsgList: document.querySelector('#msg-list'),
+		boxSoundAlert: document.querySelector('#sound-alert'),
+		h: document.querySelector('#h'),
+		content: document.querySelector('.mui-content')
+	};
+	ui.h.style.width = ui.boxMsgText.offsetWidth + 'px';
+	//alert(ui.boxMsgText.offsetWidth );
+	var footerPadding = ui.footer.offsetHeight - ui.boxMsgText.offsetHeight;
+	var msgItemTap = function(msgItem, event) {
+		var msgType = msgItem.getAttribute('msg-type');
+		var msgContent = msgItem.getAttribute('msg-content');
+		var msgContentInner = msgItem.getElementsByClassName("msg-content-inner")[0].innerHTML;
+		//				console.log("msgItem:" + msgContentInner);
+		//				console.log("msgContent:" + msgContentInner);
+		translation(msgContentInner);
+		if(msgType == 'sound') {
+			player = plus.audio.createPlayer(msgContent);
+			var playState = msgItem.querySelector('.play-state');
+			playState.innerText = '正在播放...';
+			player.play(function() {
+				playState.innerText = '点击播放';
+			}, function(e) {
+				playState.innerText = '点击播放';
 			});
-			var showKeyboard = function() {
-				if(mui.os.ios) {
-					var webView = plus.webview.currentWebview().nativeInstanceObject();
-					webView.plusCallMethod({
-						"setKeyboardDisplayRequiresUserAction": false
-					});
-				} else {
-					var Context = plus.android.importClass("android.content.Context");
-					var InputMethodManager = plus.android.importClass("android.view.inputmethod.InputMethodManager");
-					var main = plus.android.runtimeMainActivity();
-					var imm = main.getSystemService(Context.INPUT_METHOD_SERVICE);
-					imm.toggleSoftInput(0, InputMethodManager.SHOW_FORCED);
-					//var view = ((ViewGroup)main.findViewById(android.R.id.content)).getChildAt(0);
-					imm.showSoftInput(main.getWindow().getDecorView(), InputMethodManager.SHOW_IMPLICIT);
-					//alert("ll");
-				};
-			};
-			var record = [{
-				sender: 'zs',
-				type: 'text',
-				content: '你好，我是阿哆,我可以陪你展开一场无厘头有趣的聊天，也可以给你讲笑话、故事、歇后语、绕口令、脑筋急转弯，分析你每天的星座运势，查询你的快递物流信息、所在城市的天气和日历，而且我也是位生活百科小能手哦，最后，希望能陪你度过一段愉快的旅程。'
-			}];
-			plus.storage.clear();
-			checkNetwork();
-			var ui = {
-				body: document.querySelector('body'),
-				footer: document.querySelector('footer'),
-				footerRight: document.querySelector('.footer-right'),
-				footerLeft: document.querySelector('.footer-left'),
-				btnMsgType: document.querySelector('#msg-type'),
-				boxMsgText: document.querySelector('#msg-text'),
-				boxMsgSound: document.querySelector('#msg-sound'),
-				btnMsgImage: document.querySelector('#msg-image'),
-				areaMsgList: document.querySelector('#msg-list'),
-				boxSoundAlert: document.querySelector('#sound-alert'),
-				h: document.querySelector('#h'),
-				content: document.querySelector('.mui-content')
-			};
-			ui.h.style.width = ui.boxMsgText.offsetWidth + 'px';
-			//alert(ui.boxMsgText.offsetWidth );
-			var footerPadding = ui.footer.offsetHeight - ui.boxMsgText.offsetHeight;
-			var msgItemTap = function(msgItem, event) {
-				var msgType = msgItem.getAttribute('msg-type');
-				var msgContent = msgItem.getAttribute('msg-content');
-				var msgContentInner = msgItem.getElementsByClassName("msg-content-inner")[0].innerHTML;
-				console.log("msgItem:" + msgContentInner);
-				console.log("msgContent:" + msgContentInner);
-				translation(msgContentInner);
-				if(msgType == 'sound') {
-					player = plus.audio.createPlayer(msgContent);
-					var playState = msgItem.querySelector('.play-state');
-					playState.innerText = '正在播放...';
-					player.play(function() {
-						playState.innerText = '点击播放';
-					}, function(e) {
-						playState.innerText = '点击播放';
-					});
-				}
-			};
-			var imageViewer = new mui.ImageViewer('.msg-content-image', {
-				dbl: false
-			});
-			var bindMsgList = function() {
-				//绑定数据:
-				/*tp.bind({
-					template: 'msg-template',
-					element: 'msg-list',
-					model: record
-				});*/
-				var end_headImg_src = null;
-				//				var end_headImg_src="images/T.png";
-				if(plus.storage.getItem('img_src') == null) {
-					end_headImg_src = "images/T.png";
-				} else {
-					end_headImg_src = plus.storage.getItem('img_src');
-				}
-				ui.areaMsgList.innerHTML = template('msg-template', {
-					"record": record,
-					"end_headImg_src": end_headImg_src
-				});
-				var msgItems = ui.areaMsgList.querySelectorAll('.msg-item');
-				[].forEach.call(msgItems, function(item, index) {
-					item.addEventListener('tap', function(event) {
-						msgItemTap(item, event);
-					}, false);
-				});
-				imageViewer.findAllImage();
-				ui.areaMsgList.scrollTop = ui.areaMsgList.scrollHeight + ui.areaMsgList.offsetHeight;
-			};
-
-			bindMsgList();
-
-			window.addEventListener('resize', function() {
-				ui.areaMsgList.scrollTop = ui.areaMsgList.scrollHeight + ui.areaMsgList.offsetHeight;
+		}
+	};
+	var imageViewer = new mui.ImageViewer('.msg-content-image', {
+		dbl: false
+	});
+	var bindMsgList = function() {
+		//绑定数据:
+		/*tp.bind({
+			template: 'msg-template',
+			element: 'msg-list',
+			model: record
+		});*/
+		var end_headImg_src = null;
+		//				var end_headImg_src="images/T.png";
+		if(plus.storage.getItem('img_src') == null) {
+			end_headImg_src = "images/T.png";
+		} else {
+			end_headImg_src = plus.storage.getItem('img_src');
+		}
+		ui.areaMsgList.innerHTML = template('msg-template', {
+			"record": record,
+			"end_headImg_src": end_headImg_src
+		});
+		var msgItems = ui.areaMsgList.querySelectorAll('.msg-item');
+		[].forEach.call(msgItems, function(item, index) {
+			item.addEventListener('tap', function(event) {
+				msgItemTap(item, event);
 			}, false);
+		});
+		imageViewer.findAllImage();
+		ui.areaMsgList.scrollTop = ui.areaMsgList.scrollHeight + ui.areaMsgList.offsetHeight;
+	};
 
-			/*判断网络*/
-			function checkNetwork() {
-				var connectionStatus = plus.networkinfo.getCurrentType();
-				if(connectionStatus == 0 || connectionStatus == 1) {
-					mui.toast('亲,无法连接网络');
-				}
-				//						else if(connectionStatus == 3) {
-				//							mui.toast('使用wifi中');
-				//						}
+	bindMsgList();
+
+	window.addEventListener('resize', function() {
+		ui.areaMsgList.scrollTop = ui.areaMsgList.scrollHeight + ui.areaMsgList.offsetHeight;
+	}, false);
+
+	/*判断网络*/
+	function checkNetwork() {
+		var connectionStatus = plus.networkinfo.getCurrentType();
+		if(connectionStatus == 0 || connectionStatus == 1) {
+			mui.toast('亲,无法连接网络');
+		}
+		//						else if(connectionStatus == 3) {
+		//							mui.toast('使用wifi中');
+		//						}
+	}
+
+	var send = function(msg) {
+		//				console.log("send(msg)",msg);
+		record.push(msg);
+		bindMsgList();
+		plus.nativeUI.closeWaiting();
+		var _self = this;
+		//				console.log("send()中的:" + msg.contenToRobot);
+		if(msg.contenToRobot == undefined) {
+			msg.contenToRobot = msg.content;
+			toRobot(msg.contenToRobot);
+		} else {
+			var reg = /^[a-zA-Z]/;
+			if(reg.test(msg.contenToRobot)) {
+
+				mui.toast("please use English!");
+			} else {
+				toRobot(msg.contenToRobot);
 			}
-
-			var send = function(msg) {
-				console.log("send(msg)",msg);
-				record.push(msg);
-				bindMsgList();
-				plus.nativeUI.closeWaiting();
-				var _self = this;
-				console.log("send()中的:" + msg.contenToRobot);
-				if(msg.contenToRobot == undefined) {
-					msg.contenToRobot = msg.content;
-					toRobot(msg.contenToRobot);
-				} else {
-					var reg = /^[a-zA-Z]/;
-					if(reg.test(msg.contenToRobot)) {
-
-						mui.toast("please use English!");
+		};
+		//				plus.nativeUI.closeWaiting();
+	};
+	/*acfbca724ea1b5db96d2eef88ce677dc
+	 	e51ea27ee6984f7ca3eef3798acaf7da*/
+	var toRobot = function(info) {
+		plus.nativeUI.showWaiting();
+		var apiUrl = "http://www.tuling123.com/openapi/api";
+		mui.getJSON(apiUrl, {
+			"key": 'e51ea27ee6984f7ca3eef3798acaf7da',
+			"info": info,
+			"userid": plus.device.uuid
+		}, function(data) {
+			var dataTest = data.text;
+			var c = null;
+			mui.getJSON(
+				'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + dataTest,
+				function(data) {
+					if(data.errorCode == '30') {
+						var public = "Sorry, this message is wrong in English, for you to show the Chinese version:" + data.query;
+						record.push({
+							sender: 'zs',
+							type: 'text',
+							content: public + ''
+						})
 					} else {
-						toRobot(msg.contenToRobot);
+						c = data.translation;
+						record.push({
+							sender: 'zs',
+							type: 'text',
+							content: c + ""
+						});
 					}
-				};
-//				plus.nativeUI.closeWaiting();
-			};
-			/*acfbca724ea1b5db96d2eef88ce677dc
-			 	e51ea27ee6984f7ca3eef3798acaf7da*/
-			var toRobot = function(info) {
-				plus.nativeUI.showWaiting();
-				var apiUrl = "http://www.tuling123.com/openapi/api";
-				mui.getJSON(apiUrl, {
-					"key": 'e51ea27ee6984f7ca3eef3798acaf7da',
-					"info": info,
-					"userid": plus.device.uuid
-				}, function(data) {
-					var dataTest = data.text;
-					console.log(dataTest);
-					var c = null;
-					mui.getJSON(
-						'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + dataTest,
-						function(data) {
-							console.log(data);
-							if(data.errorCode=='30'){
-								var public="Sorry, this message is wrong in English, for you to show the Chinese version:"+data.query;
-								record.push({
-									sender:'zs',
-									type:'text',
-									content:public+''
-								})
-							}else{
-								c = data.translation;
-								console.log("translation:" + c);
-								record.push({
-									sender: 'zs',
-									type: 'text',
-									content: c + ""
-								});
-							}
-							bindMsgList();
-								plus.nativeUI.closeWaiting();
-								count++;
-								plus.storage.setItem("key_count", count + "");
-								if(count == "1") {
-									plus.storage.setItem("start", "true");
-								}
-						}
-					);
-				});
-			};
+					bindMsgList();
+					plus.nativeUI.closeWaiting();
+					count++;
+					plus.storage.setItem("key_count", count + "");
+					if(count == "1") {
+						plus.storage.setItem("start", "true");
+					}
+				}
+			);
+		});
+	};
 
-			var translation = function(info) {
-				mui.getJSON(
-					'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + info,
-					function(data) {
-						console.log("翻译：" + data.translation);
-						//						console.log("点击后的翻译:"+JSON.stringify(data));
-						mui.toast("翻译:" + data.translation);
-					}
-				);
+	var translation = function(info) {
+		mui.getJSON(
+			'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + info,
+			function(data) {
+				//						console.log("翻译：" + data.translation);
+				//						console.log("点击后的翻译:"+JSON.stringify(data));
+				mui.toast("翻译:" + data.translation);
 			}
+		);
+	}
 
-			function msgTextFocus() {
+	function msgTextFocus() {
+		ui.boxMsgText.focus();
+		setTimeout(function() {
+			ui.boxMsgText.focus();
+		}, 150);
+	}
+	//解决长按“发送”按钮，导致键盘关闭的问题；
+	ui.footerRight.addEventListener('touchstart', function(event) {
+		if(ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
+			msgTextFocus();
+			event.preventDefault();
+		}
+	});
+	ui.footerRight.addEventListener('release', function(event) {
+		if(ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
+			//showKeyboard();
+			checkNetwork();
+			ui.boxMsgText.focus();
+			setTimeout(function() {
 				ui.boxMsgText.focus();
-				setTimeout(function() {
-					ui.boxMsgText.focus();
-				}, 150);
+			}, 150);
+			//							event.detail.gesture.preventDefault();
+			var contentValue = ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '<br/>');
+			var c = null;
+			//					var w = plus.nativeUI.showWaiting("发送中...");
+			mui.getJSON(
+				'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + contentValue,
+				function(data) {
+					if(data.errorCode == '30') {
+						var public = "Sorry, this message is wrong in English, for you to show the Chinese version:" + data.query;
+						send({
+							sender: 'self',
+							type: 'text',
+							content: public + "",
+							contenToRobot: public + ""
+						});
+					} else {
+						//								console.log(JSON.stringify(data));
+						c = data.translation;
+						//								console.log("translation:" + c);
+						send({
+							sender: 'self',
+							type: 'text',
+							content: contentValue,
+							contenToRobot: c + ""
+						});
+					}
+				}
+			);
+			ui.boxMsgText.value = '';
+			mui.trigger(ui.boxMsgText, 'input', null);
+		} else if(ui.btnMsgType.classList.contains('mui-icon-mic')) {
+			ui.btnMsgType.classList.add('mui-icon-compose');
+			ui.btnMsgType.classList.remove('mui-icon-mic');
+			ui.boxMsgText.style.display = 'none';
+			ui.boxMsgSound.style.display = 'block';
+			ui.boxMsgText.blur();
+			document.body.focus();
+		} else if(ui.btnMsgType.classList.contains('mui-icon-compose')) {
+			ui.btnMsgType.classList.add('mui-icon-mic');
+			ui.btnMsgType.classList.remove('mui-icon-compose');
+			ui.boxMsgSound.style.display = 'none';
+			ui.boxMsgText.style.display = 'block';
+			//--
+			//showKeyboard();
+			ui.boxMsgText.focus();
+			setTimeout(function() {
+				ui.boxMsgText.focus();
+			}, 150);
+		}
+	}, false);
+	ui.footerLeft.addEventListener('tap', function(event) {
+		var btnArray = [{
+			title: "拍照"
+		}, {
+			title: "从相册选择"
+		}];
+		plus.nativeUI.actionSheet({
+			title: "选择照片",
+			cancel: "取消",
+			buttons: btnArray
+		}, function(e) {
+			var index = e.index;
+			switch(index) {
+				case 0:
+					break;
+				case 1:
+					var cmr = plus.camera.getCamera();
+					cmr.captureImage(function(path) {
+						send({
+							sender: 'self',
+							type: 'image',
+							content: "file://" + plus.io.convertLocalFileSystemURL(path)
+						});
+					}, function(err) {});
+					break;
+				case 2:
+					plus.gallery.pick(function(path) {
+						send({
+							sender: 'self',
+							type: 'image',
+							content: path
+						});
+					}, function(err) {}, null);
+					break;
 			}
-			//解决长按“发送”按钮，导致键盘关闭的问题；
-			ui.footerRight.addEventListener('touchstart', function(event) {
-				if(ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
-					msgTextFocus();
-					event.preventDefault();
-				}
-			});
-			ui.footerRight.addEventListener('release', function(event) {
-				if(ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
-					//showKeyboard();
-					checkNetwork();
-					ui.boxMsgText.focus();
-					setTimeout(function() {
-						ui.boxMsgText.focus();
-					}, 150);
-					//							event.detail.gesture.preventDefault();
-					var contentValue = ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '<br/>');
-					var c = null;
-//					var w = plus.nativeUI.showWaiting("发送中...");
-					mui.getJSON(
-						'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + contentValue,
-						function(data) {
-							if(data.errorCode == '30') {
-								var public="Sorry, this message is wrong in English, for you to show the Chinese version:"+data.query;
-								send({
-									sender: 'self',
-									type: 'text',
-									content:public+"",
-									contenToRobot: public+""
-								});
-							} else {
-								console.log(JSON.stringify(data));
-								c = data.translation;
-								console.log("translation:" + c);
-								send({
-									sender: 'self',
-									type: 'text',
-									content: contentValue,
-									contenToRobot: c + ""
-								});
-							}
-						}
-					);
-					ui.boxMsgText.value = '';
-					mui.trigger(ui.boxMsgText, 'input', null);
-				} else if(ui.btnMsgType.classList.contains('mui-icon-mic')) {
-					ui.btnMsgType.classList.add('mui-icon-compose');
-					ui.btnMsgType.classList.remove('mui-icon-mic');
-					ui.boxMsgText.style.display = 'none';
-					ui.boxMsgSound.style.display = 'block';
-					ui.boxMsgText.blur();
-					document.body.focus();
-				} else if(ui.btnMsgType.classList.contains('mui-icon-compose')) {
-					ui.btnMsgType.classList.add('mui-icon-mic');
-					ui.btnMsgType.classList.remove('mui-icon-compose');
-					ui.boxMsgSound.style.display = 'none';
-					ui.boxMsgText.style.display = 'block';
-					//--
-					//showKeyboard();
-					ui.boxMsgText.focus();
-					setTimeout(function() {
-						ui.boxMsgText.focus();
-					}, 150);
-				}
-			}, false);
-			ui.footerLeft.addEventListener('tap', function(event) {
-				var btnArray = [{
-					title: "拍照"
-				}, {
-					title: "从相册选择"
-				}];
-				plus.nativeUI.actionSheet({
-					title: "选择照片",
-					cancel: "取消",
-					buttons: btnArray
-				}, function(e) {
-					var index = e.index;
-					switch(index) {
-						case 0:
-							break;
-						case 1:
-							var cmr = plus.camera.getCamera();
-							cmr.captureImage(function(path) {
-								send({
-									sender: 'self',
-									type: 'image',
-									content: "file://" + plus.io.convertLocalFileSystemURL(path)
-								});
-							}, function(err) {});
-							break;
-						case 2:
-							plus.gallery.pick(function(path) {
-								send({
-									sender: 'self',
-									type: 'image',
-									content: path
-								});
-							}, function(err) {}, null);
-							break;
-					}
-				});
-			}, false);
+		});
+	}, false);
 
-			var setSoundAlertVisable = function(show) {
-				if(show) {
-					ui.boxSoundAlert.style.display = 'block';
-					ui.boxSoundAlert.style.opacity = 1;
-				} else {
-					ui.boxSoundAlert.style.opacity = 0;
-					//fadeOut 完成再真正隐藏
-					setTimeout(function() {
-						ui.boxSoundAlert.style.display = 'none';
-					}, 200);
+	var setSoundAlertVisable = function(show) {
+		if(show) {
+			ui.boxSoundAlert.style.display = 'block';
+			ui.boxSoundAlert.style.opacity = 1;
+		} else {
+			ui.boxSoundAlert.style.opacity = 0;
+			//fadeOut 完成再真正隐藏
+			setTimeout(function() {
+				ui.boxSoundAlert.style.display = 'none';
+			}, 200);
+		}
+	};
+	var recordCancel = false;
+	var recorder = null;
+	var audio_tips = document.getElementById("audio_tips");
+	var startTimestamp = null;
+	var stopTimestamp = null;
+	var stopTimer = null;
+	ui.boxMsgSound.addEventListener('hold', function(event) {
+		recordCancel = false;
+		if(stopTimer) clearTimeout(stopTimer);
+		audio_tips.innerHTML = "手指上划，取消发送";
+		ui.boxSoundAlert.classList.remove('rprogress-sigh');
+		setSoundAlertVisable(true);
+		recorder = plus.audio.getRecorder();
+		if(recorder == null) {
+			plus.nativeUI.toast("不能获取录音对象");
+			return;
+		}
+		startTimestamp = (new Date()).getTime();
+		recorder.record({
+			filename: "_doc/audio/"
+		}, function(path) {
+			if(recordCancel) return;
+			send({
+				sender: 'self',
+				type: 'sound',
+				content: path
+			});
+		}, function(e) {
+			plus.nativeUI.toast("录音时出现异常: " + e.message);
+		});
+	}, false);
+	ui.body.addEventListener('drag', function(event) {
+		//console.log('drag');
+		if(Math.abs(event.detail.deltaY) > 50) {
+			if(!recordCancel) {
+				recordCancel = true;
+				if(!audio_tips.classList.contains("cancel")) {
+					audio_tips.classList.add("cancel");
 				}
-			};
-			var recordCancel = false;
-			var recorder = null;
-			var audio_tips = document.getElementById("audio_tips");
-			var startTimestamp = null;
-			var stopTimestamp = null;
-			var stopTimer = null;
-			ui.boxMsgSound.addEventListener('hold', function(event) {
+				audio_tips.innerHTML = "松开手指，取消发送";
+			}
+		} else {
+			if(recordCancel) {
 				recordCancel = false;
-				if(stopTimer) clearTimeout(stopTimer);
-				audio_tips.innerHTML = "手指上划，取消发送";
-				ui.boxSoundAlert.classList.remove('rprogress-sigh');
-				setSoundAlertVisable(true);
-				recorder = plus.audio.getRecorder();
-				if(recorder == null) {
-					plus.nativeUI.toast("不能获取录音对象");
-					return;
-				}
-				startTimestamp = (new Date()).getTime();
-				recorder.record({
-					filename: "_doc/audio/"
-				}, function(path) {
-					if(recordCancel) return;
-					send({
-						sender: 'self',
-						type: 'sound',
-						content: path
-					});
-				}, function(e) {
-					plus.nativeUI.toast("录音时出现异常: " + e.message);
-				});
-			}, false);
-			ui.body.addEventListener('drag', function(event) {
-				//console.log('drag');
-				if(Math.abs(event.detail.deltaY) > 50) {
-					if(!recordCancel) {
-						recordCancel = true;
-						if(!audio_tips.classList.contains("cancel")) {
-							audio_tips.classList.add("cancel");
-						}
-						audio_tips.innerHTML = "松开手指，取消发送";
-					}
-				} else {
-					if(recordCancel) {
-						recordCancel = false;
-						if(audio_tips.classList.contains("cancel")) {
-							audio_tips.classList.remove("cancel");
-						}
-						audio_tips.innerHTML = "手指上划，取消发送";
-					}
-				}
-			}, false);
-			ui.boxMsgSound.addEventListener('release', function(event) {
-				//console.log('release');
 				if(audio_tips.classList.contains("cancel")) {
 					audio_tips.classList.remove("cancel");
-					audio_tips.innerHTML = "手指上划，取消发送";
 				}
-				//
-				stopTimestamp = (new Date()).getTime();
-				if(stopTimestamp - startTimestamp < MIN_SOUND_TIME) {
-					audio_tips.innerHTML = "录音时间太短";
-					ui.boxSoundAlert.classList.add('rprogress-sigh');
-					recordCancel = true;
-					stopTimer = setTimeout(function() {
-						setSoundAlertVisable(false);
-					}, 800);
-				} else {
-					setSoundAlertVisable(false);
-				}
-				recorder.stop();
-			}, false);
-			ui.boxMsgSound.addEventListener("touchstart", function(e) {
-				//console.log("start....");
-				e.preventDefault();
-			});
-			ui.boxMsgText.addEventListener('input', function(event) {
-				ui.btnMsgType.classList[ui.boxMsgText.value == '' ? 'remove' : 'add']('mui-icon-paperplane');
-				ui.btnMsgType.setAttribute("for", ui.boxMsgText.value == '' ? '' : 'msg-text');
-				ui.h.innerText = ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '\n-') || '-';
-				ui.footer.style.height = (ui.h.offsetHeight + footerPadding) + 'px';
-				ui.content.style.paddingBottom = ui.footer.style.height;
-			});
-			var focus = false;
-			ui.boxMsgText.addEventListener('tap', function(event) {
-				ui.boxMsgText.focus();
-				setTimeout(function() {
-					ui.boxMsgText.focus();
-				}, 0);
-				focus = true;
-				setTimeout(function() {
-					focus = false;
-				}, 1000);
-				event.detail.gesture.preventDefault();
-			}, false);
-			//点击消息列表，关闭键盘
-			ui.areaMsgList.addEventListener('click', function(event) {
-				if(!focus) {
-					ui.boxMsgText.blur();
-				}
-			})
-		});
-	</script>
+				audio_tips.innerHTML = "手指上划，取消发送";
+			}
+		}
+	}, false);
+	ui.boxMsgSound.addEventListener('release', function(event) {
+		//console.log('release');
+		if(audio_tips.classList.contains("cancel")) {
+			audio_tips.classList.remove("cancel");
+			audio_tips.innerHTML = "手指上划，取消发送";
+		}
+		//
+		stopTimestamp = (new Date()).getTime();
+		if(stopTimestamp - startTimestamp < MIN_SOUND_TIME) {
+			audio_tips.innerHTML = "录音时间太短";
+			ui.boxSoundAlert.classList.add('rprogress-sigh');
+			recordCancel = true;
+			stopTimer = setTimeout(function() {
+				setSoundAlertVisable(false);
+			}, 800);
+		} else {
+			setSoundAlertVisable(false);
+		}
+		recorder.stop();
+	}, false);
+	ui.boxMsgSound.addEventListener("touchstart", function(e) {
+		//console.log("start....");
+		e.preventDefault();
+	});
+	ui.boxMsgText.addEventListener('input', function(event) {
+		ui.btnMsgType.classList[ui.boxMsgText.value == '' ? 'remove' : 'add']('mui-icon-paperplane');
+		ui.btnMsgType.setAttribute("for", ui.boxMsgText.value == '' ? '' : 'msg-text');
+		ui.h.innerText = ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '\n-') || '-';
+		ui.footer.style.height = (ui.h.offsetHeight + footerPadding) + 'px';
+		ui.content.style.paddingBottom = ui.footer.style.height;
+	});
+	var focus = false;
+	ui.boxMsgText.addEventListener('tap', function(event) {
+		ui.boxMsgText.focus();
+		setTimeout(function() {
+			ui.boxMsgText.focus();
+		}, 0);
+		focus = true;
+		setTimeout(function() {
+			focus = false;
+		}, 1000);
+		event.detail.gesture.preventDefault();
+	}, false);
+	//点击消息列表，关闭键盘
+	ui.areaMsgList.addEventListener('click', function(event) {
+		if(!focus) {
+			ui.boxMsgText.blur();
+		}
+	})
+});
+</script>
 
 </html>

@@ -25,7 +25,7 @@ header .mui-icon-camera:before {
   font-family: "微软雅黑";
 }
 .mui-content .mine-info:first-child {
-  margin-top: 0px;
+  margin-top: -2px;
 }
 .mui-content .Doraemon-get-info .medal-div {
   height: 47px;

@@ -26,7 +26,10 @@
   padding: 4px 12px 2px 12px;
 }
 .mui-content {
-  padding: 60px 20px 0 20px;
+  padding: 70px 20px 0 20px;
+}
+.mui-content form {
+  padding-top: 30px ;
 }
 .mui-content .mui-table-view {
   border-radius: 5px;

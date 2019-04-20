@@ -323,8 +323,8 @@ footer .mui-icon-paperplane {
 	top: 0;
 	-webkit-box-shadow: 0 1px 0 black;
 	box-shadow: 0 1px 0 black;
-	height: 59px;
-	padding-top: 17px;
+	height: 68px;
+	padding-top: 26px;
 }
 
 .mui-title {
@@ -401,7 +401,7 @@ footer .mui-icon-paperplane {
 }
 
 .mui-bar-nav~.mui-content {
-	padding-top: 60px;
+	padding-top: 70px;
 }
 
 .mui-icon-bars:before {

@@ -339,103 +339,134 @@
 					return str;
 				}
 				//标记单词
+//				function markWordStyle(arr1,contentValue) {
+//					var wordArray = [];
+//					var url = "http://172.20.10.2:3000/testReadWord";
+//					mui.ajax(url, {
+//						data: {},
+//						timeout: 10000, //超时时间设置为10秒；
+//						headers: {
+//							'Content-Type': 'text/html; charset=utf-8'
+//						},
+//						success: function(result) {
+//							var a = JSON.parse(result);
+//							for(var i in a) {
+//								wordArray.push(a[i]);
+//							};
+//							var contentRes = markWordFn(arr1, wordArray);
+//							toRobotUser(contentRes,contentValue);
+//						},
+//						error: function(xhr, type, errorThrown) {
+//							//异常处理；
+//							mui.toast(type);
+//							console.log(type);
+//						}
+//					});
+//				};
 				function markWordStyle(arr1,contentValue) {
 					var wordArray = [];
-					var url = "http://172.20.10.2:3000/testReadWord";
-					mui.ajax(url, {
-						data: {},
-						type: 'get', //HTTP请求类型
-						timeout: 10000, //超时时间设置为10秒；
-						headers: {
-							'Content-Type': 'text/html; charset=utf-8'
-						},
-						success: function(result) {
-//							var a=JSON.parse(result);
-//							mui.toast(typeof a);
-//							iterator(0);
-//							function iterator(i) {
-//								if(i == result.length) {
-//									var contentRes=markWordFn(arr1, wordArray);
-//									toRobotUser(contentRes,contentValue);
-//								}
-//								wordArray.push(result[i].word);
-//								iterator(i + 1);
-//							}
-							var a = JSON.parse(result);
-							for(var i in a) {
-								wordArray.push(a[i]);
-							};
-							var contentRes = markWordFn(arr1, wordArray);
-							toRobotUser(contentRes,contentValue);
-						},
-						error: function(xhr, type, errorThrown) {
-							//异常处理；
-							mui.toast(type);
-							console.log(type);
-						}
+					var contentRes = markWordFn(arr1, wordArray);
+					toRobotUser(contentRes,contentValue);
+				};
+				// 微软bot framework 创建订酒店conversation
+//				var toRobot = function(info) {
+//					plus.nativeUI.showWaiting();
+////					var apiUrl = "http://www.tuling123.com/openapi/api";
+////				https://webchat.botframework.com/v3/directline/conversations/Bh4myB9CyHZF634WtsuaPh/activities
+//										var apiUrl = "https://webchat.botframework.com/v3/directline/conversations/7fwxlljs4iT3iMiqSTTIEX/activities";
+//										mui.ajax(apiUrl, {
+//											data: {
+//												"type": "message",
+//												"from": {
+//													"id": "1VmYBNde8Oy",
+//													"name": "You"
+//												},
+//												"text": info
+//											},
+//											dataType: 'json',
+//											type: 'post',
+//											headers: {
+//												'Authorization': 'Bearer 4a0Uv0ck6S0.cwA.gOU.7xtdZi42TDWzJlRMzs5oH_Ma5PqUBLyexZUTOfLQV-0',
+//												'Content-Type': 'application/json',
+//												'Referer':'https://webchat.botframework.com/embed/windyHotelBot?s=4a0Uv0ck6S0.cwA.gOU.7xtdZi42TDWzJlRMzs5oH_Ma5PqUBLyexZUTOfLQV-0'
+//											},
+//											success: function(data) {
+//												var a = [];
+//												var id = data.id;
+//												a = id.split('|');
+//												var watermark = a[1];
+//												getBot(a[1]);
+//											},
+//											error: function(xhr, type, errorThrown) {
+//												//异常处理；
+//												console.log(type);
+//											}
+//										})
+//
+////					mui.getJSON(apiUrl, {
+////						"key": '50365a5652bf4491a13d565664a64d55',
+////						"info": info,
+////						"userid": plus.device.uuid
+////					}, function(data) {
+////						console.log(data.text);
+////						var dataTest = data.text;
+////						var c = null;
+////						mui.getJSON(
+////							'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + dataTest,
+////							function(data) {
+////								c = data.translation;
+////								console.log("translation:" + c);
+////								record.push({
+////									sender: 'zs',
+////									type: 'text',
+////									content: c + ""
+////								});
+////								bindMsgList();
+////								plus.nativeUI.closeWaiting();
+////								var src = 'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&text=' + c;
+////								audioRobot.setAttribute("src", src);
+////							}
+////						);
+////					});
+//				};
+
+				var toRobot = function(info) {
+					plus.nativeUI.showWaiting();
+					var apiUrl = "http://www.tuling123.com/openapi/api";
+					mui.getJSON(apiUrl, {
+						"key": '50365a5652bf4491a13d565664a64d55',
+						"info": info,
+						"userid": plus.device.uuid
+					}, function(data) {
+						var dataTest = data.text;
+						var c = null;
+						mui.getJSON(
+							'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + dataTest,
+							function(data) {
+								if(data.errorCode == '30') {
+									var public = "Sorry, this message is wrong in English, for you to show the Chinese version:" + data.query;
+									record.push({
+										sender: 'zs',
+										type: 'text',
+										content: public + ''
+									})
+								} else {
+									c = data.translation;
+									record.push({
+										sender: 'zs',
+										type: 'text',
+										content: c + ""
+									});
+								}
+								bindMsgList();
+								plus.nativeUI.closeWaiting();
+								var src = 'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&text=' + c;
+								audioRobot.setAttribute("src", src);
+							}
+						);
 					});
 				};
 				
-				var toRobot = function(info) {
-					plus.nativeUI.showWaiting();
-//					var apiUrl = "http://www.tuling123.com/openapi/api";
-//				https://webchat.botframework.com/v3/directline/conversations/Bh4myB9CyHZF634WtsuaPh/activities
-										var apiUrl = "https://webchat.botframework.com/v3/directline/conversations/7fwxlljs4iT3iMiqSTTIEX/activities";
-										mui.ajax(apiUrl, {
-											data: {
-												"type": "message",
-												"from": {
-													"id": "1VmYBNde8Oy",
-													"name": "You"
-												},
-												"text": info
-											},
-											dataType: 'json',
-											type: 'post',
-											headers: {
-												'Authorization': 'Bearer 4a0Uv0ck6S0.cwA.gOU.7xtdZi42TDWzJlRMzs5oH_Ma5PqUBLyexZUTOfLQV-0',
-												'Content-Type': 'application/json',
-												'Referer':'https://webchat.botframework.com/embed/windyHotelBot?s=4a0Uv0ck6S0.cwA.gOU.7xtdZi42TDWzJlRMzs5oH_Ma5PqUBLyexZUTOfLQV-0'
-											},
-											success: function(data) {
-												var a = [];
-												var id = data.id;
-												a = id.split('|');
-												var watermark = a[1];
-												getBot(a[1]);
-											},
-											error: function(xhr, type, errorThrown) {
-												//异常处理；
-												console.log(type);
-											}
-										})
-
-//					mui.getJSON(apiUrl, {
-//						"key": '50365a5652bf4491a13d565664a64d55',
-//						"info": info,
-//						"userid": plus.device.uuid
-//					}, function(data) {
-//						console.log(data.text);
-//						var dataTest = data.text;
-//						var c = null;
-//						mui.getJSON(
-//							'http://fanyi.youdao.com/openapi.do?keyfrom=testorot&key=1145972070&type=data&doctype=json&version=1.1&q=' + dataTest,
-//							function(data) {
-//								c = data.translation;
-//								console.log("translation:" + c);
-//								record.push({
-//									sender: 'zs',
-//									type: 'text',
-//									content: c + ""
-//								});
-//								bindMsgList();
-//								plus.nativeUI.closeWaiting();
-//								var src = 'http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&text=' + c;
-//								audioRobot.setAttribute("src", src);
-//							}
-//						);
-//					});
-				};
 				function msgTextFocus() {
 					ui.boxMsgText.focus();
 					setTimeout(function() {
